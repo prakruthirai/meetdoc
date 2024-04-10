@@ -10,7 +10,7 @@ const Header = () => {
         <Link to='/' >Home</Link>
         <span> &nbsp; </span>
         {user ? (
-          <p>Logout</p>  
+          <p onClick={logoutUser}>Logout</p> 
         ): (
           <Link to='/login' >Login</Link>
         )}
