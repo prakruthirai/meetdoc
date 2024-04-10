@@ -6,6 +6,7 @@ import Homepage from "./pages/homepage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from './pages/SignupPage';
 import Header from "./components/Header";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
