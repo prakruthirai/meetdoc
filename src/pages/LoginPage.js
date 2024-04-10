@@ -6,10 +6,13 @@ const LoginPage = () => {
     let {loginUser} = useContext(AuthContext)
   return (
     <div>
+       
  
         <form onSubmit={loginUser}>
+        
           <div className='container'>
             <div className='header'>
+           
               <div classname='text'>Login</div>
               <div className='underline'></div>
             </div>
@@ -19,10 +22,14 @@ const LoginPage = () => {
             <br></br>
             <input type = "password" className='password' name= "password" placeholder='Enter password' />
             <br></br>
-            <input type = "submit" className='submit' />
+            <button type="submit" className='submit'>Login</button>
             
         </form>
+     
     </div>
+  
+
+    
   )
 }
 
