@@ -1,53 +1,85 @@
-import React ,{useContext} from 'react'
-import { AuthContext } from '../context/AuthContext';
-import "./login.css"
-
+import React, { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "./login.css";
 
 const LoginPage = () => {
-    let {loginUser} = useContext(AuthContext)
+  let { loginUser } = useContext(AuthContext);
   return (
-    <div className='row'>
-       <div className="offset-lg-3 col-lg-6" style={{ marginTop: '100px' }}></div>
-
-       
+    <div>
+      <Container>
+        <div className="login-content">
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <h1>Login</h1>
+          </Col>
+        </Row>
+        <Row className="justify-content-md-center">
+          <Col xs={12} md={8} lg={6}>
+            <Form>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Control
+                  type="text"
+                  name="username"
+                  placeholder="Enter Username"
+                  className="username"
+                />
+                <br />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Control
+                  type="password"
+                  className="password"
+                  name="password"
+                  placeholder="Enter password"
+                />
+                <br/>
+              </Form.Group>
+            </Form>
+          </Col>
+        </Row>
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <Button variant="primary" type="submit" onClick={loginUser}>
+              Submit
+            </Button>
+          </Col>
+        </Row>
+        </div>
         
-        <form onSubmit={loginUser} className='container'>
-        <div className="card">
+      </Container>
+
+      {/* <form onSubmit={loginUser}>
+        <div className="container">
           <div className="header">
-             <h2>Login</h2>
-        
-          {/* <div className='container'>
-            <div className='header'>
-           
-              <div classname='text'>Login</div>
-              <div className='underline'></div>
-            </div>
-            */}
+            <div classname="text">Login</div>
+            <div className="underline"></div>
           </div>
-          
-          <div className='card-body'>
-           <div className='form-group'>
-            <input type = "text" className='username' name= "username" placeholder='Enter Username' />
-             </div>
-             
-            <br></br>
-         
-            <div className='form-group'>
-            <input type = "password" className='password' name= "password" placeholder='Enter password' />
-       </div>
-       </div>
-            <br></br>
-            <div className='card-footer'>
-            <button type="submit" className='submit'>Login</button>
-            </div>
-            </div>
-        </form>
-     </div>
-    // </div>
-  
-
-    
-  )
-}
+        </div>
+        <input
+          type="text"
+          className="username"
+          name="username"
+          placeholder="Enter Username"
+        />
+        <br></br>
+        <input
+          type="password"
+          className="password"
+          name="password"
+          placeholder="Enter password"
+        />
+        <br></br>
+        <button type="submit" className="submit">
+          Login
+        </button>
+      </form> */}
+    </div>
+  );
+};
 
 export default LoginPage;

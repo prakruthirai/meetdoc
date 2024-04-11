@@ -9,14 +9,16 @@
   height: 40px;
   background: #eaeaea;
   border-radius: 6px;
- 
+  padding:20px !important;
+  border-bottom: solid !important;
+  border-width: 0 0 5px 0 !important;
   
 }
 
 .submit {
 display: flex;
 gap: 30px;
-margin: 20px auto;
+margin: 60px auto;
 background-color: darkgreen;
 color: #fff;
 border-radius: 700px;
@@ -34,7 +36,7 @@ align-items: center;
     flex-direction: column;
     width:500px ;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 100px;
     background: #fff;
     padding-bottom: 10px;
     
@@ -59,4 +61,14 @@ align-items: center;
     border-radius: 9px;
 
 }
- 
+.login-content{
+    background: #c5e6ff;
+    padding: 60px 0;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #03347a;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+}
