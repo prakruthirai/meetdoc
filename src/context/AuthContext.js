@@ -86,17 +86,17 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-    let logoutUser = () => {
-        setAuthTokens(null)
-        setUser(null)
-        localStorage.removeItem('authTokens')
-        navigate('/login')
-    }
+    // let logoutUser = () => {
+    //     setAuthTokens(null)
+    //     setUser(null)
+    //     localStorage.removeItem('authTokens')
+    //     navigate('/login')
+    // }
 
     const contextData = {
         user:user,
         loginUser: loginUser,
-        logoutUser:logoutUser
+        // logoutUser:logoutUser
     };
 
     return (

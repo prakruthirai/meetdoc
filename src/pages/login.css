@@ -16,7 +16,7 @@
 .submit {
 display: flex;
 gap: 30px;
-margin: 60px auto;
+margin: 20px auto;
 background-color: darkgreen;
 color: #fff;
 border-radius: 700px;
@@ -32,9 +32,9 @@ align-items: center;
 .container{
     display: flex;
     flex-direction: column;
-    width:600px ;
+    width:500px ;
     margin: auto;
-    margin-top: 200px;
+    margin-top: 50px;
     background: #fff;
     padding-bottom: 10px;
     

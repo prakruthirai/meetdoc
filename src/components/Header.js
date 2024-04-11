@@ -9,11 +9,11 @@ const Header = () => {
     <div>
         <Link to='/' >Home</Link>
         <span> &nbsp; </span>
-        {user ? (
+        {/* {user ? (
           <p onClick={logoutUser}>Logout</p> 
-        ): (
+        ): ( */}
           <Link to='/login' >Login</Link>
-        )}
+        {/* )} */}
         <span> &nbsp; </span>
         <Link to='/signup' >SignUp</Link>
 
