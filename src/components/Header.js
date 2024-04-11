@@ -55,13 +55,13 @@ const Header = () => {
         <li>
           <NavLink to="/login">Login</NavLink>
         </li>
-        <li>
+        
         {/* {user ? (
 //           <p onClick={logoutUser}>Logout</p> 
 //         ): (
 //           <Link to='/login' >Login</Link>
 //         )} */}
-</li>
+
       </ul>
     </nav>
   );

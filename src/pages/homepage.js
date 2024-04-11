@@ -58,6 +58,7 @@ const Homepage = () => {
         {/* <Button variant="outline-light" onClick={logoutUser}>Logout</Button> Logout button */}
       </Navbar>
       <h1>Home page</h1>
+      {user && <p> Hello {user.username}</p>}
     </div>
   );
 }
