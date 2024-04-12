@@ -8,7 +8,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import "./header.css";
+
 
 const Header = () => {
   const { user, logoutUser } = useContext(AuthContext);
