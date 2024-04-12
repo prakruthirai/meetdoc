@@ -8,6 +8,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import "./header.css";
 
 const Header = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -50,13 +51,15 @@ const Header = () => {
             <span></span>
           </div>
           {/* <ul className={menuOpen ? "open" : ""}> */}
+        </Nav>
+        
+        {/* <Nav.Link href="/signup">SignUp</Nav.Link> */}
+        {/* </ul> */}
+        <Nav className="ml-auto">
           <Nav.Link href="/about">About</Nav.Link>
           <Nav.Link href="/services">Services</Nav.Link>
           <Nav.Link href="/contact">Contact</Nav.Link>
           <Nav.Link href="/login">Login</Nav.Link>
-          {/* )} */}
-          {/* <Nav.Link href="/signup">SignUp</Nav.Link> */}
-          {/* </ul> */}
         </Nav>
       </Navbar>
 
