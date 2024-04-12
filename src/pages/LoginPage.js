@@ -62,7 +62,7 @@ const LoginPage = () => {
         </div>
         <input
           type="text"
-          className="username"
+          className="username" 
           name="username"
           placeholder="Enter Username"
         />
