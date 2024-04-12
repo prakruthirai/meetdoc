@@ -45,14 +45,18 @@ const Homepage = () => {
       
       <Navbar bg="dark" variant="dark">
         {/* <Navbar.Brand href="/">Website</Navbar.Brand> */}
-        <Nav className="me-auto">
+        {/* <Nav className="me-auto"> */}
+        <Navbar.Brand href="#home">Home</Navbar.Brand>
+        <Nav className="me-auto  nav_bar_warpper">
           {/* <Nav.Link href="/about">About</Nav.Link>
           <Nav.Link href="/services">Services</Nav.Link>
           <Nav.Link href="/contact">Contact</Nav.Link> */}
+          <Link to="/signup">Signuppage</Link>
           {user ? (
           <p onClick={logoutUser}>Logout</p> 
         ): (
           <Link to='/login' >Login</Link>
+          
         )}
         </Nav>
         {/* <Button variant="outline-light" onClick={logoutUser}>Logout</Button> Logout button */}
