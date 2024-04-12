@@ -55,7 +55,7 @@ const Header = () => {
           <Nav.Link href="/contact">Contact</Nav.Link>
           <Nav.Link href="/login">Login</Nav.Link>
           {/* )} */}
-          <Nav.Link href="/signup">SignUp</Nav.Link>
+          {/* <Nav.Link href="/signup">SignUp</Nav.Link> */}
           {/* </ul> */}
         </Nav>
       </Navbar>
