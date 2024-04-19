@@ -9,49 +9,45 @@ const useAuth = () => {
   const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
-
   const loginUser = async (username, password) => {
     try {
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/authentication/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: username,
-            password: password,
-          }),
+        const response = await fetch(
+            "http://127.0.0.1:8000/api/authentication/login",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                }),
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to authenticate");
         }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to authenticate");
-      }
-      const data = await response.json();
-      console.log("Response data:", data); // Log the response data
-      if (data && data.access_token) {
-        setAuthTokens(data);
-        setUser(jwtDecode(data.access_token));
-        localStorage.setItem("authTokens", JSON.stringify(data));
-        navigate("/");
-      } else {
-        console.error("Invalid token received:", data.access_token);
-        throw new Error("Invalid token received");
-      }
-    //   if (response.status === 200) {
-    //     setAuthTokens(data);
-    //     setUser(jwtDecode(data.access));
-    //     localStorage.setItem("authTokens", JSON.stringify(data));
-    //     navigate("/");
-    //   } else {
-    //     alert("Something went wrong!!");
-    //   }
+
+        const data = await response.json();
+        console.log("Response data:", data);
+
+        if (data && data.data && data.data.access_token) {
+            setAuthTokens(data.data);
+            setUser(jwtDecode(data.data.access_token));
+            localStorage.setItem("authTokens", JSON.stringify(data.data));
+            navigate("/");
+        } else {
+            console.error("Invalid token received:", data.data.access_token);
+            throw new Error("Invalid token received");
+        }
     } catch (error) {
-        console.error('Error occurred during login:', error);
-        alert('Failed to authenticate. Please try again.');
+        console.error("Error occurred during login:", error);
+        alert("Failed to authenticate. Please try again.");
     }
-  };
+};
+
+
 
   const logoutUser = () => {
     setAuthTokens(null);
@@ -71,32 +67,23 @@ const useAuth = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            refresh: authTokens.refresh,
+            refresh: authTokens.refresh_token,
           }),
         }
       );
-      if (response.status === 200) {
+      if (response.ok) {
         const data = await response.json();
         setAuthTokens(data);
-        setUser(jwtDecode(data.access));
+        setUser(jwtDecode(data.access_token));
         localStorage.setItem("authTokens", JSON.stringify(data));
       } else {
-        logoutUser();
+        throw new Error("Failed to refresh token");
       }
     } catch (error) {
       console.error("Error occurred during token refresh:", error);
       logoutUser();
     }
   };
-
-  useEffect(() => {
-    let interval = setInterval(() => {
-      if (authTokens) {
-        updateToken();
-      }
-    }, 86400);
-    return () => clearInterval(interval);
-  }, [authTokens]);
 
   return { user, loginUser, logoutUser };
 };
