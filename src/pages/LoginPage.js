@@ -43,7 +43,7 @@ const LoginPage = () => {
                 </div>
                 </div>
                 <div className="card-footer">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" className="btn btn-primary">Login</button>
                 </div>
                 </div>
             </form>
