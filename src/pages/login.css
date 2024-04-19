@@ -83,7 +83,7 @@ align-items: center;
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 /* Additional custom styles */
-.login-page {
+/* .login-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -137,8 +137,8 @@ align-items: center;
     padding: 10px;
     border-bottom: solid;
     border-width: 0 0 5px 0;
-}
-
+} */
+/* 
 .login-submit {
     display: flex;
     gap: 30px;
@@ -151,4 +151,36 @@ align-items: center;
     cursor: pointer;
     justify-content: center;
     align-items: center;
+} */
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width:1000px ;
+    margin: auto;
+    margin-top: 50px;
+    background: #fff;
+    padding-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+
+    
+}
+.card{
+    width: 500px;
+}
+
+
+.card-header{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.card-footer{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    
 }

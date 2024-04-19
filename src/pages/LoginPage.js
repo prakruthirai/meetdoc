@@ -13,29 +13,41 @@ const LoginPage = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-                <div>
+        <div className='row'>
+            <div className="offset-lg-3 col-lg-6" style={{ marginTop: '100px' }}>
+           
+            <form onSubmit={handleLogin} className="container">
+            <div className="card">
+            <div className="card-header">
+            <h2>Welcome to Meetdoc</h2>
+            </div>
+                <div className="card-body"> 
+                <div className="form-group">
                     <label htmlFor="username">Username:</label>
                     <input
                         type="text"
                         id="username"
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={(e) => setUsername(e.target.value)} className='form-control'
                     />
                 </div>
-                <div>
+               
+                <div className="form-group">
                     <label htmlFor="password">Password:</label>
                     <input
                         type="password"
                         id="password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setPassword(e.target.value)} className='form-control'
                     />
                 </div>
-                <button type="submit">Login</button>
+                </div>
+                <div className="card-footer">
+                <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+                </div>
             </form>
+            </div>
         </div>
     );
 };
