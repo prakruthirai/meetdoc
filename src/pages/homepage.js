@@ -31,6 +31,8 @@
 
 // export default Homepage;
 
+// ----------------------------------------------
+
 import React, { useContext } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { AuthContext } from '../context/AuthContext'; // Import AuthContext
@@ -51,7 +53,7 @@ const Homepage = () => {
           <Nav.Link href="/about">About</Nav.Link>
           <Nav.Link href="/services">Services</Nav.Link>
           <Nav.Link href="/contact">Contact</Nav.Link>
-          {/* <Link to="/signup">Signuppage</Link> */}
+          <Link to="/signup">SignUp</Link>
           {user ? (
           <p onClick={logoutUser}>Logout</p> 
         ): (
@@ -68,3 +70,4 @@ const Homepage = () => {
 }
 
 export default Homepage;
+
