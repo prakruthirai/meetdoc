@@ -148,9 +148,10 @@ const AuthProvider = ({ children }) => {
       });
 
       const data = response.data;
-      if (response.status === 200 && data.access_token) {
-        setAuthTokens(data);
-        setUser(jwtDecode(data.access));
+      // console.log();
+      if (response.status === 200 && data["data"]["access_token"]) {
+        setAuthTokens(data["data"]);
+        setUser(jwtDecode(data["data"]["access_token"]));
         localStorage.setItem('authTokens', JSON.stringify(data));
         navigate('/'); 
         return true;
