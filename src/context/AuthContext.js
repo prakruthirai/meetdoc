@@ -99,7 +99,7 @@
 import { createContext, useState, useEffect } from "react";
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
-import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom'; 
 import baseURL from "../Api/Config";
 
 const AuthContext = createContext();
@@ -107,25 +107,32 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [authTokens, setAuthTokens] = useState(null);
   const [user, setUser] = useState(null);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const tokens = JSON.parse(localStorage.getItem('authTokens'));
-    if (tokens && tokens.access_token) {
+    if (tokens && tokens.access) {
       setAuthTokens(tokens);
-      setUser(jwtDecode(tokens.access_token));
+      setUser(jwtDecode(tokens.access));
     }
   }, []);
 
   const refreshTokens = async () => {
     try {
-      const response = await axios.post(`${baseURL}/api/token/refresh/`, {
+      // Check if authTokens is null
+      if (!authTokens) {
+        console.error('User is not authenticated.');
+        return false;
+      }
+  
+      const response = await axios.post(`${baseURL}/api/authentication/refresh`, {
         refresh: authTokens.refresh
       });
-
+  
       const data = response.data;
       localStorage.setItem('authTokens', JSON.stringify(data));
       setAuthTokens(data);
-      setUser(jwtDecode(data.access_token));
+      setUser(jwtDecode(data.access));
       return true;
     } catch (error) {
       console.error('Error occurred during token refresh:', error);
@@ -135,16 +142,17 @@ const AuthProvider = ({ children }) => {
 
   const loginUser = async (username, password) => {
     try {
-      const response = await axios.post(`${baseURL}/api/token`, {
+      const response = await axios.post(`${baseURL}/api/authentication/login`, {
         username,
         password
       });
 
       const data = response.data;
-      if (response.status === 200 && data.access) {
+      if (response.status === 200 && data.access_token) {
         setAuthTokens(data);
-        setUser(jwtDecode(data.access_token));
+        setUser(jwtDecode(data.access));
         localStorage.setItem('authTokens', JSON.stringify(data));
+        navigate('/'); 
         return true;
       } else {
         alert('Something went wrong!');
@@ -157,10 +165,22 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const logoutUser = () => {
-    setAuthTokens(null);
-    setUser(null);
-    localStorage.removeItem('authTokens');
+  const logoutUser = async () => {
+    try {
+      const response = await axios.post(`${baseURL}/api/authentication/logout`, {
+        refresh_token: authTokens.refresh_token
+      });
+      if (response.status === 200) {
+        setAuthTokens(null);
+        setUser(null);
+        localStorage.removeItem('authTokens');
+        navigate('/login');
+      } else {
+        console.error('Failed to logout:', response);
+      }
+    } catch (error) {
+      console.error('Error occurred during logout:', error);
+    }
   };
 
   return (
@@ -171,3 +191,4 @@ const AuthProvider = ({ children }) => {
 };
 
 export { AuthContext, AuthProvider };
+

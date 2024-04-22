@@ -102,7 +102,7 @@ const useAxios = () => {
 
   const axiosInstance = axios.create({
     baseURL,
-    headers: { Authorization: `Bearer ${authTokens?.access_token}` }
+    headers: { Authorization: `Bearer ${authTokens?.access}` }
   });
 
   axiosInstance.interceptors.request.use(async req => {
@@ -114,13 +114,13 @@ const useAxios = () => {
       if (storedTokens) {
         currentTokens = JSON.parse(storedTokens);
         setAuthTokens(currentTokens);
-        setUser(jwt_decode(currentTokens.access_token));
+        setUser(jwt_decode(currentTokens.access));
       }
     }
 
     // Check token expiry
     if (currentTokens) {
-      const user = jwt_decode(currentTokens.access_token);
+      const user = jwt_decode(currentTokens.access);
       const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
 
       // If token is expired, refresh it
@@ -134,10 +134,10 @@ const useAxios = () => {
           currentTokens = response.data;
           localStorage.setItem('authTokens', JSON.stringify(currentTokens));
           setAuthTokens(currentTokens);
-          setUser(jwt_decode(currentTokens.access_token));
+          setUser(jwt_decode(currentTokens.access));
 
           // Update Authorization header
-          req.headers.Authorization = `Bearer ${currentTokens.access_token}`;
+          req.headers.Authorization = `Bearer ${currentTokens.access}`;
         } catch (error) {
           console.error('Error occurred during token refresh:', error);
         }
