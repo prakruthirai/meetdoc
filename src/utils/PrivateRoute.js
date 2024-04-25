@@ -4,9 +4,18 @@ import { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext';
 
 
-const PrivateRoute = ({ element }) => {
-    let {user} = useContext(AuthContext)
-    return user ? element : <Navigate to="/login" />;
+const PrivateRoute = ({ element, admin}) => {
+    const {user} = useContext(AuthContext);
+    if (!user) {
+        return  <Navigate to="/login" replace />
+    }
+
+    if (admin && (!user || user.role !=="admin")){
+        return <Navigate to="/login" replace />
+    }
+
+    return element;
+   
 }
 
 export default PrivateRoute;

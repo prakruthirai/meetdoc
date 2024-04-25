@@ -96,10 +96,10 @@
 // export { AuthContext, AuthProvider };
 
 
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useCallback } from "react";
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import baseURL from "../Api/Config";
 
 const AuthContext = createContext();
@@ -107,40 +107,65 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [authTokens, setAuthTokens] = useState(null);
   const [user, setUser] = useState(null);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const tokens = JSON.parse(localStorage.getItem('authTokens'));
-    if (tokens && tokens.access) {
-      setAuthTokens(tokens);
-      setUser(jwtDecode(tokens.access));
+    const data = JSON.parse(localStorage.getItem('authTokens'));
+    if (data && data.access_token) {
+      setAuthTokens(data);
+      setUser(jwtDecode(data["data"]["access_token"]));
     }
-  }, []);
+  }, [authTokens]);
 
-  const refreshTokens = async () => {
+// REFRESH
+
+  const refreshTokens = useCallback(async () => {
+    console.log("Calling refresh token");
     try {
       // Check if authTokens is null
       if (!authTokens) {
         console.error('User is not authenticated.');
         return false;
       }
-  
       const response = await axios.post(`${baseURL}/api/authentication/refresh`, {
-        refresh: authTokens.refresh
+        refresh_token: authTokens.refresh_token
       });
-  
-      const data = response.data;
-      localStorage.setItem('authTokens', JSON.stringify(data));
-      setAuthTokens(data);
-      setUser(jwtDecode(data.access));
-      return true;
+
+      if (response.status === 200) {
+        const data = response.data;
+        console.log(data)
+        setAuthTokens({ ...authTokens, access_token: data["access_token"] });
+        setUser(jwtDecode(data["access_token"]));
+        localStorage.setItem('accessToken', JSON.stringify(data["access_token"]));
+        console.log('Token refreshed successfully')
+        return true;
+      } else {
+        console.error('Token refresh Failed:', response.data);
+        return false;
+      }
     } catch (error) {
-      console.error('Error occurred during token refresh:', error);
+      console.error('Error occured during token refresh:', error)
       return false;
     }
-  };
+  }, [authTokens]);
 
+  useEffect(() => {
+    if (authTokens) {
+      const tokenExpirationTime = jwtDecode(authTokens.access_token).exp * 1000;
+      const currentTime = Date.now();
+      const timeUntilExpiration = tokenExpirationTime - currentTime;
+      const refreshBefore = timeUntilExpiration - 5000;
+
+      const timeoutId = setTimeout(refreshTokens, refreshBefore);
+
+      return () => clearTimeout(timeoutId);
+
+    }
+  }, [authTokens, refreshTokens]);
+
+// LOGIN
   const loginUser = async (username, password) => {
+    console.log("trying to log in");
     try {
       const response = await axios.post(`${baseURL}/api/authentication/login`, {
         username,
@@ -148,12 +173,14 @@ const AuthProvider = ({ children }) => {
       });
 
       const data = response.data;
-      // console.log();
+      console.log(data);
       if (response.status === 200 && data["data"]["access_token"]) {
         setAuthTokens(data["data"]);
         setUser(jwtDecode(data["data"]["access_token"]));
         localStorage.setItem('authTokens', JSON.stringify(data));
-        navigate('/'); 
+        localStorage.setItem('accessToken', JSON.stringify(data["data"]["access_token"]));
+        // localStorage.setItem('refreshToken', JSON.stringify(data["data"]["refresh_token"]));
+        navigate('/');
         return true;
       } else {
         alert('Something went wrong!');
@@ -166,21 +193,33 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  // LOGOUT
+
   const logoutUser = async () => {
+    if (!authTokens) {
+      console.warn('User is not logged in, cannot logout.');
+      return; // Exit the function if not logged in
+    }
     try {
       const response = await axios.post(`${baseURL}/api/authentication/logout`, {
-        refresh_token: authTokens.refresh_token
+        refresh_token: authTokens.refresh_token,
       });
-      if (response.status === 200) {
+      if (response.status === 200 || response.status === 204) {
+        // Logout successful
         setAuthTokens(null);
         setUser(null);
         localStorage.removeItem('authTokens');
+        localStorage.removeItem('accessToken');
+        // localStorage.removeItem('refreshToken');
         navigate('/login');
       } else {
-        console.error('Failed to logout:', response);
+        // Handle unexpected response status
+        console.error('Unexpected response while logging out:', response);
       }
     } catch (error) {
+      // Handle network errors or other exceptions
       console.error('Error occurred during logout:', error);
+      // You may also want to provide user-friendly feedback here
     }
   };
 

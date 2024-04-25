@@ -126,7 +126,7 @@ import { AuthProvider } from "./context/AuthContext";
 import Homepage from "./pages/homepage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-import Header from "./components/Header";
+// import Header from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -134,7 +134,7 @@ function App() {
     <div className="App">
       <Router>
         <AuthProvider>
-          <Header />
+          {/* <Header /> */}
           <Routes>
             <Route
               path="/"
@@ -146,7 +146,7 @@ function App() {
             />
             <Route
               path="/signup"
-              element={<SignupPage />}
+              element={<PrivateRoute element={<SignupPage />} admin={true} />}
             />
           </Routes>
         </AuthProvider>
