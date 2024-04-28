@@ -126,34 +126,58 @@ import { AuthProvider } from "./context/AuthContext";
 import Homepage from "./pages/homepage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-// import Header from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Uploadpage from "./pages/Uploadpage";
+import MeetingCard from "./pages/MeetingCard";
+import Footer from "./components/Footer"
+// import "./App.css"
+
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <AuthProvider>
-          {/* <Header /> */}
-          <Routes>
-            <Route
-              path="/"
-              element={<PrivateRoute element={<Homepage />} />}
-            />
-            <Route
-              path="/login"
-              element={<LoginPage />}
-            />
-            <Route
-              path="/signup"
-              element={<PrivateRoute element={<SignupPage />} admin={true} />}
-            />
-          </Routes>
-        </AuthProvider>
-      </Router>
-    </div>
-  );
+    <div className="page-container">
+      <div className="content-wrap">
+        <Router>
+          <AuthProvider>
+            <Routes>
+              <Route
+                path="/"
+                element={<PrivateRoute element={<Homepage />} />}
+              />
+              <Route
+                path="/login"
+                element={<LoginPage />}
+              />
+              <Route
+                path="/signup"
+                element={<SignupPage />}
+              />
+              <Route
+                path="/uploadpage"
+                element={<Uploadpage />}
+              />
+              <Route
+                path="/meetingcard"
+                element={<MeetingCard />}
+              />
+              {/* <Route
+              path="/uploadaudio"
+              element={<PrivateRoute 
+              element={<Uploadpage/>} />}
+            /> */}
+              {/* <Route
+              path="/meetingcard"
+              element={<PrivateRoute 
+              element={<MeetingCard />} />}
+            /> */}
+            </Routes>
+          </AuthProvider>
+        </Router>
+        </div>
+        <Footer />
+      </div>
+      );
 }
 
-export default App;
+      export default App;
 

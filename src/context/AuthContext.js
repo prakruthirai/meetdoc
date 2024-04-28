@@ -116,6 +116,14 @@ const AuthProvider = ({ children }) => {
       setUser(jwtDecode(data["data"]["access_token"]));
     }
   }, [authTokens]);
+  // useEffect(() => {
+  //   const data = JSON.parse(localStorage.getItem('authTokens'));
+  //   if (data && data.access_token) {
+  //     setAuthTokens(data);
+  //     const decodedToken = jwtDecode(data["data"]["access_token"]);
+  //     setUser({...decodedToken, role: decodedToken.role});
+  //   }
+  // }, [authTokens]);
 
 // REFRESH
 
@@ -136,7 +144,8 @@ const AuthProvider = ({ children }) => {
         console.log(data)
         setAuthTokens({ ...authTokens, access_token: data["access_token"] });
         setUser(jwtDecode(data["access_token"]));
-        localStorage.setItem('accessToken', JSON.stringify(data["access_token"]));
+        localStorage.setItem('access_token', JSON.stringify(data["access_token"]));
+
         console.log('Token refreshed successfully')
         return true;
       } else {
@@ -178,8 +187,8 @@ const AuthProvider = ({ children }) => {
         setAuthTokens(data["data"]);
         setUser(jwtDecode(data["data"]["access_token"]));
         localStorage.setItem('authTokens', JSON.stringify(data));
-        localStorage.setItem('accessToken', JSON.stringify(data["data"]["access_token"]));
-        // localStorage.setItem('refreshToken', JSON.stringify(data["data"]["refresh_token"]));
+        localStorage.setItem('access_token', JSON.stringify(data["data"]["access_token"]));
+        localStorage.setItem('refresh_token', JSON.stringify(data["data"]["refresh_token"]));
         navigate('/');
         return true;
       } else {
@@ -198,7 +207,7 @@ const AuthProvider = ({ children }) => {
   const logoutUser = async () => {
     if (!authTokens) {
       console.warn('User is not logged in, cannot logout.');
-      return; // Exit the function if not logged in
+      return;
     }
     try {
       const response = await axios.post(`${baseURL}/api/authentication/logout`, {
@@ -209,22 +218,28 @@ const AuthProvider = ({ children }) => {
         setAuthTokens(null);
         setUser(null);
         localStorage.removeItem('authTokens');
-        localStorage.removeItem('accessToken');
-        // localStorage.removeItem('refreshToken');
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
         navigate('/login');
       } else {
-        // Handle unexpected response status
         console.error('Unexpected response while logging out:', response);
       }
     } catch (error) {
-      // Handle network errors or other exceptions
       console.error('Error occurred during logout:', error);
-      // You may also want to provide user-friendly feedback here
     }
   };
 
+//   let logoutUser = () => {
+//     setAuthTokens(null)
+//     setUser(null)
+//     localStorage.removeItem('authTokens')
+//     localStorage.removeItem('accessToken')
+//     localStorage.removeItem('refreshToken')
+//     navigate('/login')
+// }
+
   return (
-    <AuthContext.Provider value={{ authTokens, user, loginUser, logoutUser, refreshTokens }}>
+    <AuthContext.Provider value={{ authTokens, user, loginUser,logoutUser, refreshTokens }}>
       {children}
     </AuthContext.Provider>
   );

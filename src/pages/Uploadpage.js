@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import baseURL from "../Api/Config";
 
 const Uploadpage = () => {
   const [files, setFiles] = useState(null);
@@ -21,7 +22,7 @@ const Uploadpage = () => {
     setMsg("Uploading...");
     setProgress(prevState => ({ ...prevState, started: true }));
 
-    axios.post('http://localhost:8000/api/meetdoc/upload-audio/', fd, {
+    axios.post(`${baseURL}/api/meetdoc/upload-audio/`, fd, {
       onUploadProgress: (progressEvent) => {
         const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
         setProgress(prevState => ({ ...prevState, pc: percentCompleted }));

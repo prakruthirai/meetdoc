@@ -20,24 +20,28 @@ const LoginPage = () => {
             <form onSubmit={handleLogin} className="container">
             <div className="card">
             <div className="card-header">
-            <h2>Welcome to Meetdoc</h2>
+            <h2>Login</h2>
+            <br />
+            <h7> Enter your credentials</h7>
             </div>
                 <div className="card-body"> 
                 <div className="form-group">
-                    <label htmlFor="username">Username:</label>
+                    {/* <label htmlFor="username">Username:</label> */}
                     <input
                         type="text"
                         id="username"
+                        placeholder="User Name"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)} className='form-control'
                     />
                 </div>
                
                 <div className="form-group">
-                    <label htmlFor="password">Password:</label>
+                    {/* <label htmlFor="password">Password:</label> */}
                     <input
                         type="password"
                         id="password"
+                        placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)} className='form-control'
                     />

@@ -1,0 +1,19 @@
+.footer-container {
+    background-color: #007bff; 
+    height: auto;
+
+  }
+  
+.footer-logo{
+    width: auto;
+    height: auto;
+}  
+
+.text-footer p {
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+
+
