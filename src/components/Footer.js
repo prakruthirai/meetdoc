@@ -13,7 +13,7 @@ const FooterComponent = () => {
         </div>
         <hr className="text-white" />
         <div className="row m-auto d-flex flex-row justify-content-center align-items-center">
-          <div className="col-md-2 d-block m-auto p-auto logo">
+          <div className="col-md-2 d-block m-2 p-2 logo">
             <a href="https://lavasa.christuniversity.in/" className="text-decoration-none">
               <Logo/>
             </a>

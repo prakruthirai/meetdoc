@@ -158,7 +158,7 @@ align-items: center;
     flex-direction: column;
     width:100px ;
     margin: auto;
-    margin-top: 50px;
+    margin-top: auto;
     background: #fff;
     padding-bottom: 10px;
     align-items: center;
@@ -179,7 +179,7 @@ align-items: center;
 }
 
 .card-body {
-    padding: 20px; /* Adjust the padding as needed */
+    padding: 10px; /* Adjust the padding as needed */
   }
   
   .form-group {

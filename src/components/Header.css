@@ -1,0 +1,30 @@
+.header {
+  background-color: #007bff; /* Set background color for the header */
+  padding: 10px; /* Add padding for better appearance */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for separation */
+}
+
+.logo-container {
+  display: flex; /* Use flexbox to align items */
+  align-items: center; /* Center items vertically */
+  padding: 1px;
+}
+
+.applogo {
+  width: 10%;
+  height: 10%;
+}
+
+.applogo img{
+  width: 100%; /* Make sure the image fills the entire space of its container */
+  height: auto; /* Ensure the image maintains its aspect ratio */
+  align-items: center;
+  padding: 5%;
+}
+
+.app-name {
+  font-size: 24px; /* Set font size for the app name */
+  color: #0f0101; /* Set color for the app name */
+  margin-left: 10px;
+  
+}

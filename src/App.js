@@ -130,6 +130,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Uploadpage from "./pages/Uploadpage";
 import MeetingCard from "./pages/MeetingCard";
 import Footer from "./components/Footer"
+import Header from "./components/Header";
 // import "./App.css"
 
 
@@ -138,6 +139,7 @@ function App() {
     <div className="page-container">
       <div className="content-wrap">
         <Router>
+        <Header/>
           <AuthProvider>
             <Routes>
               <Route
