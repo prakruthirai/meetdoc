@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import baseURL from "../Api/Config";
+import './uploadpage.css'
 
 const Uploadpage = () => {
   const [files, setFiles] = useState(null);
@@ -28,7 +29,8 @@ const Uploadpage = () => {
         setProgress(prevState => ({ ...prevState, pc: percentCompleted }));
       },
       headers: {
-        "Custom-Header": "value",
+        // "Custom-Header": "value",
+        'Content-Type': 'multipart/form-data',
       }
     })
     .then(res => {
@@ -42,10 +44,10 @@ const Uploadpage = () => {
   };
 
   return (
-    <div>
+    <div className="file-card">
       <h1>Uploading Files</h1>
       <input onChange={(e) => setFiles(e.target.files)} type='file' multiple />
-      {files && <button onClick={handleUpload}>Upload</button>}
+      {files && <button onClick={handleUpload} className="upload-button">Upload</button>}
       {progress.started && <progress max='100' value={progress.pc}></progress>}
       {msg && <span>{msg}</span>}
     </div>
