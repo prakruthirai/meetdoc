@@ -43,42 +43,41 @@ const SignupPage = () => {
     };
 
     return (
-        <div>
+        <div className='row'>
              <div className="offset-lg-3 col-lg-6" style={{ marginTop: '60px' }}>
             
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="container">
             <div className="card">
             
             <div className="card-header">
             <h2>Register</h2>
             </div>
             <div className="card-body">
-                 <div className="column">
-                 <div className="col-lg-9">
+               
                     <div className="form-group">
                     <label>Username:</label>
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required className="input-field" />
+                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required  />
                 </div>
-                </div>
-                <div className="col-lg-9">
+               
+                
                     <div className="form-group">
                     <label>Email:</label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required  className='form-control' />
+                
                 </div>
-                </div>
-                <div className="col-lg-9">
+                
                     <div className="form-group">
                     <label>Firstname:</label>
                     <input type="text" value={first_name} onChange={(e) => setFirstname(e.target.value)} required />
+                
                 </div>
-                </div>
-                <div className="col-lg-9">
+                
                     <div className="form-group">
                     <label>Password:</label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                
                 </div>
-                </div>
-                </div>
+               
                 </div>
                 <div className="card-footer">
                 <button type="submit">Register</button>
