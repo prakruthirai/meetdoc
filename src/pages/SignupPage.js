@@ -28,10 +28,10 @@ const SignupPage = () => {
         e.preventDefault();
         try {
             const response = await axios.post(`${baseURL}/api/authentication/register`, {
-                username,
-                email,
-                first_name,
-                password
+               'username': username,
+                'email':email,
+                'first_name':first_name,
+                'password': password
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ const SignupPage = () => {
 
     return (
             <div className='row'>
-                 <div className="offset-lg-3 col-lg-6" style={{ marginTop: '10px' }}>
+                 <div className="offset-lg-3 col-lg-6" style={{ marginTop: '60px' }}>
                 
                 <form onSubmit={handleSubmit} className="container">
                 <div className="card">
@@ -69,7 +69,7 @@ const SignupPage = () => {
                    
                         <div className="form-group">
                         <label>Username:</label>
-                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required className='form-control' />
+                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required  />
                     </div>
                    
                     
@@ -81,20 +81,19 @@ const SignupPage = () => {
                     
                         <div className="form-group">
                         <label>Firstname:</label>
-                        <input type="text" value={first_name} onChange={(e) => setFirstname(e.target.value)} required className='form-control' />
+                        <input type="text" value={first_name} onChange={(e) => setFirstname(e.target.value)} required />
                     
                     </div>
                     
-                    
                         <div className="form-group">
                         <label>Password:</label>
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className='form-control'/>
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                     
                     </div>
                    
                     </div>
                     <div className="card-footer">
-                    <button type="submit" class="btn btn-primary" >Register</button>
+                    <button type="submit">Register</button>
                     </div>
     
                     {error && <p>{error}</p>} {/* Display error message if registration fails */}
