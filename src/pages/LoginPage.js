@@ -35,7 +35,7 @@ const LoginPage = () => {
                         onChange={(e) => setUsername(e.target.value)} className='form-control'
                     />
                 </div>
-               
+               <br />
                 <div className="form-group">
                     {/* <label htmlFor="password">Password:</label> */}
                     <input

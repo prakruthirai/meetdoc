@@ -47,7 +47,7 @@
         flex-direction: column;
         width:800px ;
         margin: auto;
-        margin-top: 100px;
+        margin-top: 20px;
         background: #fff;
         padding-bottom: 10px;
     
@@ -69,6 +69,9 @@
         
     }
     
-  
+
+    .card-footer button{
+        background-color: #007bff;
+    }
 
 
