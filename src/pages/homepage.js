@@ -8,7 +8,7 @@ const Homepage = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   const navigate = useNavigate();
-  
+  console.log(user)
 
   useEffect(() => {
     if(!localStorage.getItem('authTokens')){
@@ -17,7 +17,7 @@ const Homepage = () => {
   },[navigate])
 
   useEffect(() => {
-    if (user && user.role === 'Admin') {
+    if (user && role === 'Admin') {
       setIsAdmin(true);
     }
   }, [user]);
@@ -30,13 +30,7 @@ const Homepage = () => {
         {/* <Nav className="me-auto"> */}
         
         <Nav className="me-auto  nav_bar_warpper">
-          <Nav.Link href="/about">About</Nav.Link>
-          {/* MAKE A FOOTER TO ADD THE CONTACT */}
-          {/* <Nav.Link href="/contact">Contact</Nav.Link>  */} 
-
-          {isAdmin && (
-        <button onClick={() => navigate('/signup')}>Create User</button>
-      )}
+          <Nav.Link href="/about">About</Nav.Link> 
         </Nav>
         <Nav>
         <Button variant="primary" style={{ marginRight: '30px' }} onClick={() => navigate('/')}>Your MeetDocs</Button>
@@ -47,9 +41,13 @@ const Homepage = () => {
           )}
           
         </Nav>
+        <Nav>
+        {isAdmin && (
+        <button onClick={() => navigate('/signup')}>Create User</button>
+      )}
+        </Nav>
       </Navbar>
-      {/* <h1>Home page</h1> */}
-      {user && <p> Hello {user.username}</p>}
+      {user?.username && <p>Hello {user.username}</p>}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import './login.css'
+// import './login.css'
 
 const LoginPage = () => {
     const { loginUser } = useContext(AuthContext);

@@ -189,6 +189,7 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem('authTokens', JSON.stringify(data));
         localStorage.setItem('access_token', JSON.stringify(data["data"]["access_token"]));
         localStorage.setItem('refresh_token', JSON.stringify(data["data"]["refresh_token"]));
+        localStorage.setItem('role', JSON.stringify(data["role"]));
         navigate('/');
         return true;
       } else {
@@ -215,11 +216,13 @@ const AuthProvider = ({ children }) => {
       });
       if (response.status === 200 || response.status === 204) {
         // Logout successful
+        console.log("Logout clicked");
         setAuthTokens(null);
         setUser(null);
         localStorage.removeItem('authTokens');
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
+        localStorage.removeItem('role');
         navigate('/login');
       } else {
         console.error('Unexpected response while logging out:', response);

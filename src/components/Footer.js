@@ -6,7 +6,7 @@ import Logo from './Logo.js'
 
 const FooterComponent = () => {
   return (
-    <div className="row mt-4 mx-3 mb-4 footer-container">
+    <div className="row mt-4  mb-4 footer-container">
       <div className="col-md-12 h-100 br-15 cus-dark" id="connect">
         <div className="row mt-3 mb-3">
           {/* Empty row */}

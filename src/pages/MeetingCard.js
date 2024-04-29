@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   // faEye,
@@ -7,11 +7,19 @@ import {
   faPersonRunning,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios"; // Import Axios for making API requests
+import { useNavigate } from "react-router-dom";
 
 const MeetingCard = ({ title, description, date, audioSrc }) => {
   const [transcriptColor, setTranscriptColor] = useState("red"); // State to track the color of the transcript link
   const [summaryColor, setSummaryColor] = useState("red"); // State to track the color of the summary link
   const [momColor, setMomColor] = useState("red"); // State to track the color of the MoM link
+  const [navigate]=useNavigate()
+
+  useEffect(() => {
+    if (!localStorage.getItem('authTokens')) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   const fetchTranscript = () => {
     // Make API call to fetch transcript

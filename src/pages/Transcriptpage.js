@@ -9,6 +9,12 @@ const Transcriptpage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!localStorage.getItem('authTokens')) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+  useEffect(() => {
     axios
       .get("transcript_api_endpoint")
       .then((response) => {

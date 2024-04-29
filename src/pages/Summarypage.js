@@ -9,6 +9,12 @@ const Summarypage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!localStorage.getItem('authTokens')) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+  useEffect(() => {
     axios
       .get("summary_api_endpoint")
       .then((response) => {

@@ -122,8 +122,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
-import { AuthProvider } from "./context/AuthContext";
-import Homepage from "./pages/homepage";
+import { AuthProvider , AuthContext} from "./context/AuthContext";
+// import Homepage from "./pages/homepage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -131,6 +131,7 @@ import Uploadpage from "./pages/Uploadpage";
 import MeetingCard from "./pages/MeetingCard";
 import Footer from "./components/Footer"
 import Header from "./components/Header";
+import {Navbar} from "./components/Navbar";
 // import "./App.css"
 
 
@@ -141,10 +142,15 @@ function App() {
         <Router>
         <Header/>
           <AuthProvider>
+          <AuthContext.Consumer>
+              {({ user }) => (
+                user && <Navbar />
+              )}
+            </AuthContext.Consumer>
             <Routes>
               <Route
                 path="/"
-                element={<PrivateRoute element={<Homepage />} />}
+                element={<PrivateRoute element={<Uploadpage />} />}
               />
               <Route
                 path="/login"
@@ -153,10 +159,6 @@ function App() {
               <Route
                 path="/signup"
                 element={<SignupPage />}
-              />
-              <Route
-                path="/uploadpage"
-                element={<Uploadpage />}
               />
               <Route
                 path="/meetingcard"
