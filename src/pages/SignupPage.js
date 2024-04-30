@@ -67,7 +67,7 @@ const SignupPage = () => {
                 <div className="card">
                 
                 <div className="card-header">
-                <h2>Register</h2>
+                <h2>Create User</h2>
                 </div>
                 <div className="card-body">
                    
@@ -97,7 +97,7 @@ const SignupPage = () => {
                     <br />
                     </div>
                     <div className="card-footer">
-                    <button type="submit" className="btn btn-primary">Register</button>
+                    <button type="submit" className="btn btn-primary">Create User</button>
                     </div>
     
                     {error && <p>{error}</p>} {/* Display error message if registration fails */}
