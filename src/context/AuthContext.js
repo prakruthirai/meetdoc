@@ -125,7 +125,7 @@ const AuthProvider = ({ children }) => {
   //   }
   // }, [authTokens]);
 
-// REFRESH
+  // REFRESH
 
   const refreshTokens = useCallback(async () => {
     console.log("Calling refresh token");
@@ -172,7 +172,7 @@ const AuthProvider = ({ children }) => {
     }
   }, [authTokens, refreshTokens]);
 
-// LOGIN
+  // LOGIN
   const loginUser = async (username, password) => {
     console.log("trying to log in");
     try {
@@ -184,7 +184,7 @@ const AuthProvider = ({ children }) => {
       const data = response.data;
       console.log(data);
       if (response.status === 200 && data["data"]["access_token"]) {
-        
+
         const access_token = data["data"]["access_token"].replace(/['"]+/g, '');
         const refresh_token = data["data"]["refresh_token"].replace(/['"]+/g, '');
         const role = data["role"].replace(/['"]+/g, '');
@@ -218,8 +218,13 @@ const AuthProvider = ({ children }) => {
       return;
     }
     try {
+      const tokens = localStorage.getItem("access_token")
       const response = await axios.post(`${baseURL}/api/authentication/logout`, {
         refresh_token: authTokens.refresh_token,
+      }, {
+        headers: {
+          Authorization: `Bearer ${tokens}`
+        }
       });
       if (response.status === 200 || response.status === 204) {
         // Logout successful
@@ -239,17 +244,17 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-//   let logoutUser = () => {
-//     setAuthTokens(null)
-//     setUser(null)
-//     localStorage.removeItem('authTokens')
-//     localStorage.removeItem('accessToken')
-//     localStorage.removeItem('refreshToken')
-//     navigate('/login')
-// }
+  //   let logoutUser = () => {
+  //     setAuthTokens(null)
+  //     setUser(null)
+  //     localStorage.removeItem('authTokens')
+  //     localStorage.removeItem('accessToken')
+  //     localStorage.removeItem('refreshToken')
+  //     navigate('/login')
+  // }
 
   return (
-    <AuthContext.Provider value={{ authTokens, user, loginUser,logoutUser, refreshTokens }}>
+    <AuthContext.Provider value={{ authTokens, user, loginUser, logoutUser, refreshTokens }}>
       {children}
     </AuthContext.Provider>
   );
