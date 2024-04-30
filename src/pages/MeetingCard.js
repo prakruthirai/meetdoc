@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  // faEye,
-  faPencil,
+  
   faPersonRunning,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios"; // Import Axios for making API requests
@@ -68,93 +67,55 @@ const MeetingCard = ({ title, description, date, audioSrc }) => {
   };
 
   return (
-    <div className="row mt-5 mb-2">
-      <div className="col-12 border p-1">
-        <div className="row m-0">
-          <div className="col-8">
-            <div className="row m-0">
-              <div className="col-12 mt-2 position-relative">
-                <h3>{title} title</h3>
-                <a
-                  className="position-absolute top-50 end-0 translate-middle-y"
-                  href="edit.js"
-                >
-                  <FontAwesomeIcon icon={faPencil} />
-                </a>
-              </div>
-              <div className="col-12">
-                <p className="text-truncate">{description} description</p>
-              </div>
-              <div className="col-12  position-relative">
-                <p className="fst-italic">{date} date</p>
-                <br />
-                <div className="position-absolute top-50 end-0 translate-middle-y" >
-                  {/* <audio controls autoplay className="col-12">
-                                        <source src={audioSrc} type="audio/mpeg" />
-                                        Your browser does not support the audio element.
-                                        
-                                    </audio> */}
-                  <div className="playbutton"  style={{ width: '50%', maxWidth: '1000px' }}>
-        
-                    <audio controls>
-                      <source src={audioSrc} />
-                      Your browser does not support the audio element.
-                      
-                    </audio>
-                    
-                  </div>
-                </div>
+    <div className="card mt-5 mx-auto w-75 mb-3 ">
+      <div className="border p-3 d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <div className="col-md-8  mb-3 mb-md-0">
+          <div className="row m-0">
+          <div className="col-12 position-relative d-flex justify-content-center align-items-center">
+              <div className="playbutton" style={{ width: '50%', maxWidth: '1000px' }}>
+                <audio controls>
+                  <source src={audioSrc} />
+                  Your browser does not support the audio element.
+                </audio>
               </div>
             </div>
           </div>
-          <div className="col-4 d-flex justify-content-evenly align-items-center">
-            <a
-              className={`text-decoration-none ${
-                transcriptColor === "red" ? "text-danger" : "text-success"
-              }`}
-            //   href="transcript_page.html"
-              onClick={fetchTranscript}
-              style={{ cursor: "pointer" }}
-            >
-              <FontAwesomeIcon icon={faPersonRunning} />
-              Transcript
-              {/* <FontAwesomeIcon
-                icon={faEye}
-                style={{ marginLeft: "5px" }}
-              /> */}
-            </a>
-            <a
-              className={`text-decoration-none ${
-                summaryColor === "red" ? "text-danger" : "text-success"
-              }`}
-              onClick={fetchSummary}
-              href=" "
-              style={{ cursor: "pointer" }}
-            >
-              <FontAwesomeIcon icon={faPersonRunning} />
-              Summary
-              {/* <FontAwesomeIcon
-                icon={faEye}
-                style={{ marginLeft: "5px" }}
-              /> */}
-            </a>
-            <a
-              className={`text-decoration-none ${
-                momColor === "red" ? "text-danger" : "text-success"
-              }`}
-              onClick={fetchMom}
-              style={{ cursor: "pointer" }}
-            >
-              <FontAwesomeIcon icon={faPersonRunning} />
-              {/* MoM */}
-              MoM
-              {/* <FontAwesomeIcon icon={faEye} style={{ marginLeft: "5px" }} /> */}
-            </a>
+        </div>
+        <div className="col-md-4 d-flex justify-content-between align-items-center">
+          <a
+             className={`btn btn-custom ${transcriptColor === "red" ? "btn-danger" : "btn-success"} me-2`}
+            onClick={fetchTranscript}
+            style={{ cursor: "pointer" }}
+          >
+            <FontAwesomeIcon icon={faPersonRunning} /> Transcript
+          </a>
+          
+          
+          <a
+             className={`btn btn-custom ${transcriptColor === "red" ? "btn-danger" : "btn-success"} me-2`}
+            onClick={fetchSummary}
+            style={{ cursor: "pointer" }}
+          >
+            <FontAwesomeIcon icon={faPersonRunning} /> Summary
+          </a>
+          
+    
+          <a
+             className={`btn btn-custom ${transcriptColor === "red" ? "btn-danger" : "btn-success"} me-2`}
+            onClick={fetchMom}
+            style={{ cursor: "pointer" }}
+          >
+            <FontAwesomeIcon icon={faPersonRunning} /> MoM
+          </a>
           </div>
         </div>
       </div>
-    </div>
+    
+    
   );
+  
+  
 };
 
 export default MeetingCard;
+
