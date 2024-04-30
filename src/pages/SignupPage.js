@@ -18,39 +18,43 @@ const SignupPage = () => {
           navigate('/login');
         }
       }, [navigate]);
-    //   console.log("is authenticated")
+     console.log("is authenticated")
 
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
         const tokens = localStorage.getItem("access_token")
         console.log(tokens)
-
-        e.preventDefault();
         try {
-            const response = await axios.post(`${baseURL}/api/authentication/register`, {
+            const response = await axios.post
+            (`${baseURL}/api/authentication/register`, 
+            {
                'username': username,
                 'email':email,
                 'first_name':first_name,
                 'password': password
             }, {
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tokens}`,
+                    Authorization: `Bearer <tokens>`
                 }
-            });
-            if (response.status !== 200) { // Check response status
-                throw new Error('Registration failed');
             }
-            // Clear form fields
-            setUsername('');
-            setEmail('');
-            setFirstname('');
-            setPassword('');
-            setSuccessMessage('Registration successful.');
-            // Redirect to signup page
-            navigate('/signup');
-        } catch (error) {
-            setError('Registration failed. Please try again.'); // Provide feedback to user
+        ); 
+            console.log(response)
+            if (response.status ===200) {
+                setSuccessMessage("Registraction Successful")
+
+                setUsername("");
+                setEmail("");
+                setFirstname("");
+                setPassword("");
+
+                navigate('/signup')
+    
+            } else{
+                throw new Error("Registration failed")
+            };
+        }catch (error){
+            setError('Registration failed. Please try again.')
             console.error('Error occurred during registration:', error);
         }
     };
@@ -68,32 +72,32 @@ const SignupPage = () => {
                 <div className="card-body">
                    
                         <div className="form-group">
-                        <label>Username:</label>
-                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required  />
+                            <input 
+                            type="text" id="username" placeholder='User Name' value={username}
+                            onChange={(e) => setUsername(e.target.value)} required  className='form-control' />
                     </div>
-                   
-                    
-                        <div className="form-group">
-                        <label>Email:</label>
-                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required  className='form-control' />
-                    
+                    <br />
+                    <div className="form-group">
+                            <input 
+                            type="text" id="email" placeholder='E-mail' value={email}
+                            onChange={(e) => setEmail(e.target.value)} required  className='form-control' />
                     </div>
-                    
-                        <div className="form-group">
-                        <label>Firstname:</label>
-                        <input type="text" value={first_name} onChange={(e) => setFirstname(e.target.value)} required />
-                    
+                    <br />
+                    <div className="form-group">
+                            <input 
+                            type="text" id="first_name" placeholder='Firstname' value={first_name}
+                            onChange={(e) => setFirstname(e.target.value)} required  className='form-control' />
                     </div>
-                    
-                        <div className="form-group">
-                        <label>Password:</label>
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                    
+                    <br />
+                    <div className="form-group">
+                            <input 
+                            type="password" id="password" placeholder='Password' value={password}
+                            onChange={(e) => setPassword(e.target.value)} required  className='form-control' />
                     </div>
-                   
+                    <br />
                     </div>
                     <div className="card-footer">
-                    <button type="submit">Register</button>
+                    <button type="submit" className="btn btn-primary">Register</button>
                     </div>
     
                     {error && <p>{error}</p>} {/* Display error message if registration fails */}

@@ -12,7 +12,6 @@
     
 }
 
-
 .container{
     display: flex;
     flex-direction: column;
@@ -45,15 +44,19 @@
     .container{
         display: flex;
         flex-direction: column;
-        width:800px ;
+        width:100px ;
         margin: auto;
         margin-top: 20px;
         background: #fff;
         padding-bottom: 10px;
+        align-items: center;
+        justify-content: center;
     
         
     }
-    
+    .card{
+        width: 500px;
+    }
     
     .card-header{
         display:flex;
@@ -71,7 +74,7 @@
     
 
     .card-footer button{
-        background-color: #007bff;
+        background-color: #0056b3;
     }
 
 

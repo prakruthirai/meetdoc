@@ -188,7 +188,7 @@ align-items: center;
   
   
   input[type="text"],
-  input[type="password"] {
+  input[type="username"] {
     width: 100%; /* Make inputs fill the width of their container */
     padding: 8px; /* Add padding inside input fields */
     border: 1px solid #ccc; /* Add a border to input fields */
