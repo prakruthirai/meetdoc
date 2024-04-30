@@ -20,6 +20,10 @@ nav {
     cursor: pointer;
   }
   
+  .menu.open span {
+    background-color: #fff; /* Color of the menu icon */
+  }
+  
   .menu span {
     display: block;
     width: 25px;
@@ -42,7 +46,7 @@ nav {
     margin-right: 20px;
   }
   
-  .dropdown {
+  /* .dropdown {
     position: relative;
   }
   
@@ -83,4 +87,39 @@ nav {
   .dropdown:hover .dropdown-content {
     display: block;
   }
+   */
+
+   a {
+    color: #fff; /* Text color of the links */
+    text-decoration: none; /* Remove underline */
+    font-size: 18px; /* Font size */
+    transition: color 0.3s ease; /* Smooth transition effect */
+  }
   
+  a:hover {
+    color: #ffcc00; /* Text color on hover */
+  }
+  
+  .btn {
+    background-color: #ffcc00; /* Background color of the button */
+    color: #333; /* Text color of the button */
+    border: none; /* Remove border */
+    padding: 8px 16px; /* Padding inside the button */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer;
+    text-decoration: none; /* Remove underline */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+  }
+  
+  .btn:hover {
+    background-color: #ffdb4d; /* Background color on hover */
+  }
+  
+  .open {
+    display: flex; /* Show the menu when opened */
+  }
+  
+  .dropdown-btn {
+    cursor: pointer; /* Change cursor to pointer */
+  }

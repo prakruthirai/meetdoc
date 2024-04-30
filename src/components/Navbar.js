@@ -34,9 +34,9 @@ export const Navbar = () => {
 
   return (
     <nav>
-      <Link to="/" className="title">
+      {/* <Link to="/" className="title">
         MeetDoc.
-      </Link>
+      </Link> */}
       <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
         <span></span>
         <span></span>
