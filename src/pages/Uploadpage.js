@@ -137,6 +137,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './uploadpage.css'
 import baseURL from "../Api/Config";
 
 import { useNavigate } from 'react-router-dom';
@@ -202,12 +203,18 @@ const AudioUploader = () => {
   };
 
   return (
-    <div>
+    <div className='file-card'>
+      
+      <div className='mb-3 row'>
+        <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description"  class="form-control form-control-lg" />
+        </div>
+       <div className='mb-3 row'>
       <input type="file" onChange={handleFileChange} accept="audio/*" />
-      <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description" />
+      </div> 
+      
       {uploading && <p>Uploading...</p>}
       {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
-      <button onClick={uploadAudio}>Upload Audio</button>
+      <button onClick={uploadAudio} className='upload-button'>Upload Audio</button>
     </div>
   );
 };
