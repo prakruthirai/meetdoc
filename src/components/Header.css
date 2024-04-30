@@ -2,17 +2,22 @@
   background-color: #0b4888; /* Set background color for the header */
   padding: 10px; /* Add padding for better appearance */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for separation */
+  height: 90px; 
+  display: flex; /* Use flexbox to center the header */
+  justify-content: center; /* Center the header horizontally */
+  align-items: center; /* Center the header vertically */
   
 }
 
 .logo-container {
   display: flex; /* Use flexbox to align items */
   align-items: center; /* Center items vertically */
+  justify-content: center; 
   padding: 1px;
 }
 
 .applogo {
-  width: 10%;
+  width: 14%;
   height: 10%;
 }
 
