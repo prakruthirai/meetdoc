@@ -184,12 +184,19 @@ const AuthProvider = ({ children }) => {
       const data = response.data;
       console.log(data);
       if (response.status === 200 && data["data"]["access_token"]) {
+        
+        const access_token = data["data"]["access_token"].replace(/['"]+/g, '');
+        const refresh_token = data["data"]["refresh_token"].replace(/['"]+/g, '');
+        const role = data["role"].replace(/['"]+/g, '');
+
+        console.log(access_token)
+
         setAuthTokens(data["data"]);
-        setUser(jwtDecode(data["data"]["access_token"]));
+        setUser(jwtDecode(access_token));
         localStorage.setItem('authTokens', JSON.stringify(data));
-        localStorage.setItem('access_token', JSON.stringify(data["data"]["access_token"]));
-        localStorage.setItem('refresh_token', JSON.stringify(data["data"]["refresh_token"]));
-        localStorage.setItem('role', JSON.stringify(data["role"]));
+        localStorage.setItem('access_token', access_token);
+        localStorage.setItem('refresh_token', refresh_token);
+        localStorage.setItem('role', role);
         navigate('/');
         return true;
       } else {

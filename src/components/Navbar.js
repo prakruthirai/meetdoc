@@ -57,12 +57,12 @@ export const Navbar = () => {
   useEffect(() => {
     // console.log('hello')
     console.log(role)
-    if (user && role === '"Admin"') {
+    if (user && role === "Admin") {
         // console.log('hii')
       setIsAdmin(true);
     //   console.log(isAdmin)
     }
-  }, [isAdmin]);
+  }, [user, role]);
 
   return (
     <nav>

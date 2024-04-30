@@ -142,7 +142,7 @@ import baseURL from "../Api/Config";
 import { useNavigate } from 'react-router-dom';
 
 const AudioUploader = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [filename, setFilename] = useState(null);
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
@@ -156,7 +156,7 @@ const AudioUploader = () => {
   }, [navigate]);
 
   const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    setFilename(event.target.files[0]);
     setUploadError(null);
   };
 
@@ -165,7 +165,7 @@ const AudioUploader = () => {
   };
 
   const uploadAudio = async () => {
-    if (!selectedFile) {
+    if (!filename) {
       setUploadError('Please select an audio file.');
       return;
     }
@@ -173,11 +173,14 @@ const AudioUploader = () => {
     setUploading(true);
 
     const formData = new FormData();
-    formData.append('audio_file', selectedFile);
-    formData.append('description', description); // Append description to form data
     
+    formData.append('filename', filename);
+    formData.append('description', description); // Append description to form data
+  
+    // console.log(data)
     try {
-      const tokens = localStorage.getItem("accessToken");
+      const tokens = localStorage.getItem("access_token");
+      console.log(tokens)
       const response = await axios.post(`${baseURL}/api/meetdoc/upload-audio/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -185,7 +188,7 @@ const AudioUploader = () => {
         },
       });
       console.log('Audio uploaded successfully:', response.data);
-      navigate('/meetingcard')
+      // navigate('/meetingcard')
     } catch (error) {
       console.error('Error uploading audio:', error);
       if (error.response) {
@@ -203,7 +206,7 @@ const AudioUploader = () => {
 
   return (
     <div>
-      <input type="file" onChange={handleFileChange} accept="audio/*" />
+      <input type="file" onChange={handleFileChange} accept="audio/wav" />
       <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description" />
       {uploading && <p>Uploading...</p>}
       {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}

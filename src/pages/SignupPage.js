@@ -26,21 +26,21 @@ const SignupPage = () => {
         const tokens = localStorage.getItem("access_token")
         console.log(tokens)
         try {
+            var data={
+                "username": username,
+                 "email":email,
+                 "first_name":first_name,
+                 "password": password
+             }
             const response = await axios.post
-            (`${baseURL}/api/authentication/register`, 
-            {
-               'username': username,
-                'email':email,
-                'first_name':first_name,
-                'password': password
-            }, {
+            (`${baseURL}/api/authentication/register`, data, {
                 headers: {
-                    Authorization: `Bearer <tokens>`
+                    Authorization: `Bearer ${tokens}`
                 }
             }
         ); 
             console.log(response)
-            if (response.status ===200) {
+            if (response.status ===201) {
                 setSuccessMessage("Registraction Successful")
 
                 setUsername("");
