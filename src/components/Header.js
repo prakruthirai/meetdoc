@@ -10,7 +10,7 @@ const Header = () => {
             <Applogo />
         </div>
         <div className ="logo-name">
-        <h1 className="app-name">MeetDoc.</h1>
+        {/* <h1 className="app-name"></h1> */}
         </div>
       </div>
     </header>
