@@ -189,7 +189,7 @@ const AudioUploader = () => {
         },
       });
       console.log('Audio uploaded successfully:', response.data);
-      // navigate('/meetingcard')
+      navigate('/meetingcard')
     } catch (error) {
       console.error('Error uploading audio:', error);
       if (error.response) {
