@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import baseURL from "../Api/Config";
 import "./signup.css";
+import { faUser, faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons"; // Import required FontAwesome icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SignupPage = () => {
     const [username, setUsername] = useState('');
@@ -60,54 +62,85 @@ const SignupPage = () => {
     };
 
     return (
-            <div className='row'>
-                 <div className="offset-lg-3 col-lg-6" style={{ marginTop: '60px' }}>
-                
+        <div className='row'>
+            <div className="offset-lg-3 col-lg-6" style={{ marginTop: '10px' }}>
                 <form onSubmit={handleSubmit} className="container">
-                <div className="card">
-                
-                <div className="card-header">
-                <h2>Create User</h2>
-                </div>
-                <div className="card-body">
-                   
-                        <div className="form-group">
-                            <input 
-                            type="text" id="username" placeholder='User Name' value={username}
-                            onChange={(e) => setUsername(e.target.value)} required  className='form-control' />
-                    </div>
-                    <br />
-                    <div className="form-group">
-                            <input 
-                            type="text" id="email" placeholder='E-mail' value={email}
-                            onChange={(e) => setEmail(e.target.value)} required  className='form-control' />
-                    </div>
-                    <br />
-                    <div className="form-group">
-                            <input 
-                            type="text" id="first_name" placeholder='Firstname' value={first_name}
-                            onChange={(e) => setFirstname(e.target.value)} required  className='form-control' />
-                    </div>
-                    <br />
-                    <div className="form-group">
-                            <input 
-                            type="password" id="password" placeholder='Password' value={password}
-                            onChange={(e) => setPassword(e.target.value)} required  className='form-control' />
-                    </div>
-                    <br />
-                    </div>
-                    <div className="card-footer">
-                    <button type="submit" className="btn btn-primary">Create User</button>
-                    </div>
-    
-                    {error && <p>{error}</p>} {/* Display error message if registration fails */}
-                    {successMessage && <p>{successMessage}</p>} {/* Display success message */}
+                    <div className="card" style={{ width: '400px', height: '400px' }}>
+                        <div className="card-header">
+                            <h2 style={{ fontSize: '20px' }}>Create User</h2>
+                        </div>
+                        <div className="card-body" style={{ width: '350px', height: '400px' }}>
+                            <div className="form-group">
+                                <div className="input-group">
+                                    <span className="input-group-text"><FontAwesomeIcon icon={faUser} /></span>
+                                    <input 
+                                        type="text" 
+                                        id="username" 
+                                        placeholder="User Name" 
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)} 
+                                        required  
+                                        className='form-control' 
+                                    />
+                                </div>
+                            </div>
+                            <br />
+                            <div className="form-group">
+                                <div className="input-group">
+                                    <span className="input-group-text"><FontAwesomeIcon icon={faEnvelope} /></span>
+                                    <input 
+                                        type="text" 
+                                        id="email" 
+                                        placeholder="E-mail" 
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)} 
+                                        required  
+                                        className='form-control' 
+                                    />
+                                </div>
+                            </div>
+                            <br />
+                            <div className="form-group">
+                                <div className="input-group">
+                                    <span className="input-group-text"><FontAwesomeIcon icon={faUser} /></span>
+                                    <input 
+                                        type="text" 
+                                        id="first_name" 
+                                        placeholder="Firstname" 
+                                        value={first_name}
+                                        onChange={(e) => setFirstname(e.target.value)} 
+                                        required  
+                                        className='form-control' 
+                                    />
+                                </div>
+                            </div>
+                            <br />
+                            <div className="form-group">
+                                <div className="input-group">
+                                    <span className="input-group-text"><FontAwesomeIcon icon={faLock} /></span>
+                                    <input 
+                                        type="password" 
+                                        id="password" 
+                                        placeholder="Password" 
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)} 
+                                        required  
+                                        className='form-control' 
+                                    />
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                        <div className="card-footer">
+                            <button type="submit" className="btn btn-primary">Create User</button>
+                        </div>
+                        {error && <p>{error}</p>} {/* Display error message if registration fails */}
+                        {successMessage && <p>{successMessage}</p>} {/* Display success message */}
                     </div>
                 </form>
-            
             </div>
-            </div>
-        );
-    };
-    
+        </div>
+    );
+};
+
 export default SignupPage;

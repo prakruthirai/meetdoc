@@ -152,22 +152,28 @@ align-items: center;
     justify-content: center;
     align-items: center;
 } */
-
+/* ////////////////////////////////////////////////////////////////////////// */
 .container{
     display: flex;
     flex-direction: column;
     width:100px ;
     margin: auto;
-    margin-top: auto;
+    margin-top: 50px;
     background: #fff;
+    padding: 50px 20px; 
     padding-bottom: 10px;
     align-items: center;
+    border-radius: 8px;
     justify-content: center;
 
     
 }
 .card{
-    width: 500px;
+    width: 100%; /* Adjust the width if needed */
+    max-width: 400px; /* Limit the maximum width of the card */
+    padding: 10px; /* Adjust padding to reduce height */
+    margin: 40px auto 0;  /* Adjust margin for centering and spacing */
+    border-radius: 8px;
 }
 
 
@@ -175,6 +181,8 @@ align-items: center;
     display:flex;
     flex-direction: column;
     align-items: center;
+    font-size: 24px;
+    padding: 10px 20px;
     
 }
 
@@ -183,16 +191,17 @@ align-items: center;
   }
   
   .form-group {
-    margin-bottom: 20px; /* Adjust the margin between form groups */
+    margin-bottom: 15px; /* Adjust the margin between form groups */
   }
+  
   
   
   input[type="text"],
   input[type="username"] {
-    width: 100%; /* Make inputs fill the width of their container */
-    padding: 8px; /* Add padding inside input fields */
+    width: 80%; /* Make inputs fill the width of their container */
+    padding: 6px; /* Add padding inside input fields */
     border: 1px solid #ccc; /* Add a border to input fields */
-    border-radius: 4px; /* Add some border radius to input fields */
+    border-radius: 3px; /* Add some border radius to input fields */
   }
   
   /* Optionally, you can style the input fields when they are focused */
@@ -201,6 +210,7 @@ align-items: center;
     outline: none; /* Remove the default focus outline */
     border-color: #007bff; /* Change the border color when focused */
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Add a box shadow when focused */
+    margin-left: 20px;
   }
   
 /* CSS for the card footer */
@@ -226,5 +236,14 @@ align-items: center;
   
   .card-footer button:hover {
     background-color: #0056b3; /* Darker blue color on hover */
+    color: #fff;
   }
   
+  ::placeholder {
+    font-size: 12px; /* Adjust the font size of the placeholder text */
+}
+
+.form-control {
+    font-size: 14px; /* Adjust the font size of the input fields */
+    height: 30px; /* Adjust the height of the input fields */
+}

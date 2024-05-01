@@ -62,7 +62,6 @@
         display:flex;
         flex-direction: column;
         align-items: center;
-        
     }
     
     .card-footer{
@@ -77,4 +76,19 @@
         background-color: #0056b3;
     }
 
+    ::placeholder {
+        font-size: 12px; /* Adjust the font size of the placeholder text */
+    }
 
+    .form-control {
+        font-size: 14px; /* Adjust the font size of the input fields */
+        height: 30px; /* Adjust the height of the input fields */
+    }
+
+    .card-body {
+        padding: 10px; /* Adjust the padding of the card body */
+        margin: 10px; /* Remove any margin to reduce space */
+    }
+
+    
+    
