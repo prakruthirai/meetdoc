@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import "./Footer.css";
 import Logo from './Logo.js'
-
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 const FooterComponent = () => {
   return (
     <div className="row mt-4  mb-4 footer-container">
@@ -18,13 +18,20 @@ const FooterComponent = () => {
               <Logo/>
             </a>
           </div>
+          <div className="col-md-5">
+            {/* Empty column to push the address to the right */}
+          </div>
           <div className="col-md-3 m-auto d-block h-50 address ">
-            <div className="text-black mt-4 text-footer"> 
-              <span className="text-custom">CHRIST (Deemed to be University)</span>
-              <p>Pune Lavasa Campus - 'The Hub of Analytics'</p>
-              <p>Christ University Road, 30 Valor CourtAt Post: Dasve</p>
-              <p>Lavasa,Taluka: MulshiPune 412112, Maharashtra.</p>
-            </div>
+          <div className="mt-4 text-footer "> 
+            <span className="text-custom">CHRIST (Deemed to be University)</span>
+            <p style={{ fontFamily: 'Roboto', fontSize: '14px' }}>
+              <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
+               Pune Lavasa Campus - 'The Hub of Analytics'Christ University Road, 30 Valor Court
+              At Post: Dasve Lavasa,Taluka: Mulshi
+              Pune 412112, Maharashtra.
+            </p>
+              
+          </div>
           </div>
         </div>
         <hr className="text-white" />
@@ -39,7 +46,7 @@ const FooterComponent = () => {
               </a>
             </div>
             <div className="float-end">
-              Developed & Maintained By{" "}
+              Developed & Maintained By {"  "}
               <a href="http://christinfotech.org/" target="_blank" rel="noreferrer" className="text-decoration-none">
                 CHRIST Infotech
               </a>

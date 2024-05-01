@@ -24,7 +24,7 @@ const LoginPage = () => {
                             <h2 style={{ fontSize: '24px', marginBottom: '5px' }}>Login</h2>
                             <p style={{ fontSize: '16px', margin: '0' }}>Enter your credentials</p>
                         </div>
-                        <div className="card-body">
+                        <div className="card-body" style={{ height: '100px' }}>
                             <div className="form-group position-relative">
                                 <input
                                     type="text"

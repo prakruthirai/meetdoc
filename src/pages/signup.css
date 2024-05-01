@@ -85,10 +85,13 @@
         height: 30px; /* Adjust the height of the input fields */
     }
 
-    .card-body {
+    .card-body{
         padding: 10px; /* Adjust the padding of the card body */
         margin: 10px; /* Remove any margin to reduce space */
+        height: 100px;
     }
 
-    
+    .custom-font {
+        font-family: Roboto;
+    }
     

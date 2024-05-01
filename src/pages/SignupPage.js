@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import baseURL from "../Api/Config";
 import "./signup.css";
-import { faUser, faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons"; // Import required FontAwesome icons
+import { faUser, faEnvelope, faLock, faGraduationCap } from "@fortawesome/free-solid-svg-icons"; // Import required FontAwesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SignupPage = () => {
@@ -67,12 +67,12 @@ const SignupPage = () => {
                 <form onSubmit={handleSubmit} className="container">
                     <div className="card" style={{ width: '400px', height: '400px' }}>
                         <div className="card-header">
-                            <h2 style={{ fontSize: '20px' }}>Create User</h2>
+                            <h2 style={{ fontFamily: 'Roboto', fontSize: '20px' }}>Create User</h2>
                         </div>
-                        <div className="card-body" style={{ width: '350px', height: '400px' }}>
+                        <div className="card-body"  style={{ height: '200px' }}>
                             <div className="form-group">
                                 <div className="input-group">
-                                    <span className="input-group-text"><FontAwesomeIcon icon={faUser} /></span>
+                                    <span className="input-group-text"><FontAwesomeIcon icon={faGraduationCap} /></span>
                                     <input 
                                         type="text" 
                                         id="username" 
@@ -106,7 +106,7 @@ const SignupPage = () => {
                                     <input 
                                         type="text" 
                                         id="first_name" 
-                                        placeholder="Firstname" 
+                                        placeholder="First Name" 
                                         value={first_name}
                                         onChange={(e) => setFirstname(e.target.value)} 
                                         required  
@@ -129,10 +129,9 @@ const SignupPage = () => {
                                     />
                                 </div>
                             </div>
-                            <br />
                         </div>
                         <div className="card-footer">
-                            <button type="submit" className="btn btn-primary">Create User</button>
+                            <button type="submit" className="btn btn-primary custom-font">Create User</button>
                         </div>
                         {error && <p>{error}</p>} {/* Display error message if registration fails */}
                         {successMessage && <p>{successMessage}</p>} {/* Display success message */}

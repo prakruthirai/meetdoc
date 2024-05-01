@@ -25,5 +25,24 @@
     font-weight: bold;
     margin-bottom: 0px;
   }
+  .float-end {
+    font-size: 14px;
+    font-family: Roboto;
+  }
 
+  .float-start{
+    font-size: 14px;
+    font-family: Roboto;
+
+  }
+
+  .text-decoration-none {
+    font-size: 16px; /* Adjust the font size as needed */
+  }
+
+  .text-custom{
+    font-size: 14px;
+    font-family: Roboto;
+  }
+  
 
