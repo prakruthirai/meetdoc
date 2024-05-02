@@ -145,6 +145,7 @@ import { useNavigate } from 'react-router-dom';
 const AudioUploader = () => {
   const [filename, setFilename] = useState(null);
   const [description, setDescription] = useState('');
+  const [speakers, setSpeakers]= useState('');
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
   
@@ -165,6 +166,11 @@ const AudioUploader = () => {
     setDescription(event.target.value);
   };
 
+  const handleSpeakers = (event) => {
+    setSpeakers(event.target.value);
+  };
+  
+
   const uploadAudio = async () => {
     if (!filename) {
       setUploadError('Please select an audio file.');
@@ -177,6 +183,10 @@ const AudioUploader = () => {
     
     formData.append('filename', filename);
     formData.append('description', description); // Append description to form data
+    formData.append('count_of_speakers',speakers)
+
+    console.log(formData)
+
   
     // console.log(data)
     try {
@@ -213,6 +223,9 @@ const AudioUploader = () => {
           
           <div className='mb-3 row'>
             <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description"  class="form-control form-control-lg" />
+            </div>
+          <div className='mb-3 row'>
+            <input type="text" value={speakers} onChange={handleSpeakers} placeholder="No.of Speakers"  class="form-control form-control-lg" />
             </div>
            <div className='mb-3 row'>
           <input type="file" onChange={handleFileChange} accept="audio/*" />
