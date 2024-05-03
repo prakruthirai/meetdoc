@@ -133,6 +133,7 @@ import Footer from "./components/Footer"
 import Header from "./components/Header";
 import {Navbar} from "./components/Navbar";
 import Transcriptpage from "./pages/Transcriptpage";
+import LatestAudio from "./pages/LatestAudio";
 // import "./App.css"
 
 
@@ -160,6 +161,10 @@ function App() {
               <Route
                 path="/signup"
                 element={<SignupPage />}
+              />
+              <Route
+                path="/latestaudio"
+                element={<LatestAudio />}
               />
               <Route
                 path="/meetingcard"

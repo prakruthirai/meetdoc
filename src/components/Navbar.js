@@ -54,6 +54,9 @@ export const Navbar = () => {
             <NavLink to="/signup">Create User</NavLink>
           </li>
         )}
+          <li>
+            <NavLink to="/latestaudio">View Audios</NavLink>
+          </li>
         <li>
           {user ? (
             <Button onClick={handleLogout}>Logout</Button>

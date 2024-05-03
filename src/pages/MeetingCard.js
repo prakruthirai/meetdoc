@@ -206,45 +206,42 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import baseURL from "../Api/Config";
 
-const MeetingCard = ({ audioId }) => {
 
-  const [latestAudio, setLatestAudio] = useState(null);
+
+const MeetingCard = ({ audioId,audioName }) => {
 
   const [transcriptColor, setTranscriptColor] = useState("red");
   const [summaryColor, setSummaryColor] = useState("red");
   const [momColor, setMomColor] = useState("red");
   const navigate = useNavigate();
-
-
-  const authHeader = {
-    Authorization: `Bearer ${localStorage.getItem("access_token")}`
-  };
+  // console.log(audioId)
+  // console.log(audioName)
 
   useEffect(() => {
-    const fetchLatestAudio = async () => {
+    if (!localStorage.getItem('authTokens')) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+  const tokens = localStorage.getItem("access_token");
+  // console.log(tokens)
+
+  const handleTranscriptGeneration = async (id) => {
+    // const tokenss = localStorage.getItem("access_token");
+      // console.log(tokenss)
       try {
-        const response = await axios.get(`${baseURL}/api/latest-audio/`, 
-        {},
-        { headers: authHeader });
-        setLatestAudio(response.data.data);
-      } catch (error) {
-        console.error('Error fetching latest audio:', error);
-      }
-    };
-
-    fetchLatestAudio();
-  }, []);
-
-  const handleTranscriptGeneration = async () => {
-    try {
-      const response = await axios.post(
-        `${baseURL}/api/audio_transcript_gen/<int:audioId>`,
-        {},
-        { headers: authHeader }
-      );
+        const response = await axios.post(
+            `${baseURL}/api/meetdoc/audio-transcript-gen/${id}`,
+            null, // This is for the request body, which is null here
+            {
+                headers: {
+                    Authorization: `Bearer ${tokens}`,
+                },
+            }
+        );
       if (response.status === 200) {
         setTranscriptColor("green");
-        fetchTranscripts();
+        // fetchTranscripts();
       }
     } catch (error) {
       console.error('Error:', error);
@@ -254,9 +251,11 @@ const MeetingCard = ({ audioId }) => {
   const handleSummaryGeneration = async () => {
     try {
       const response = await axios.post(
-        `${baseURL}/api/audio_summary_gen/${audioId}`,
-        {},
-        { headers: authHeader }
+        `${baseURL}/api/audio_summary_gen/${audioId}`, {
+        headers: {
+          'Authorization': `Bearer ${tokens}`,
+        },
+      }
       );
       if (response.status === 200) {
         setSummaryColor("green");
@@ -270,9 +269,11 @@ const MeetingCard = ({ audioId }) => {
   const handleMomGeneration = async () => {
     try {
       const response = await axios.post(
-        `${baseURL}/api/audio_mom_gen/${audioId}`,
-        {},
-        { headers: authHeader }
+        `${baseURL}/api/audio_mom_gen/${audioId}`, {
+        headers: {
+          'Authorization': `Bearer ${tokens}`,
+        },
+      }
       );
       if (response.status === 200) {
         setMomColor("green");
@@ -283,12 +284,16 @@ const MeetingCard = ({ audioId }) => {
     }
   };
 
-  const fetchTranscripts = async () => {
+  const fetchTranscripts = async (id) => {
     try {
-      const response = await axios.get(
-        `${baseURL}/api/audio_transcript_fetch/${audioId}`,
-        {},
-        { headers: authHeader }
+      const response = await axios.post(
+          `${baseURL}/api/meetdoc/audio-transcript-fetch/${id}`,
+          null, // This is for the request body, which is null here
+          {
+              headers: {
+                  Authorization: `Bearer ${tokens}`,
+              },
+          }
       );
       if (response.status === 200) {
         navigate('/transcript');
@@ -301,9 +306,11 @@ const MeetingCard = ({ audioId }) => {
   const fetchSummary = async () => {
     try {
       const response = await axios.get(
-        `${baseURL}/api/audio_summary_fetch/${audioId}`,
-        {},
-        { headers: authHeader }
+        `${baseURL}/api/audio_summary_fetch/${audioId}`, {
+        headers: {
+          'Authorization': `Bearer ${tokens}`,
+        },
+      }
       );
       if (response.status === 200) {
         navigate('/summary');
@@ -316,9 +323,11 @@ const MeetingCard = ({ audioId }) => {
   const fetchMom = async () => {
     try {
       const response = await axios.get(
-        `${baseURL}/api/audio_mom_fetch/${audioId}`,
-        {},
-        { headers: authHeader }
+        `${baseURL}/api/audio_mom_fetch/${audioId}`, {
+        headers: {
+          'Authorization': `Bearer ${tokens}`,
+        },
+      }
       );
       if (response.status === 200) {
         navigate('/mom');
@@ -335,26 +344,14 @@ const MeetingCard = ({ audioId }) => {
   return (
     <div className="card mt-5 mx-auto w-75 mb-3">
       <div className="border p-3 d-flex flex-column flex-md-row justify-content-between align-items-center">
-      <div>
-      {latestAudio ? (
-        <div className="col-md-8 mb-3 mb-md-0">
-          <audio controls>
-            <source src={latestAudio.audioUrl} type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        </div>
-      ) : (
-        <p>Loading latest audio...</p>
-      )}
-    </div>
-        <div className="col-md-8 mb-3 mb-md-0">
+        {/* <div className="col-md-8 mb-3 mb-md-0">
           <audio controls src={audioId} type="audio/mpeg" />
-        </div>
+        </div> */}
 
         <div className="col-md-4 d-flex justify-content-between align-items-center">
           <button
-            className={`btn btn-custom ${transcriptColor === "red" ? "btn-danger" : "btn-success"} me-2`}
-            onClick={handleTranscriptGeneration}
+            className={`btn ${transcriptColor === "red" ? "btn-danger" : "btn-success"}`}
+            onClick={() => handleTranscriptGeneration(audioId) }
             style={{ cursor: "pointer" }}
           >
             <FontAwesomeIcon icon={faPersonRunning} /> Transcript
@@ -373,6 +370,13 @@ const MeetingCard = ({ audioId }) => {
           >
             <FontAwesomeIcon icon={faPersonRunning} /> MoM
           </button>
+          <span>
+          <audio controls>
+            <source
+              src={baseURL+audioName}
+            />
+          </audio>
+          </span>
         </div>
       </div>
     </div>
