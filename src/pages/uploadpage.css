@@ -47,4 +47,8 @@
   .file-input-label:hover {
     background-color: #0056b3; /* Darker blue background color on hover */
   }
-  
+  /* Add some basic styles for the React Quill editor */
+.ql-editor {
+  min-height: 150px; /* Ensure there's enough height for typing */
+  border: 1px solid #ccc; /* Add a border for visibility */
+}

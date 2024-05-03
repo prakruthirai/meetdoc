@@ -135,10 +135,12 @@
 
 // export default AudioUploader;
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useRef } from 'react';
 import axios from 'axios';
 import './uploadpage.css'
 import baseURL from "../Api/Config";
+import ReactQuill from 'react-quill'; // Import React Quill
+import 'react-quill/dist/quill.snow.css';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -149,6 +151,7 @@ const AudioUploader = () => {
   const [title, setTitle]= useState('');
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
+  const editorRef = useRef(null);
   
   const navigate = useNavigate();
 
@@ -163,8 +166,14 @@ const AudioUploader = () => {
     setUploadError(null);
   };
 
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
+  const handleDescriptionChange = (value) => {
+    setDescription(value);
+
+    if (editorRef.current) {
+      const editor = editorRef.current.getEditor();
+      editor.scroll.domNode.scrollTop = editor.scroll.domNode.scrollHeight;
+    }
+    
   };
 
   const handleSpeakers = (event) => {
@@ -240,9 +249,23 @@ const AudioUploader = () => {
           <input type="file" onChange={handleFileChange} accept="audio/*" style={{ marginLeft: '50px' }} />
           </div> 
           
-          <div className='mb-3 row'>
+          {/* <div className='mb-3 row'>
             <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description"  class="form-control form-control-lg" />
-            </div>
+            </div> */}
+            <div className='mb-3 row'>
+          <div className='col'>
+          <div className="editor-container" style={{ maxHeight: '200px', overflowY: 'auto' }}>
+            <ReactQuill 
+              ref={editorRef}
+              value={description} 
+              onChange={handleDescriptionChange} 
+              placeholder="Description" 
+              className="quill-editor"
+              // style={{ minHeight: '200px', overflowY: 'auto' }}
+            />
+          </div>
+          </div>
+        </div>
           
        
         
