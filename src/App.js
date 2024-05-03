@@ -174,6 +174,7 @@ function App() {
                 path="/trancriptpage"
                 element={<Transcriptpage />}
               />
+              
               {/* <Route
               path="/uploadaudio"
               element={<PrivateRoute 

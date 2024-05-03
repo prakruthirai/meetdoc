@@ -24,25 +24,50 @@
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 0px;
+    color: white;
   }
   .float-end {
     font-size: 14px;
     font-family: Roboto;
+    color: white;
   }
 
   .float-start{
     font-size: 14px;
     font-family: Roboto;
-
+    color: white;
   }
 
   .text-decoration-none {
     font-size: 16px; /* Adjust the font size as needed */
+    color: white;
   }
 
   .text-custom{
     font-size: 14px;
     font-family: Roboto;
+    color: white;
   }
   
+  .text-white {
+    color: white; /* Set the color to white */
+  }
 
+  .footer-links {
+    list-style: none; /* Remove default list styles */
+    text-align: center;
+   }
+  
+  .footer-links li {
+    display: inline-block; /* Display list items horizontally */
+    margin-right: 20px; /* Add some spacing between list items */
+    margin-left: 20px
+  }
+  
+  
+  .footer-links a {
+    color: #fff; /* Set link color */
+    text-decoration: none; /* Remove default underline */
+    font-size: 16px; /* Adjust font size */
+  }
+  
