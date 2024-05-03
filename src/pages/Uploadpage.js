@@ -146,6 +146,7 @@ const AudioUploader = () => {
   const [filename, setFilename] = useState(null);
   const [description, setDescription] = useState('');
   const [speakers, setSpeakers]= useState('');
+  const [title, setTitle]= useState('');
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
   
@@ -168,6 +169,9 @@ const AudioUploader = () => {
 
   const handleSpeakers = (event) => {
     setSpeakers(event.target.value);
+  };
+  const handletitle = (event) => {
+    setTitle(event.target.value);
   };
   
 
@@ -221,15 +225,26 @@ const AudioUploader = () => {
           <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description" /> */}
         <div className='file-card'>
           
+        <div className='mb-3 row  '>
+          <div className='col'>
+            <input type="text" value={title} onChange={handletitle} placeholder="Title"  class="form-control form-control-lg" />
+            </div>
+            {/* </div>
+            <div className='mb-3 row'> */}
+            <div className='col'>
+            <input type="text" value={speakers} onChange={handleSpeakers} placeholder="No.of attendees"  class="form-control form-control-lg" />
+            </div>
+            </div>
+
+            <div className='mb-3 row' style={{ textAlign: 'right' }}>
+          <input type="file" onChange={handleFileChange} accept="audio/*" style={{ marginLeft: '50px' }} />
+          </div> 
+          
           <div className='mb-3 row'>
             <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description"  class="form-control form-control-lg" />
             </div>
-          <div className='mb-3 row'>
-            <input type="text" value={speakers} onChange={handleSpeakers} placeholder="No.of Speakers"  class="form-control form-control-lg" />
-            </div>
-           <div className='mb-3 row'>
-          <input type="file" onChange={handleFileChange} accept="audio/*" />
-          </div> 
+          
+       
         
           {uploading && <p>Uploading...</p>}
           {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
