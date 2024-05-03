@@ -3,10 +3,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { faBackward, faFile } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 const Transcriptpage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigate= useNavigate();
 
   useEffect(() => {
     if (!localStorage.getItem('authTokens')) {

@@ -132,6 +132,7 @@ import MeetingCard from "./pages/MeetingCard";
 import Footer from "./components/Footer"
 import Header from "./components/Header";
 import {Navbar} from "./components/Navbar";
+import Transcriptpage from "./pages/Transcriptpage";
 // import "./App.css"
 
 
@@ -163,6 +164,10 @@ function App() {
               <Route
                 path="/meetingcard"
                 element={<MeetingCard />}
+              />
+              <Route
+                path="/trancriptpage"
+                element={<Transcriptpage />}
               />
               {/* <Route
               path="/uploadaudio"

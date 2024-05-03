@@ -220,29 +220,17 @@ const AudioUploader = () => {
           {/* <input type="file" onChange={handleFileChange} accept="audio/wav" />
           <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description" /> */}
         <div className='file-card'>
-        
+          
           <div className='mb-3 row'>
             <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description"  class="form-control form-control-lg" />
             </div>
           <div className='mb-3 row'>
             <input type="text" value={speakers} onChange={handleSpeakers} placeholder="No.of Speakers"  class="form-control form-control-lg" />
             </div>
-           <div className='mb-3 row ' style={{ textAlign: 'right' }}>
-          <input type="file" onChange={handleFileChange} accept="audio/*" style={{ marginLeft: '35px' }} />
-          </div>
-         {/* <div className='mb-3 row audio'>
-  <label htmlFor="fileInput" className="file-input-label">
-    Choose File
-  </label>
-  <input
-    id="fileInput"
-    type="file"
-    onChange={handleFileChange}
-    accept="audio/*"
-    className='audio visually-hidden'
-  />
-</div> */}
-          
+           <div className='mb-3 row'>
+          <input type="file" onChange={handleFileChange} accept="audio/*" />
+          </div> 
+        
           {uploading && <p>Uploading...</p>}
           {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
           <button onClick={uploadAudio} className='upload-button'>Upload Audio</button>
