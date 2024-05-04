@@ -134,6 +134,8 @@ import Header from "./components/Header";
 import {Navbar} from "./components/Navbar";
 import Transcriptpage from "./pages/Transcriptpage";
 import LatestAudio from "./pages/LatestAudio";
+import AboutPage from './pages/AboutPage';
+
 // import "./App.css"
 
 
@@ -174,6 +176,12 @@ function App() {
                 path="/trancriptpage"
                 element={<Transcriptpage />}
               />
+
+              <Route
+                path="/aboutpage"
+                element={<AboutPage />}
+              />
+
               
               {/* <Route
               path="/uploadaudio"

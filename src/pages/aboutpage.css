@@ -1,0 +1,14 @@
+.about-us-heading {
+    text-align: center; /* Center the content horizontally */
+  }
+  
+  .about-us-heading h1 {
+    display: inline-block; /* Display as a block-level element with inline behavior */
+    padding: 10px 20px; /* Add padding to create button-like appearance */
+    background-color: #007bff; /* Example background color */
+    color: #fff; /* Text color */
+    font-size: 24px;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Show pointer cursor on hover */
+    /* Add more styles as needed */
+  }
