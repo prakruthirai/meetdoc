@@ -370,10 +370,10 @@ const MeetingCard = ({ audioId,audioName, audioTitle, audioDescription, audioDat
             <FontAwesomeIcon icon={faPersonRunning} /> MoM
           </button>
           <p>
-            {audioDescription}
+            {audioTitle}
           </p>
           <p>
-            {audioTitle}
+            {audioDescription}
           </p>
           <p>
             {audioDate}
