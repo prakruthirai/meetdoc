@@ -267,7 +267,7 @@ const AudioUploader = () => {
             </div> */}
             <div className='mb-3 row'>
           <div className='col'>
-          <h2 style={{ fontSize: '20px' }}>Description</h2>
+          <h2 className='small-heading'>Description</h2>
           <div className="editor-container" style={{ maxHeight: '200px', overflowY: 'auto' }}>
             <ReactQuill 
               // ref={editorRef}
@@ -275,7 +275,7 @@ const AudioUploader = () => {
               // onChange={handleDescriptionChange} 
               // placeholder="Description" 
               // className="quill-editor"
-              // style={{ minHeight: '200px', overflowY: 'auto' }}
+              style={{ minHeight: '200px', overflowY: 'hidden',maxWidth:'500px' }}
               theme='snow'
               value={description}
               onChange={handleDescriptionChange}

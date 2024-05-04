@@ -51,4 +51,13 @@
 .ql-editor {
   min-height: 150px; /* Ensure there's enough height for typing */
   border: 1px solid #ccc; /* Add a border for visibility */
+  overflow-wrap: break-word;
+}
+
+
+.small-heading {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
 }
