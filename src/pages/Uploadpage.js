@@ -268,7 +268,7 @@ const AudioUploader = () => {
             <div className='mb-3 row'>
           <div className='col'>
           <h2 className='small-heading'>Description</h2>
-          <div className="editor-container" style={{ maxHeight: '200px', overflowY: 'auto' }}>
+          <div className="editor-container" style={{ maxHeight: '200px' }}>
             <ReactQuill 
               // ref={editorRef}
               // value={description} 
