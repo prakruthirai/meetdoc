@@ -212,7 +212,9 @@ const MeetingCard = ({ audioId,audioName, audioTitle, audioDescription, audioDat
   const [transcriptColor, setTranscriptColor] = useState("red");
   const [summaryColor, setSummaryColor] = useState("red");
   const [momColor, setMomColor] = useState("red");
+ 
   const navigate = useNavigate();
+
   // console.log(audioId)
   // console.log(audioName)
 
@@ -340,60 +342,82 @@ const MeetingCard = ({ audioId,audioName, audioTitle, audioDescription, audioDat
     // Fetch initial data if needed
   }, []);
 
+  
   return (
-    <div className="card mt-5 mx-auto w-75 mb-3">
+    <div className="card mt-5 mx-auto w-100  mb-3 " >
       <div className="border p-3 d-flex flex-column flex-md-row justify-content-between align-items-center">
-        {/* <div className="col-md-8 mb-3 mb-md-0">
-          <audio controls src={audioId} type="audio/mpeg" />
+       {/* <div className="col-md-8 mb-3 mb-md-0">
+         <audio controls src={audioId} type="audio/mpeg" />
         </div> */}
-
-        <div className="col-md-4 d-flex justify-content-between align-items-center">
-          <button
-            className={`btn ${transcriptColor === "red" ? "btn-danger" : "btn-success"}`}
-            onClick={() => handleTranscriptGeneration(audioId) }
-            style={{ cursor: "pointer" }}
-          >
-            <FontAwesomeIcon icon={faPersonRunning} /> Transcript
-          </button>
-          <button
-            className={`btn btn-custom ${summaryColor === "red" ? "btn-danger" : "btn-success"} me-2`}
-            onClick={handleSummaryGeneration}
-            style={{ cursor: "pointer" }}
-          >
-            <FontAwesomeIcon icon={faPersonRunning} /> Summary
-          </button>
-          <button
-            className={`btn btn-custom ${momColor === "red" ? "btn-danger" : "btn-success"} me-2`}
-            onClick={handleMomGeneration}
-            style={{ cursor: "pointer" }}
-          >
-            <FontAwesomeIcon icon={faPersonRunning} /> MoM
-          </button>
-          <p>
-            {audioTitle}
-          </p>
-          <p>
-            {audioDescription}
-          </p>
-          <p>
-            {audioDate}
-          </p>
-          <p>
-            {audioAttendees}
-          </p>
-          <span>
-          <audio controls>
-            <source
-              src={baseURL+audioName}
-            />
-          </audio>
-          </span>
-
+      <div className="col-12 mt-2 position-relative">
+      <div className="d-flex flex-wrap">
+      <div className="me-4 ">
+       
+      <p>
+          {audioTitle}
+        </p>
         </div>
-      </div>
+        <div className="me-4 "  style={{ flex: '0' }}>
+        <p style={{ wordWrap: 'break-word' }}>
+          {audioDescription}
+        </p>
+        </div>
+        <div className="me-4 ">
+        <p>
+          {audioDate}
+        </p>
+        </div>
+        <div className="me-4 ">
+        <p>
+          {audioAttendees}
+        </p>
+        </div>
+        <div className="mt-3 ">
+        <span>
+        <audio controls>
+          <source
+            src={baseURL+audioName}
+          />
+        </audio>
+        </span>
+        </div>
+        
+        <div className=" mt-4 d-flex">
+        <div className="me-2">
+          </div>
+        <button
+          className={`btn ${transcriptColor === "red" ? "btn-danger" : "btn-success"} me-2`}
+          onClick={() => handleTranscriptGeneration(audioId) }
+          style={{ cursor: "pointer" }}
+        >
+          <FontAwesomeIcon icon={faPersonRunning} /> Transcript
+        </button>
+        <button
+          className={`btn btn-custom ${summaryColor === "red" ? "btn-danger" : "btn-success"} me-2`}
+          onClick={handleSummaryGeneration}
+          style={{ cursor: "pointer" }}
+        >
+          <FontAwesomeIcon icon={faPersonRunning} /> Summary
+        </button>
+        <button
+          className={`btn btn-custom ${momColor === "red" ? "btn-danger" : "btn-success"} me-2`}
+          onClick={handleMomGeneration}
+          style={{ cursor: "pointer" }}
+        >
+          <FontAwesomeIcon icon={faPersonRunning} /> MoM
+        </button>
+          </div>
+        
+    </div>
+    </div>
+        </div>
+
+      
+
+  
+
     </div>
   );
 };
 
 export default MeetingCard;
-
