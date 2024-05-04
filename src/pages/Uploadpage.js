@@ -147,7 +147,7 @@ import { useNavigate } from 'react-router-dom';
 const AudioUploader = () => {
   const [filename, setFilename] = useState(null);
   const [description, setDescription] = useState('');
-  const [speakers, setSpeakers]= useState('');
+  const [attendees, setAttendees]= useState('');
   const [title, setTitle]= useState('');
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
@@ -176,10 +176,10 @@ const AudioUploader = () => {
     
   };
 
-  const handleSpeakers = (event) => {
-    setSpeakers(event.target.value);
+  const handleAttendees = (event) => {
+    setAttendees(event.target.value);
   };
-  const handletitle = (event) => {
+  const handleTitle = (event) => {
     setTitle(event.target.value);
   };
   
@@ -196,7 +196,7 @@ const AudioUploader = () => {
     
     formData.append('filename', filename);
     formData.append('description', description); // Append description to form data
-    formData.append('count_of_speakers',speakers)
+    formData.append('count_of_attendees',attendees)
 
     console.log(formData)
 
@@ -236,12 +236,12 @@ const AudioUploader = () => {
           
         <div className='mb-3 row  '>
           <div className='col'>
-            <input type="text" value={title} onChange={handletitle} placeholder="Title"  class="form-control form-control-lg" />
+            <input type="text" value={title} onChange={handleTitle} placeholder="Title"  class="form-control form-control-lg" />
             </div>
             {/* </div>
             <div className='mb-3 row'> */}
             <div className='col'>
-            <input type="text" value={speakers} onChange={handleSpeakers} placeholder="No.of attendees"  class="form-control form-control-lg" />
+            <input type="text" value={attendees} onChange={handleAttendees} placeholder="No.of attendees"  class="form-control form-control-lg" />
             </div>
             </div>
 
