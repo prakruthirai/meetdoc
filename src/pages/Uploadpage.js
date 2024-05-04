@@ -135,7 +135,7 @@
 
 // export default AudioUploader;
 
-import React, { useState, useEffect ,useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './uploadpage.css'
 import baseURL from "../Api/Config";
@@ -151,7 +151,23 @@ const AudioUploader = () => {
   const [title, setTitle]= useState('');
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
-  const editorRef = useRef(null);
+  
+  const modules={
+    toolbar:[
+      [{header:[1,2,3,4,5,6,false]}],
+      [{font:[]}],
+      [{size:[]}],
+      ["bold","italic","underline","strike","blockquote"],
+      [
+        {list:"ordered"},
+        {list:"bullet"},
+        {indent:"-1"},
+        {indent:"+1"},
+      ],
+      ["link","image","video"],
+      
+    ],
+  }
   
   const navigate = useNavigate();
 
@@ -169,10 +185,7 @@ const AudioUploader = () => {
   const handleDescriptionChange = (value) => {
     setDescription(value);
 
-    if (editorRef.current) {
-      const editor = editorRef.current.getEditor();
-      editor.scroll.domNode.scrollTop = editor.scroll.domNode.scrollHeight;
-    }
+  
     
   };
 
@@ -254,14 +267,19 @@ const AudioUploader = () => {
             </div> */}
             <div className='mb-3 row'>
           <div className='col'>
+          <h2 style={{ fontSize: '20px' }}>Description</h2>
           <div className="editor-container" style={{ maxHeight: '200px', overflowY: 'auto' }}>
             <ReactQuill 
-              ref={editorRef}
-              value={description} 
-              onChange={handleDescriptionChange} 
-              placeholder="Description" 
-              className="quill-editor"
+              // ref={editorRef}
+              // value={description} 
+              // onChange={handleDescriptionChange} 
+              // placeholder="Description" 
+              // className="quill-editor"
               // style={{ minHeight: '200px', overflowY: 'auto' }}
+              theme='snow'
+              value={description}
+              onChange={handleDescriptionChange}
+              modules={modules}
             />
           </div>
           </div>
