@@ -16,7 +16,8 @@ const LoginPage = () => {
     };
 
     return (
-        <div className='row'>
+       <div className='container-fluid'>
+         <div className='row'>
             <div className="offset-lg-3 col-lg-6" style={{ marginTop: '120px' }}>
                 <form onSubmit={handleLogin} className="container">
                     <div className="card" style={{ width: '400px' }}>
@@ -58,6 +59,7 @@ const LoginPage = () => {
                 </form>
             </div>
         </div>
+       </div>
     );
 };
 

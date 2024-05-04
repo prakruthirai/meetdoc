@@ -10,8 +10,8 @@
 }
 
 .logo-container {
-  display: flex; /* Use flexbox to align items */
-  align-items: center; /* Center items vertically */
+  display: flex; 
+  align-items: center; 
   justify-content: center; 
   padding: 1px;
 }

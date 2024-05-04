@@ -101,7 +101,7 @@ const AudioList = () => {
             <p>No audio files found for the user</p>
           ) : (
             audioList.map((audio) => (
-              <MeetingCard key={audio.id} audioId={audio.id} audioName={audio.filename} />
+              <MeetingCard key={audio.id} audioId={audio.id} audioName={audio.filename} audioTitle={audio.title} audioDescription={audio.description}/>
             ))
             
           )}

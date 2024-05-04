@@ -10,12 +10,13 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 const FooterComponent = () => {
   return (
-    <div className="row mt-4  mb-4 footer-container">
+    <div className="container-fluid">
+      <div className="row mt-4  mb-4 footer-container">
       <div className="col-md-12 h-100 br-12 cus-dark" id="connect">
         <div className="row mt-3 mb-3 text-center">
           <ul className="footer-links d-inline-block"> {/* Added d-inline-block */}
             <li>
-              <a href="/about" className="text-decoration-none">About</a>
+              <a href="/aboutpage" className="text-decoration-none">About</a>
             </li>
             <li>
               <a href="/services" className="text-decoration-none">Services</a>
@@ -26,7 +27,7 @@ const FooterComponent = () => {
 
         <hr className="text-white" />
         <div className="row m-auto d-flex flex-row justify-content-center align-items-center">
-          <div className="col-md-2 d-block m-2 p-2 logo">
+          <div className="col-md-2 d-block ">
             <a href="https://lavasa.christuniversity.in/" className="text-decoration-none">
               <Logo />
             </a>
@@ -53,7 +54,7 @@ const FooterComponent = () => {
             <div className="float-start">
               © CHRIST Infotech, All Right Reserved.
             </div>
-            <div className="text-black mx-2">
+            <div className="text-black ">
               <a href="https://www.youtube.com/@ChristUniversityLavasa" target="_blank" rel="noreferrer" className="text-decoration-none">
                 <FontAwesomeIcon icon={faYoutube} className="text-white mx-2" />
               </a>
@@ -67,6 +68,7 @@ const FooterComponent = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

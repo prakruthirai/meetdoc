@@ -207,8 +207,7 @@ import { useNavigate } from "react-router-dom";
 import baseURL from "../Api/Config";
 
 
-
-const MeetingCard = ({ audioId,audioName }) => {
+const MeetingCard = ({ audioId,audioName, audioTitle, audioDescription, audioDate }) => {
 
   const [transcriptColor, setTranscriptColor] = useState("red");
   const [summaryColor, setSummaryColor] = useState("red");
@@ -241,7 +240,7 @@ const MeetingCard = ({ audioId,audioName }) => {
         );
       if (response.status === 200) {
         setTranscriptColor("green");
-        // fetchTranscripts();
+        fetchTranscripts();
       }
     } catch (error) {
       console.error('Error:', error);
@@ -377,6 +376,10 @@ const MeetingCard = ({ audioId,audioName }) => {
             />
           </audio>
           </span>
+          <p>
+            {audioDescription}
+          </p>
+
         </div>
       </div>
     </div>
