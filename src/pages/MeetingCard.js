@@ -207,7 +207,7 @@ import { useNavigate } from "react-router-dom";
 import baseURL from "../Api/Config";
 
 
-const MeetingCard = ({ audioId,audioName, audioTitle, audioDescription, audioDate }) => {
+const MeetingCard = ({ audioId,audioName, audioTitle, audioDescription, audioDate, audioAttendees }) => {
 
   const [transcriptColor, setTranscriptColor] = useState("red");
   const [summaryColor, setSummaryColor] = useState("red");
@@ -369,6 +369,18 @@ const MeetingCard = ({ audioId,audioName, audioTitle, audioDescription, audioDat
           >
             <FontAwesomeIcon icon={faPersonRunning} /> MoM
           </button>
+          <p>
+            {audioDescription}
+          </p>
+          <p>
+            {audioTitle}
+          </p>
+          <p>
+            {audioDate}
+          </p>
+          <p>
+            {audioAttendees}
+          </p>
           <span>
           <audio controls>
             <source
@@ -376,9 +388,6 @@ const MeetingCard = ({ audioId,audioName, audioTitle, audioDescription, audioDat
             />
           </audio>
           </span>
-          <p>
-            {audioDescription}
-          </p>
 
         </div>
       </div>

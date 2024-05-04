@@ -183,15 +183,13 @@ const AudioUploader = () => {
   };
 
   const handleDescriptionChange = (value) => {
-    setDescription(value);
-
-  
-    
+    setDescription(value); 
   };
 
   const handleAttendees = (event) => {
     setAttendees(event.target.value);
   };
+
   const handleTitle = (event) => {
     setTitle(event.target.value);
   };
@@ -210,6 +208,8 @@ const AudioUploader = () => {
     formData.append('filename', filename);
     formData.append('description', description); // Append description to form data
     formData.append('count_of_attendees',attendees)
+    formData.append('title', title)
+    formData.append('upload_date')
 
     console.log(formData)
 
