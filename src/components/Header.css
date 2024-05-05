@@ -22,7 +22,7 @@
 }
 
 .applogo img{
-  width: 100%; /* Make sure the image fills the entire space of its container */
+  width: 80%; /* Make sure the image fills the entire space of its container */
   height: auto; /* Ensure the image maintains its aspect ratio */
   align-items: center;
   padding: 5%;
