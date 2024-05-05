@@ -133,6 +133,8 @@ import Footer from "./components/Footer"
 import Header from "./components/Header";
 import {Navbar} from "./components/Navbar";
 import Transcriptpage from "./pages/Transcriptpage";
+import Summarypage from "./pages/Summarypage";
+import Mompage from "./pages/Mompage"
 import LatestAudio from "./pages/LatestAudio";
 import AboutPage from './pages/AboutPage';
 
@@ -154,11 +156,16 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<PrivateRoute element={<Uploadpage />} />}
+                element={<PrivateRoute element={<homepage />} />}
               />
               <Route
                 path="/login"
                 element={<LoginPage />}
+                
+              />
+              <Route
+                path="/uploadpage"
+                element={<Uploadpage />}
               />
               <Route
                 path="/signup"
@@ -175,6 +182,14 @@ function App() {
               <Route
                 path="/trancriptpage"
                 element={<Transcriptpage />}
+              />
+              <Route
+                path="/summarypage"
+                element={<Summarypage />}
+              />
+              <Route
+                path="/mompage"
+                element={<Mompage />}
               />
 
               <Route

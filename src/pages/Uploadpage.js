@@ -209,7 +209,7 @@ const AudioUploader = () => {
     formData.append('description', description); // Append description to form data
     formData.append('count_of_attendees',attendees)
     formData.append('title', title)
-    formData.append('upload_date')
+    // formData.append('upload_date', date)
 
     console.log(formData)
 

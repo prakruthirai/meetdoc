@@ -48,6 +48,9 @@ export const Navbar = () => {
             <NavLink to="/signup">Create User</NavLink>
           </li>
         )}
+        <li>
+            <NavLink to="/uploadpage">Upload Audio</NavLink>
+          </li>
           <li>
             <NavLink to="/latestaudio">View Audios</NavLink>
           </li>
