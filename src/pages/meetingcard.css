@@ -1,0 +1,30 @@
+.description-container {
+    flex-grow: 1;
+    max-width: 250px; /* Adjust as needed */
+  }
+  
+  .description-text {
+    max-height: 100px; /* Adjust as needed */
+    overflow-y: auto;
+  }
+  
+  .title-container {
+    flex-grow: 1;
+    max-width: 100px; /* Adjust as needed */
+  }
+  
+  .title-text {
+    max-height: 100px; /* Adjust as needed */
+    overflow-y: auto;
+  }
+  
+  .date-container {
+    flex-grow: 1;
+    max-width: 100px; /* Adjust as needed */
+  }
+  
+  .date-text {
+    max-height: 100px; /* Adjust as needed */
+    overflow-y: auto;
+  }
+  

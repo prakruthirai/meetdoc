@@ -236,6 +236,7 @@ import { faPersonRunning } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import baseURL from "../Api/Config";
+import "./meetingcard.css"
 
 const MeetingCard = ({ audioId, audioName, audioTitle, audioDescription, audioDate, audioAttendees }) => {
   const [transcriptColor, setTranscriptColor] = useState("red");
@@ -381,31 +382,32 @@ const MeetingCard = ({ audioId, audioName, audioTitle, audioDescription, audioDa
   return (
     <div className="card mt-5 mx-auto w-100 mb-3">
       <div className="border p-3 d-flex flex-column flex-md-row justify-content-between align-items-center">
-        <div className="col-12 mt-2 position-relative">
-          <div className="d-flex flex-wrap">
+        <div className="col-12 mt-2 position-relative d-flex flex-wrap">
+          {/* <div className="d-flex flex-wrap"> */}
             {/* Other content here */}
-          </div>
-          <div className=" mt-4 d-flex">
-       <p>
+          {/* </div> */}
+          <div className="d-flex align-items-center">
+          <div className=" title-container me-4  mb-0">
+       <p className="title-text">
            {audioTitle}
          </p>
          </div>
-         <div className="me-4 "  style={{ flex: '0' }}>
-         <p style={{ wordWrap: 'break-word' }}>
+         <div className=" description-container me-4 mb-0"  >
+         <p className="description-text">
            {audioDescription}
          </p>
          </div>
-         <div className="me-4 ">
-        <p>
+         <div className="  date-container me-4 mb-0">
+        <p className="date-text">
            {audioDate}
          </p>
          </div>
-         <div className="me-4 ">
+         <div className="me-4 mb-0">
          <p>
            {audioAttendees}
          </p>
          </div>
-         <div className="mt-3 ">
+         <div className="me-4 mb-0">
          <span>
         <audio controls>
            <source
@@ -413,6 +415,8 @@ const MeetingCard = ({ audioId, audioName, audioTitle, audioDescription, audioDa
           />
         </audio>
         </span>
+        </div>
+        <div className="d-flex align-items-center mt-3">
             <button
               className={`btn ${
                 transcriptColor === "red" ? "btn-danger" : "btn-success"
@@ -472,6 +476,7 @@ const MeetingCard = ({ audioId, audioName, audioTitle, audioDescription, audioDa
             >
               Fetch MoM
             </button>
+            </div>
           </div>
         </div>
       </div>
