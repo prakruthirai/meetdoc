@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Card, CardGroup } from "react-bootstrap"; // Importing Card and CardGroup components from react-bootstrap
 // Importing Card and Button components from react-bootstrap
 import "./aboutpage.css";
@@ -49,6 +50,9 @@ const AboutPage = () => {
             </a>
           </li>
         </ul>
+        <Link to="/login" style={{ color: "white", marginLeft: "20px" }}>
+          <button className="btn btn-primary">Login</button>
+        </Link>
       </nav>
       <br />
       <div

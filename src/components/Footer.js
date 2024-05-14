@@ -18,9 +18,9 @@ const FooterComponent = () => {
             <li>
               <a href="/aboutpage" className="text-decoration-none">About</a>
             </li>
-            <li>
+            {/* <li>
               <a href="/services" className="text-decoration-none">Services</a>
-            </li>
+            </li> */}
           </ul>
           {/* Empty row */}
         </div>
