@@ -17,8 +17,46 @@
     text-align: justify; /* Align text to justify */
     padding: 10px;
     font-family: Arial, sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.6;
 
   }
   
+  .img{
+    max-width: 350px;
+    display: flex;
+    float: left;
+    border-radius: 10px;
+    border: 3px solid white;
+    margin-right: 20px;
+  }
+  .container{
+    margin: 100px auto;
+    width: 75%;
+    display: flex;
+  }
+
+  .text h4{
+    padding: 5px;
+  }
+  .text p{
+    font-size: 18px;
+    text-align: justify;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin-right: 20px;
+  }
+  .imgage{
+    max-width: 350px;
+    display: flex;
+    float: right;
+    border-radius: 10px;
+    border: 3px solid white;
+    margin-left: 20px;
+  }
+  .scrollspy-example {
+    position: relative;
+    height: 100vh;
+    overflow: auto;
+  }
