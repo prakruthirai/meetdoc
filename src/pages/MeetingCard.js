@@ -281,7 +281,7 @@ const MeetingCard = ({
       return;
     }
     try {
-      const response = await axios.post(
+      const response = await axios.get(
         `${baseURL}/api/meetdoc/audio-summary-gen/${id}`,
         null,
         {
@@ -324,7 +324,7 @@ const MeetingCard = ({
 
   const fetchTranscript = async (id) => {
     try {
-      const response = await axios.post(
+      const response = await axios.get(
         `${baseURL}/api/meetdoc/audio-transcript-fetch/${id}`,
         null,
         {
@@ -344,7 +344,7 @@ const MeetingCard = ({
 
   const fetchSummary = async (id) => {
     try {
-      const response = await axios.post(
+      const response = await axios.get(
         `${baseURL}/api/meetdoc/audio-summary-fetch/${id}`,
         null,
         {
@@ -364,7 +364,7 @@ const MeetingCard = ({
 
   const fetchMom = async (id) => {
     try {
-      const response = await axios.post(
+      const response = await axios.get(
         `${baseURL}/api/meetdoc/audio-mom-fetch/${id}`,
         null,
         {
