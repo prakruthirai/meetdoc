@@ -1,9 +1,9 @@
-.about-us-heading {
+.about {
     text-align: center; /* Center the content horizontally */
   }
   
   .about-us-heading h1 {
-    display: inline-block; /* Display as a block-level element with inline behavior */
+    display: inline-block; 
     padding: 10px 20px; /* Add padding to create button-like appearance */
     background-color: #007bff; /* Example background color */
     color: #fff; /* Text color */
@@ -12,3 +12,13 @@
     cursor: pointer; /* Show pointer cursor on hover */
     /* Add more styles as needed */
   }
+  .paragraph {
+    margin-right: 20px; /* Adjust as needed */
+    text-align: justify; /* Align text to justify */
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+
+  }
+  
