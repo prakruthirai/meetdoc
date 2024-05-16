@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardGroup } from "react-bootstrap"; // Importing Card and CardGroup components from react-bootstrap
+
 // Importing Card and Button components from react-bootstrap
 import "./aboutpage.css";
 
@@ -10,39 +10,40 @@ const AboutPage = () => {
       <div className="about">
         <h1>About Us</h1>
       </div>
-      <nav id="navbar-example2" class="navbar  px-3" style={{ backgroundColor: ' #0b4888' }}>
-        <a class="navbar-brand" href="#"></a>
-        <ul class="nav nav-pills me-auto ">
-          <li class="nav-item">
+      <br />
+      <nav id="navbar-example2" className="navbar navbar-light  px-3" style={{ backgroundColor: ' #0b4888'  }}>
+        <a className="navbar-brand" href="#"></a>
+        <ul className="nav nav-pills me-auto ">
+          <li className="nav-item">
             <a
-              class="nav-link"
+              className="nav-link"
               href="#scrollspyHeading1"
               style={{ color: "white" }}
             >
               MeetDoc
             </a>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <a
-              class="nav-link"
+              className="nav-link"
               href="#scrollspyHeading2"
               style={{ color: "white" }}
             >
               Transcript
             </a>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <a
-              class="nav-link"
+              className="nav-link"
               href="#scrollspyHeading3"
               style={{ color: "white" }}
             >
               Summary
             </a>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <a
-              class="nav-link"
+              className="nav-link"
               href="#scrollspyHeading4"
               style={{ color: "white" }}
             >
@@ -50,7 +51,7 @@ const AboutPage = () => {
             </a>
           </li>
         </ul>
-        <Link to="/login" style={{ color: "white", marginLeft: "20px" }}>
+        <Link to="/login" style={{ color: "white", marginRight: "50px" }}>
           <button className="btn btn-primary">Login</button>
         </Link>
       </nav>
@@ -60,7 +61,7 @@ const AboutPage = () => {
         data-bs-target="#navbar-example2"
         data-bs-offset="0"
         class="scrollspy-example"
-        tabindex="0"
+        tabIndex="0"
         style={{ marginLeft: "20px" }}
       >
         
@@ -102,7 +103,7 @@ const AboutPage = () => {
         </div>
         <div className="container">
          <div className="text">
-          <img className="imgage" src="summary.png" alt="Transcript"/>
+          <img className="imgage" src="summary.png" alt="Summary"/>
          <h4 id="scrollspyHeading3">Summary</h4>
          <p >
          MeetDoc's summary tool converts transcripts into succinct summaries
@@ -117,7 +118,7 @@ const AboutPage = () => {
         </div>
         <div className="container">
          <div className="text">
-          <img className="img" src="mom.png" alt="Transcript"/>
+          <img className="img" src="mom.png" alt="MOM"/>
          <h4 id="scrollspyHeading4">Minutes of Meeting(MOM)</h4>
          <p >
          MeetDoc's minutes of meeting (MOM) generator analyses the transcript
@@ -131,33 +132,9 @@ const AboutPage = () => {
          </div>
           
         </div>
-        {/* <h4 id="scrollspyHeading2">Transcript</h4>
-        <p className="paragraph">
-          In MeetDoc, your meeting recordings are easily converted into complete
-          transcripts. Our powerful processing system reliably recognizes user
-          voices and collects statements from many participants, ensuring that
-          every detail is captured efficiently. The resulting transcript is
-          precise and clear, providing a thorough record of your sessions that
-          is easy to reference and study. MeetDoc allows you to view and
-          navigate your meeting transcripts easily.
-        </p> */}
-        {/* <h4 id="scrollspyHeading3">Summary</h4>
-        <p className="paragraph">
-          MeetDoc's summary tool converts transcripts into succinct summaries
-          that capture the substance of your sessions. The created summary
-          provides a rapid overview of the essential topics and conversations,
-          ensuring everyone knows the most significant details. MeetDoc's
-          meeting summaries help you stay informed and efficient.
-        </p> */}
-        {/* <h4 id="scrollspyHeading4">Minutes of Meeting(MOM)</h4>
-        <p className="paragraph">
-          MeetDoc's minutes of meeting (MOM) generator analyses the transcript
-          to identify significant discussion points. It retrieves information on
-          participants, action items, follow-up activities, and meeting
-          decisions. This comprehensive MOM ensures that all essential details
-          are recorded, keeping everyone informed and accountable. MeetDoc's MOM
-          generator provides organized and effective meeting documentation.
-        </p> */}
+        
+       
+       
       </div>
     </div>
   );
