@@ -10,7 +10,7 @@ const AboutPage = () => {
       <div className="about">
         <h1>About Us</h1>
       </div>
-      <nav id="navbar-example2" class="navbar  px-3" style={{ backgroundColor: '#0b4888' }}>
+      <nav id="navbar-example2" class="navbar  px-3" style={{ backgroundColor: ' #0b4888' }}>
         <a class="navbar-brand" href="#"></a>
         <ul class="nav nav-pills me-auto ">
           <li class="nav-item">
