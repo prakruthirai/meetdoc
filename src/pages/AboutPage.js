@@ -11,7 +11,7 @@ const AboutPage = () => {
         <h1>About Us</h1>
       </div>
       <br />
-      <nav id="navbar-example2" className="navbar navbar-light  px-3" style={{ backgroundColor: ' #0b4888'  }}>
+      <nav id="navbar-example2" className="navbar active position:fixed px-3" style={{ backgroundColor: ' #0b4888'  }}>
         <a className="navbar-brand" href="#"></a>
         <ul className="nav nav-pills me-auto ">
           <li className="nav-item">
@@ -62,6 +62,7 @@ const AboutPage = () => {
         data-bs-offset="0"
         class="scrollspy-example"
         tabIndex="0"
+        position='fixed'
         style={{ marginLeft: "20px" }}
       >
         
