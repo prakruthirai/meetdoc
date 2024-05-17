@@ -74,6 +74,8 @@
 
     .card-footer button{
         background-color: #0056b3;
+        color: #fff;
+        
     }
 
     ::placeholder {

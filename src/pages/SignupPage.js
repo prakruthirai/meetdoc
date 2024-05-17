@@ -63,13 +63,15 @@ const SignupPage = () => {
 
     return (
         <div className='row'>
-            <div className="offset-lg-3 col-lg-6" style={{ marginTop: '10px' }}>
+            <div className="offset-lg-3 col-lg-6" style={{ marginTop: '0px' }}>
                 <form onSubmit={handleSubmit} className="container">
-                    <div className="card" style={{ width: '400px', height: '400px' }}>
+                    <div className="card" style={{ width: '500px', height: '300px' }}>
                         <div className="card-header">
-                            <h2 style={{ fontFamily: 'Roboto', fontSize: '20px' }}>Create User</h2>
+                            <h2 style={{ fontFamily: 'Roboto', fontSize: '30px' }}>Create User</h2>
                         </div>
                         <div className="card-body"  style={{ height: '200px' }}>
+                         <div className='row'>
+                            <div className='col'>
                             <div className="form-group">
                                 <div className="input-group">
                                     <span className="input-group-text"><FontAwesomeIcon icon={faGraduationCap} /></span>
@@ -80,11 +82,13 @@ const SignupPage = () => {
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)} 
                                         required  
-                                        className='form-control' 
+                                        className='form-control ' 
                                     />
                                 </div>
                             </div>
-                            <br />
+                            </div>
+                            
+                            <div className='col'>
                             <div className="form-group">
                                 <div className="input-group">
                                     <span className="input-group-text"><FontAwesomeIcon icon={faEnvelope} /></span>
@@ -99,7 +103,11 @@ const SignupPage = () => {
                                     />
                                 </div>
                             </div>
+                            </div>
+                            </div>
                             <br />
+                            <div className="row">
+                                <div className="col">
                             <div className="form-group">
                                 <div className="input-group">
                                     <span className="input-group-text"><FontAwesomeIcon icon={faUser} /></span>
@@ -114,7 +122,8 @@ const SignupPage = () => {
                                     />
                                 </div>
                             </div>
-                            <br />
+                            </div>
+                            <div className='col'>
                             <div className="form-group">
                                 <div className="input-group">
                                     <span className="input-group-text"><FontAwesomeIcon icon={faLock} /></span>
@@ -129,6 +138,8 @@ const SignupPage = () => {
                                     />
                                 </div>
                             </div>
+                        </div>
+                        </div>
                         </div>
                         <div className="card-footer">
                             <button type="submit" className="btn btn-primary custom-font">Create User</button>

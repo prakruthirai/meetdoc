@@ -18,7 +18,7 @@ const LoginPage = () => {
     return (
        <div className='container-fluid'>
          <div className='row'>
-            <div className="offset-lg-3 col-lg-6" style={{ marginTop: '50px' }}>
+            <div className="offset-lg-3 col-lg-6" style={{ marginTop: '0px' }}>
                 <form onSubmit={handleLogin} className="container">
                     <div className="card" style={{ width: '400px' }}>
                         <div className="card-header">
