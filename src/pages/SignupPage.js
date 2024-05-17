@@ -106,6 +106,7 @@ const SignupPage = () => {
                             </div>
                             </div>
                             <br />
+                            <br/>
                             <div className="row">
                                 <div className="col">
                             <div className="form-group">
