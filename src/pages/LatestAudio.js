@@ -85,6 +85,22 @@ const AudioList = () => {
     fetchAudioList();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${baseURL}/api/meetdoc/remove-audio/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
+      });
+      // Update the state to remove the deleted audio file
+      setAudioList(audioList.filter(audio => audio.id !== id));
+      console.log(`Audio with ID ${id} deleted successfully`);
+    } catch (error) {
+      console.error('Error deleting audio:', error);
+    }
+  };
+
+
   useEffect(() => {
     // console.log(audioList);
   }, [audioList]);
@@ -101,8 +117,8 @@ const AudioList = () => {
             <p>No audio files found for the user</p>
           ) : (
             audioList.map((audio) => (
-              <MeetingCard key={audio.id} audioId={audio.id} audioName={audio.filename} audioTitle={audio.title} audioDescription={audio.description} audioDate={audio.upload_date}
-              audioAttendees={audio.count_of_attendees}/>
+              <MeetingCard key={audio.id} audioId={audio.id} audioName={audio.filename} audioTitle={audio.title}  audioDate={audio.upload_date} audioDescription={audio.description}
+              audioAttendees={audio.count_of_attendees} onDelete={handleDelete} />
             ))
             
           )}
