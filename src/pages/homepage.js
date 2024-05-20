@@ -51,6 +51,7 @@ const Homepage = () => {
   return (
     <div className="dashboard">
       <h1>Welcome, {first_name}!</h1>
+      <div className="card-container">
       <div className="card">
         <h2>Audio Count</h2>
         <p>{audioCount}</p>
@@ -59,6 +60,7 @@ const Homepage = () => {
         <h2>Transcripts</h2>
         <p>{analytics.transcript_count}</p>
       </div>
+      {/* </div> */}
       <div className="card">
         <h2>Summaries</h2>
         <p>{analytics.summary_count}</p>
@@ -66,6 +68,7 @@ const Homepage = () => {
       <div className="card">
         <h2>MOMs</h2>
         <p>{analytics.mom_count}</p>
+      </div>
       </div>
     </div>
   );

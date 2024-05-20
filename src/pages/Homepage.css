@@ -8,9 +8,10 @@
   }
   
   .card {
+    flex: 1;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 20px;
+    padding: 16px;
     margin: 10px;
     text-align: center;
     background-color: #f9f9f9;
@@ -23,5 +24,9 @@
   .card p {
     font-size: 1.5em;
     margin: 0;
+  }
+  .card-container {
+    display: flex;
+    gap: 20px; /* Adjust the gap between the cards as needed */
   }
   
