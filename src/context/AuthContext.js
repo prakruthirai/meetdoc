@@ -188,6 +188,8 @@ const AuthProvider = ({ children }) => {
         const access_token = data["data"]["access_token"].replace(/['"]+/g, '');
         const refresh_token = data["data"]["refresh_token"].replace(/['"]+/g, '');
         const role = data["role"].replace(/['"]+/g, '');
+        const first_name = data["first_name"].replace(/['"]+/g, '');
+      
 
         console.log(access_token)
 
@@ -197,6 +199,7 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem('access_token', access_token);
         localStorage.setItem('refresh_token', refresh_token);
         localStorage.setItem('role', role);
+        localStorage.setItem('first_name', first_name);
         navigate('/');
         return true;
       } else {

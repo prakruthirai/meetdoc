@@ -24,7 +24,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     // console.log('hello')
-    console.log(role)
+    // console.log(role)
     if (user && role === "Admin") {
         // console.log('hii')
       setIsAdmin(true);
