@@ -1,31 +1,31 @@
 .description-container {
     flex-grow: 1;
-    max-width: 250px; /* Adjust as needed */
+    max-width: 250px; 
   }
   
   .description-text {
-    max-height: 100px; /* Adjust as needed */
+    max-height: 100px; 
     overflow-y: auto;
   }
   
   .title-container {
     flex-grow: 1;
-    max-width: 100px; /* Adjust as needed */
+    max-width: 100px; 
   }
   
   .title-text {
-    max-height: 100px; /* Adjust as needed */
+    max-height: 100px; 
     overflow-y: auto;
   }
   
   .date-container {
     flex-grow: 1;
-    max-width: 100px; /* Adjust as needed */
+    max-width: 100px; 
   }
   
   .date-text {
-    max-height: 100px; /* Adjust as needed */
+    max-height: 100px; 
     overflow-y: auto;
   }
   
-  
+ 

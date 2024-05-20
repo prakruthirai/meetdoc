@@ -511,22 +511,22 @@ const MeetingCard = ({
   // );
   return (
     <div className="card mt-5 mx-auto w-100 mb-3">
-      <div className=" border p-1">
+      {/* <div className=" border p-1"> */}
         <div className="row  align-items-center">
           <div className="col-md-4 mb-2">
             <div className="row m-0 align-items-center">
               <div className="col-12 col-md-4  mt-2">
-                <p className="title-text">Title: {audioTitle}</p>
+                <p className="title-text" style={{ fontSize: '1rem' }}>Title: {audioTitle}</p>
               </div>
               <div className=" col-12 col-md-4 mt-2">
-                <p>Date: {audioDate}</p>
+                <p style={{ fontSize: '1rem' }}>Date: {audioDate}</p>
               </div>
               <div className="col-12 col-md-4  mt-2" style={{ width: "350px" }}>
                 <Accordion defaultActiveKey="">
                   <Accordion.Item eventKey="0">
                     <Accordion.Header>Description</Accordion.Header>
                     <Accordion.Body>
-                      <p className="description-text">{audioDescription}</p>
+                      <p className="description-text" style={{ fontSize: '1rem' }}>{audioDescription}</p>
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
@@ -537,7 +537,7 @@ const MeetingCard = ({
 
             {/* <div className="me-4"></div> */}
             <div className=" col-md-8 d-flex justify-content-start align-items-center flex-wrap">
-            <p className="mb-2 me-4 " style={{ marginLeft: '-80px' }}>No.of speakers:{audioAttendees}</p>
+            <p className="mb-2 me-4 " style={{ fontSize: '1rem', marginLeft: '-80px' }}>No.of speakers:{audioAttendees}</p>
             {/* <div className="me-4"></div> */}
             <span>
               <audio controls className="mb-2 me-4">
@@ -613,7 +613,7 @@ const MeetingCard = ({
             </div>
           </div>
         </div>
-      </div>
+      // </div>
     
   );
 };
