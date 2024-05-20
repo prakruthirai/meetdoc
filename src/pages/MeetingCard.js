@@ -537,7 +537,7 @@ const MeetingCard = ({
 
             {/* <div className="me-4"></div> */}
             <div className=" col-md-8 d-flex justify-content-start align-items-center flex-wrap">
-            <p className="mb-2 me-4 " style={{ fontSize: '1rem', marginLeft: '-80px' }}>No.of speakers:{audioAttendees}</p>
+            <p className="mb-2 me-4 " style={{ fontSize: '1rem', marginLeft: '-10px' }}>No.of speakers:{audioAttendees}</p>
             {/* <div className="me-4"></div> */}
             <span>
               <audio controls className="mb-2 me-4">
@@ -548,6 +548,7 @@ const MeetingCard = ({
 
             {/* <div className="me-4"></div> */}
             {/* <div className="d-flex flex-wrap align-items-center mb-2"> */}
+            <div className=" w-100 d-flex flex-wrap align-items-center">
               <button
                 className={`btn 
                 ${transcriptColor === "red" ? "btn-danger" : "btn-success"
@@ -613,7 +614,7 @@ const MeetingCard = ({
             </div>
           </div>
         </div>
-      // </div>
+      </div>
     
   );
 };
