@@ -249,56 +249,138 @@ const AudioUploader = () => {
   };
 
   return (
-    <div>
-      {/* <input type="file" onChange={handleFileChange} accept="audio/wav" />
-          <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description" /> */}
-      <div className='file-card'>
+    // <div>
+    //   {/* <input type="file" onChange={handleFileChange} accept="audio/wav" />
+    //       <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description" /> */}
+    //   <div className='file-card'>
 
-        <div className='mb-3 row  '>
-          <div className='col'>
-            <input type="text" value={title} onChange={handleTitle} placeholder="Title" class="form-control form-control-lg" />
-          </div>
-          {/* </div>
-            <div className='mb-3 row'> */}
-          <div className='col'>
-            <input type="text" value={attendees} onChange={handleAttendees} placeholder="No.of attendees" class="form-control form-control-lg" />
-          </div>
-        </div>
+    //     <div className='mb-3 row  '>
+    //       <div className='col'>
+    //         <input type="text" value={title} onChange={handleTitle} placeholder="Title" class="form-control form-control-lg" />
+    //       </div>
+    //       {/* </div>
+    //         <div className='mb-3 row'> */}
+    //       <div className='col'>
+    //         <input type="text" value={attendees} onChange={handleAttendees} placeholder="No.of attendees" class="form-control form-control-lg" />
+    //       </div>
+    //     </div>
 
-        <div className='mb-3 row' style={{ textAlign: 'right' }}>
-          <input type="file" onChange={handleFileChange} accept="audio/*" style={{ marginLeft: '50px' }} />
-        </div>
+    //     <div className='mb-3 row' style={{ textAlign: 'right' }}>
+    //       <input type="file" onChange={handleFileChange} accept="audio/*" style={{ marginLeft: '50px' }} />
+    //     </div>
 
-        {/* <div className='mb-3 row'>
-            <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description"  class="form-control form-control-lg" />
-            </div> */}
-        <div className='mb-3 row'>
-          <div className='col'>
-            <h2 className='small-heading'>Description</h2>
-            <div className="editor-container" style={{ maxHeight: '200px' }}>
-              <ReactQuill
-                // ref={editorRef}
-                // value={description} 
-                // onChange={handleDescriptionChange} 
-                // placeholder="Description" 
-                // className="quill-editor"
-                style={{ minHeight: '200px', overflowY: 'hidden', maxWidth: '500px' }}
-                theme='snow'
-                value={description}
-                onChange={handleDescriptionChange}
-                modules={modules}
-              />
-            </div>
-          </div>
-        </div>
+    //     {/* <div className='mb-3 row'>
+    //         <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description"  class="form-control form-control-lg" />
+    //         </div> */}
+    //     <div className='mb-3 row'>
+    //       <div className='col'>
+    //         <h2 className='small-heading'>Description</h2>
+    //         <div className="editor-container" style={{ maxHeight: '200px' }}>
+    //           <ReactQuill
+    //             // ref={editorRef}
+    //             // value={description} 
+    //             // onChange={handleDescriptionChange} 
+    //             // placeholder="Description" 
+    //             // className="quill-editor"
+    //             style={{ minHeight: '200px', overflowY: 'hidden', maxWidth: '500px' }}
+    //             theme='snow'
+    //             value={description}
+    //             onChange={handleDescriptionChange}
+    //             modules={modules}
+    //           />
+    //         </div>
+    //       </div>
+    //     </div>
 
 
 
-        {uploading && <p>Uploading...</p>}
-        {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
-        <button onClick={uploadAudio} className='upload-button'>Upload Audio</button>
+    //     {uploading && <p>Uploading...</p>}
+    //     {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
+    //     <button onClick={uploadAudio} className='upload-button'>Upload Audio</button>
+    //   </div>
+    // </div>
+    
+<div className="file-card">
+{/* <input type="file" onChange={handleFileChange} accept="audio/wav" />
+    <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description" /> */}
+<div className="row">
+  <div className="col-lg-6  ">
+    <div className="mb-3">
+      <input
+        type="text"
+        value={title}
+        onChange={handleTitle}
+        placeholder="Title"
+        class="form-control form-control-lg"
+      />
+    </div>
+
+    {/* </div>
+      <div className='mb-3 row'> */}
+    <div className="mb-3  ">
+      <input
+        type="text"
+        value={attendees}
+        onChange={handleAttendees}
+        placeholder="No.of attendees"
+        class="form-control form-control-lg"
+      />
+    </div>
+
+    <div className="mb-3 ">
+    <div className="box">
+      <input
+        type="file"
+        onChange={handleFileChange}
+        accept="audio/*"
+        style={{ marginLeft: "10px" }}
+      />
+    </div>
+  </div>
+  </div>
+
+  {/* <div className='mb-3 row'>
+      <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description"  class="form-control form-control-lg" />
+      </div> */}
+      
+  <div className="col-lg-6">
+    <div className="mb-3">
+      <h2 className="small-heading">Description</h2>
+      <div className="editor-container" style={{ maxHeight: "200px"}}>
+        <ReactQuill
+          // ref={editorRef}
+          // value={description}
+          // onChange={handleDescriptionChange}
+          // placeholder="Description"
+          // className="quill-editor"
+          style={{
+            minHeight: "200px",
+            overflowY: "hidden",
+            maxWidth: "500px",
+          
+          }}
+          theme="snow"
+          value={description}
+          onChange={handleDescriptionChange}
+          modules={modules}
+        />
       </div>
     </div>
+  </div>
+</div>
+<br/>
+<div className="row" >
+<div className="col d-flex align-items-center justify-content-center">
+<div className="text-center">
+    {uploading && <p>Uploading...</p>}
+    {uploadError && <p style={{ color: "red" }}>{uploadError}</p>}
+    <button onClick={uploadAudio} className="upload-button">
+      Upload Audio
+    </button>
+  </div>
+</div>
+</div>
+</div>
 
   );
 }
