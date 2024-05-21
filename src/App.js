@@ -147,13 +147,14 @@ function App() {
     <div className="page-container">
       <div className="content-wrap">
         <Router>
-          <Header />
+          
           <AuthProvider>
-            <AuthContext.Consumer>
+          <Header />
+            {/* <AuthContext.Consumer>
               {({ user }) => (
                 user && <Navbar />
               )}
-            </AuthContext.Consumer>
+            </AuthContext.Consumer> */}
             <Routes>
               <Route
                 path="/"

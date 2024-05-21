@@ -66,6 +66,8 @@ import { useNavigate } from 'react-router-dom';
 const AudioList = () => {
   const [audioList, setAudioList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [nextPageUrl, setNextPageUrl] = useState(null);
+  const [prevPageUrl, setPrevPageUrl] = useState(null);
 
   const navigate = useNavigate();
 
@@ -76,15 +78,20 @@ const AudioList = () => {
   }, [navigate])
 
   useEffect(() => {
-    const fetchAudioList = async () => {
-      try {
-        const response = await axios.get(`${baseURL}/api/meetdoc/upload-audio-list/`, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-          }
-        });
-        setAudioList(response.data);
-        console.log(audioList)
+    fetchAudioList(`${baseURL}/api/meetdoc/upload-audio-list/`);
+  }, []);
+
+  const fetchAudioList = async (url) => {
+    try {
+      const response = await axios.get(url, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
+      });
+        const data = response.data;
+        setAudioList(data.results);
+        setNextPageUrl(data.next);
+        setPrevPageUrl(data.previous);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching audio list:', error);
@@ -92,8 +99,8 @@ const AudioList = () => {
       }
     };
 
-    fetchAudioList();
-  }, []);
+  //   fetchAudioList();
+  // }, []);
 
   const handleDelete = async (id) => {
     try {
@@ -104,16 +111,29 @@ const AudioList = () => {
       });
       // Update the state to remove the deleted audio file
       setAudioList(audioList.filter(audio => audio.id !== id));
+
       console.log(`Audio with ID ${id} deleted successfully`);
     } catch (error) {
       console.error('Error deleting audio:', error);
     }
   };
 
+  const handleNextPage = () => {
+    if (nextPageUrl) {
+      fetchAudioList(nextPageUrl);
+    }
+  };
 
-  useEffect(() => {
-    // console.log(audioList);
-  }, [audioList]);
+  const handlePrevPage = () => {
+    if (prevPageUrl) {
+      fetchAudioList(prevPageUrl);
+    }
+  };
+
+
+  // useEffect(() => {
+  //   // console.log(audioList);
+  // }, [audioList]);
 
   return (
     <div>
@@ -127,12 +147,21 @@ const AudioList = () => {
             <p>No audio files found for the user</p>
           ) : (
             audioList.map((audio) => (
-              <MeetingCard key={audio.id} audioId={audio.id} audioName={audio.filename} audioTitle={audio.title}  audioDate={audio.upload_date} audioDescription={audio.description}
-              audioAttendees={audio.count_of_attendees} onDelete={handleDelete} />
+              <MeetingCard
+                key={audio.id}
+                audioId={audio.id}
+                audioName={audio.filename}
+                audioTitle={audio.title}
+                audioDate={audio.upload_date}
+                audioDescription={audio.description}
+                audioAttendees={audio.count_of_attendees}
+                onDelete={handleDelete} />
             ))
-            
           )}
-          
+          <div>
+            <button onClick={handlePrevPage} disabled={!prevPageUrl}>Previous</button>
+            <button onClick={handleNextPage} disabled={!nextPageUrl}>Next</button>
+          </div>
         </div>
       )}
     </div>
