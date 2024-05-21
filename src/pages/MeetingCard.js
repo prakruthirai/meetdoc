@@ -521,10 +521,10 @@ const MeetingCard = ({
       <div className="col-md-4 mb-2">
         <div className="row m-0 align-items-center">
           <div className="col-12 col-md-4  mt-2">
-            <p className="title-text" style={{ fontSize: '1rem' }}>Title: {audioTitle}</p>
+            <p className="title-text" style={{ fontSize: '1rem'}}>Title: {audioTitle}</p>
           </div>
           <div className=" col-12 col-md-4 mt-2">
-            <p style={{ fontSize: '1rem' }}>Date: {audioDate}</p>
+            <p className="title-text" style={{ fontSize: '1rem' }}>Date: {audioDate}</p>
           </div>
           <div className="col-12 col-md-4  mt-2" style={{ width: "350px" }}>
           <p className="mb-2 me-4 " style={{ fontSize: '1rem', marginLeft: '-150px' }}>No.of speakers:{audioAttendees}</p>
