@@ -16,6 +16,7 @@
   .title-text {
     max-height: 100px; 
     overflow-y: auto;
+    
   }
   
   .date-container {
@@ -31,5 +32,5 @@
   .description-accordion {
     width: 350px; /* Adjust the width as needed */
   }
-  
+ 
  

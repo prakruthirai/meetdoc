@@ -510,115 +510,129 @@ const MeetingCard = ({
   //   </div>
 
   // );
-  return (
+ 
+
+
+
+  return(
     <div className="card mt-5 mx-auto w-100 mb-3">
-      {/* <div className=" border p-1"> */}
-      <div className="row  align-items-center">
-        <div className="col-md-4 mb-2">
-          <div className="row m-0 align-items-center">
-            <div className="col-12 col-md-4  mt-2">
-              <p className="title-text" style={{ fontSize: '1rem' }}>Title: {audioTitle}</p>
-            </div>
-            <div className=" col-12 col-md-4 mt-2">
-              <p style={{ fontSize: '1rem' }}>Date: {audioDate}</p>
-            </div>
-            <div className="col-12 col-md-4 mt-2" style={{ width: "350px" }}>
-        <p className="mb-2 me-4" style={{ fontSize: '1rem', marginLeft: '-140px' }}>No. of speakers: {audioAttendees}</p>
-      </div>
-      </div>
-  </div>
-  <div className="col-md-8 d-flex justify-content-start align-items-center flex-wrap">
-    <div className="w-100 d-flex flex-wrap align-items-center">
-              <Accordion defaultActiveKey="" className="description-accordion">
-                <Accordion.Item eventKey="0">
-                  <Accordion.Header>Description</Accordion.Header>
-                  <Accordion.Body>
-                    <p className="description-text" style={{ fontSize: '1rem' }}>{audioDescription}</p>
-                  </Accordion.Body>
-                </Accordion.Item>
-              </Accordion>
-           
-
-       
-          <span>
-            <audio controls className="mb-2 me-4" style={{ marginLeft: '200px' }}>
-              <source src={baseURL + audioName} />
-            </audio>
-          </span>
-          
-
-
-          {/* <div className="me-4"></div> */}
-          {/* <div className="d-flex flex-wrap align-items-center mb-2"> */}
-          <div className=" w-100 d-flex flex-wrap align-items-center" style={{ marginTop: '20px' }}>
-            <button
-              className={`btn 
-                ${transcriptColor === "red" ? "btn-danger" : "btn-success"
-                } me-2 mb-2`}
-              onClick={() => handleTranscriptGeneration(audioId)}
-              style={{ cursor: "pointer" }}
-            >
-              <FontAwesomeIcon icon={faPersonRunning} /> Generate
-              Transcript
-            </button>
-            {transcriptGenerated && (
-              <span
-                className="me-2 mb-2"
-                style={{ cursor: "pointer" }}
-                onClick={() => fetchTranscript(audioId)}
-              >
-                <FontAwesomeIcon icon={faEye} />
-              </span>
-            )}
-            {/* <div className="me-4"></div> */}
-
-            <button
-              className={`btn ${summaryColor === "red" ? "btn-danger" : "btn-success"
-                } me-2 mb-2`}
-              onClick={() => handleSummaryGeneration(audioId)}
-              style={{ cursor: "pointer" }}
-              disabled={!transcriptGenerated}
-            >
-              <FontAwesomeIcon icon={faPersonRunning} /> Generate Summary
-            </button>
-            {summaryGenerated && (
-              <span
-                className="me-2 mb-2"
-                style={{ cursor: "pointer" }}
-                onClick={() => fetchSummary(audioId)}
-              >
-                <FontAwesomeIcon icon={faEye} />
-              </span>
-            )}
-            {/* <div className="me-4"></div> */}
-
-            <button
-              className={`btn ${momColor === "red" ? "btn-danger" : "btn-success"
-                } me-2 mb-2`}
-              onClick={() => handleMomGeneration(audioId)}
-              style={{ cursor: "pointer" }}
-              disabled={!summaryGenerated}
-            >
-              <FontAwesomeIcon icon={faPersonRunning} /> Generate MoM
-            </button>
-            {momFetched ? (
-              <span
-                className="me-2 mb-2"
-                style={{ cursor: "pointer" }}
-                onClick={() => fetchMom(audioId)}
-              >
-                <FontAwesomeIcon icon={faEye} />
-              </span>
-            ) : null}
-            <button className="delete-button" onClick={handleDelete}>
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
+    {/* <div className=" border p-1"> */}
+    <div className="row  align-items-center">
+      <div className="col-md-4 mb-2">
+        <div className="row m-0 align-items-center">
+          <div className="col-12 col-md-4  mt-2">
+            <p className="title-text" style={{ fontSize: '1rem' }}>Title: {audioTitle}</p>
+          </div>
+          <div className=" col-12 col-md-4 mt-2">
+            <p style={{ fontSize: '1rem' }}>Date: {audioDate}</p>
+          </div>
+          <div className="col-12 col-md-4  mt-2" style={{ width: "350px" }}>
+          <p className="mb-2 me-4 " style={{ fontSize: '1rem', marginLeft: '-150px' }}>No.of speakers:{audioAttendees}</p>
+            {/* <Accordion defaultActiveKey="">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Description</Accordion.Header>
+                <Accordion.Body>
+                  <p className="description-text" style={{ fontSize: '1rem' }}>{audioDescription}</p>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion> */}
           </div>
         </div>
       </div>
+  
+  
+      {/* <div className="me-4"></div> */}
+      <div className=" col-md-8 d-flex justify-content-start align-items-center flex-wrap">
+        {/* <p className="mb-2 me-4 " style={{ fontSize: '1rem', marginLeft: '-10px' }}>No.of speakers:{audioAttendees}</p> */}
+        {/* <div className="me-4"></div> */}
+        <div className="mb-2 me-4 " style={{ width: "350px" }}>
+        <Accordion defaultActiveKey="" >
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Description</Accordion.Header>
+                <Accordion.Body>
+                  <p className="description-text" style={{ fontSize: '1rem' }}>{audioDescription}</p>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            </div>
+        <span>
+          <audio controls className="mb-2 me-4">
+            <source src={baseURL + audioName} />
+          </audio>
+        </span>
+  
+  
+        {/* <div className="me-4"></div> */}
+        {/* <div className="d-flex flex-wrap align-items-center mb-2"> */}
+        <div className=" w-100 d-flex flex-wrap align-items-center">
+          <button
+            className={`btn 
+              ${transcriptColor === "red" ? "btn-danger" : "btn-success"
+              } me-2 mb-2`}
+            onClick={() => handleTranscriptGeneration(audioId)}
+            style={{ cursor: "pointer" }}
+          >
+            <FontAwesomeIcon icon={faPersonRunning} /> Generate
+            Transcript
+          </button>
+          {transcriptGenerated && (
+            <span
+              className="me-2 mb-2"
+              style={{ cursor: "pointer" }}
+              onClick={() => fetchTranscript(audioId)}
+            >
+              <FontAwesomeIcon icon={faEye} />
+            </span>
+          )}
+          {/* <div className="me-4"></div> */}
+  
+          <button
+            className={`btn ${summaryColor === "red" ? "btn-danger" : "btn-success"
+              } me-2 mb-2`}
+            onClick={() => handleSummaryGeneration(audioId)}
+            style={{ cursor: "pointer" }}
+            disabled={!transcriptGenerated}
+          >
+            <FontAwesomeIcon icon={faPersonRunning} /> Generate Summary
+          </button>
+          {summaryGenerated && (
+            <span
+              className="me-2 mb-2"
+              style={{ cursor: "pointer" }}
+              onClick={() => fetchSummary(audioId)}
+            >
+              <FontAwesomeIcon icon={faEye} />
+            </span>
+          )}
+          {/* <div className="me-4"></div> */}
+  
+          <button
+            className={`btn ${momColor === "red" ? "btn-danger" : "btn-success"
+              } me-2 mb-2`}
+            onClick={() => handleMomGeneration(audioId)}
+            style={{ cursor: "pointer" }}
+            disabled={!summaryGenerated}
+          >
+            <FontAwesomeIcon icon={faPersonRunning} /> Generate MoM
+          </button>
+          {momFetched ? (
+            <span
+              className="me-2 mb-2"
+              style={{ cursor: "pointer" }}
+              onClick={() => fetchMom(audioId)}
+            >
+              <FontAwesomeIcon icon={faEye} />
+            </span>
+          ) : null}
+          <button className="delete-button" onClick={handleDelete}>
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+        </div>
+      </div>
     </div>
-    </div>
-  );
-};
-
-export default MeetingCard;
+  </div>
+    );
+  };
+  
+  export default MeetingCard;
+  
