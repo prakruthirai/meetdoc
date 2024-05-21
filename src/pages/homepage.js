@@ -14,8 +14,14 @@ const Homepage = () => {
     summary_count: 0,
     mom_count: 0
   });
+  const [adminData, setAdminData] = useState({
+    user_count: 0,
+    audio_counts: {},
+  });
+  const [userList, setUserList] = useState([]);
   const tokens = localStorage.getItem("access_token");
   const first_name = localStorage.getItem("first_name");
+  const role = localStorage.getItem("role");
 
   const navigate = useNavigate();
 
@@ -52,9 +58,39 @@ const Homepage = () => {
       }
     };
 
+    const fetchAdminData = async () => {
+      try {
+        const response = await axios.get(`${baseURL}/api/meetdoc/admin-dashboard`, {
+          headers: {
+            Authorization: `Bearer ${tokens}`,
+          },
+        });
+        setAdminData(response.data);
+      } catch (error) {
+        console.error('Error fetching admin data:', error);
+      }
+    };
+
+    const fetchUserList = async () => {
+      try {
+        const response = await axios.get(`${baseURL}/api/meetdoc/list-users`, {
+          headers: {
+            Authorization: `Bearer ${tokens}`,
+          },
+        });
+        setUserList(response.data.data);
+      } catch (error) {
+        console.error('Error fetching user list:', error);
+        setUserList([]);
+      }
+    };
+
+
     if (user && tokens) {
       fetchAudioCount();
       fetchAnalytics();
+      fetchAdminData();
+      fetchUserList();
     }
   }, [user, tokens]);
 
@@ -80,6 +116,31 @@ const Homepage = () => {
         <p>{analytics.mom_count}</p>
       </div>
       </div>
+      {user && role === "Admin" && (
+        <div className="admin-section">
+          <h2>Admin Data</h2>
+          <div className="card">
+            <h3>Total Users</h3>
+            <p>{adminData.user_count}</p>
+          </div>
+          <div className="card">
+            <h3>User Audio Counts</h3>
+            <ul>
+              {Object.entries(adminData.audio_counts).map(([username, count]) => (
+                <li key={username}>{username}: {count}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="card">
+            <h3>Recent Users</h3>
+            <ul>
+              {userList.map(user => (
+                <li key={user.id}>{user.username}{user.email} {user.first_name} </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
