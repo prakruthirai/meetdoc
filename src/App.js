@@ -137,6 +137,7 @@ import Summarypage from "./pages/Summarypage";
 import Mompage from "./pages/Mompage"
 import LatestAudio from "./pages/LatestAudio";
 import AboutPage from './pages/AboutPage';
+import UserDetails from "./components/UserDetails";
 
 // import "./App.css"
 
@@ -196,6 +197,7 @@ function App() {
                 path="/aboutpage"
                 element={<PrivateRoute element={<AboutPage />} />}
               />
+              <Route path="/profile" element={<PrivateRoute element={<UserDetails />} />} />
             </Routes>
           </AuthProvider>
         </Router>

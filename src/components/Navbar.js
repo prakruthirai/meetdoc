@@ -1,11 +1,13 @@
 
 import React, { useState, useContext , useEffect} from "react";
 import { Link, NavLink } from "react-router-dom";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faBars } from "@fortawesome/free-solid-svg-icons"; 
 import { AuthContext } from '../context/AuthContext';
-import { Button } from 'react-bootstrap';
+import { Button, Modal  } from 'react-bootstrap';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import "./Navbar.css";
+import UserDetails from "./UserDetails";
 
 import { useNavigate } from 'react-router-dom';
 
@@ -13,6 +15,7 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const {user, logoutUser } = useContext(AuthContext);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   
 //   console.log(role)
 const navigate = useNavigate();
@@ -59,6 +62,15 @@ useEffect(() => {
           <li>
             <NavLink to="/latestaudio">View Audios</NavLink>
           </li>
+          {user && (
+          <li>
+            <FontAwesomeIcon
+              icon={faUser}
+              onClick={() => setShowProfile(true)}
+              style={{ cursor: "pointer" }}
+            />
+          </li>
+        )}
         <li>
           {user ? (
             <Button onClick={handleLogout}>Logout</Button>
@@ -88,6 +100,19 @@ useEffect(() => {
           {/* </ul>
         </li> */}
       </ul>
+      <Modal show={showProfile} onHide={() => setShowProfile(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>User Profile</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <UserDetails />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowProfile(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </nav>
   );
 };
