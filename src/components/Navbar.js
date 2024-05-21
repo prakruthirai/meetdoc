@@ -5,32 +5,37 @@ import { Link, NavLink } from "react-router-dom";
 // import { faBars } from "@fortawesome/free-solid-svg-icons"; 
 import { AuthContext } from '../context/AuthContext';
 import { Button } from 'react-bootstrap';
-// import SignupPage from "./pages/SignupPage";
-
-
 import "./Navbar.css";
+
+import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const {user, logoutUser } = useContext(AuthContext);
   const [isAdmin, setIsAdmin] = useState(false);
-  const role = localStorage.getItem("role");
+  
 //   console.log(role)
+const navigate = useNavigate();
+
+useEffect(() => {
+  if (!localStorage.getItem('authTokens')) {
+    navigate('/login')
+  }
+}, [navigate])
+
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    if (user && role === "Admin") {
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+    }
+  }, [user]);
 
   const handleLogout = () => {
     logoutUser();
     console.log("Logout clicked");
   };
-
-  useEffect(() => {
-    // console.log('hello')
-    // console.log(role)
-    if (user && role === "Admin") {
-        // console.log('hii')
-      setIsAdmin(true);
-    //   console.log(isAdmin)
-    }
-  }, [user, role]);
 
   return (
     <nav>

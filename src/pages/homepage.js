@@ -4,6 +4,8 @@ import { AuthContext } from '../context/AuthContext';
 import './Homepage.css'; // Ensure this file exists and is named correctly
 import baseURL from "../Api/Config";
 
+import { useNavigate } from 'react-router-dom';
+
 const Homepage = () => {
   const { user } = useContext(AuthContext);
   const [audioCount, setAudioCount] = useState(0);
@@ -14,6 +16,14 @@ const Homepage = () => {
   });
   const tokens = localStorage.getItem("access_token");
   const first_name = localStorage.getItem("first_name");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem('authTokens')) {
+      navigate('/login')
+    }
+  }, [navigate])
 
   useEffect(() => {
     const fetchAudioCount = async () => {

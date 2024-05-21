@@ -165,54 +165,37 @@ function App() {
               />
               <Route
                 path="/uploadpage"
-                element={<Uploadpage />}
+                element={<PrivateRoute element={<Uploadpage />} />}
               />
               <Route
                 path="/signup"
-                element={<SignupPage />}
+                element={<PrivateRoute element={<SignupPage />} />}
               />
               <Route
                 path="/latestaudio"
-                element={<LatestAudio />}
+                element={<PrivateRoute element={<LatestAudio />} />}
               />
+
               <Route
                 path="/meetingcard"
-                element={<MeetingCard />}
+                element={<PrivateRoute element={<MeetingCard />} />}
               />
               <Route
-                path="/trancriptpage"
-                element={<Transcriptpage />}
+                path="/transcriptpage"
+                element={<PrivateRoute element={<Transcriptpage />} />}
               />
               <Route
                 path="/summarypage"
-                element={<Summarypage />}
+                element={<PrivateRoute element={<Summarypage />} />}
               />
               <Route
                 path="/mompage"
-                element={<Mompage />}
+                element={<PrivateRoute element={<Mompage />} />}
               />
-
               <Route
                 path="/aboutpage"
-                element={<AboutPage />}
+                element={<PrivateRoute element={<AboutPage />} />}
               />
-
-              <Route
-                path="/transcriptpage"
-                element={<Transcriptpage />}
-              />
-
-
-              {/* <Route
-              path="/uploadaudio"
-              element={<PrivateRoute 
-              element={<Uploadpage/>} />}
-            /> */}
-              {/* <Route
-              path="/meetingcard"
-              element={<PrivateRoute 
-              element={<MeetingCard />} />}
-            /> */}
             </Routes>
           </AuthProvider>
         </Router>
