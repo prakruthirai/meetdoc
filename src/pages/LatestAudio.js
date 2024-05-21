@@ -61,9 +61,19 @@ import axios from 'axios';
 import baseURL from '../Api/Config';
 import MeetingCard from './MeetingCard';
 
+import { useNavigate } from 'react-router-dom';
+
 const AudioList = () => {
   const [audioList, setAudioList] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem('authTokens')) {
+      navigate('/login')
+    }
+  }, [navigate])
 
   useEffect(() => {
     const fetchAudioList = async () => {

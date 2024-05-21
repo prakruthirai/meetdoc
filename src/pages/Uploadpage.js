@@ -20,7 +20,7 @@
 //       setMsg("No file selected");
 //       return;
 //     }
-    
+
 //     const fd = new FormData();
 //     for (let i = 0; i < files.length; i++) {
 //       fd.append(`files[${i}]`, files[i]);
@@ -96,7 +96,7 @@
 //     const formData = new FormData();
 //     console.log(formData)
 //     formData.append('audio_file', selectedFile);
-    
+
 //     try {
 //       const tokens = localStorage.getItem("accessToken");
 //       console.log(tokens)
@@ -147,29 +147,36 @@ import { useNavigate } from 'react-router-dom';
 const AudioUploader = () => {
   const [filename, setFilename] = useState(null);
   const [description, setDescription] = useState('');
-  const [attendees, setAttendees]= useState('');
-  const [title, setTitle]= useState('');
+  const [attendees, setAttendees] = useState('');
+  const [title, setTitle] = useState('');
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
-  
-  const modules={
-    toolbar:[
-      [{header:[1,2,3,4,5,6,false]}],
-      [{font:[]}],
-      [{size:[]}],
-      ["bold","italic","underline","strike","blockquote"],
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem('authTokens')) {
+      navigate('/login')
+    }
+  }, [navigate])
+
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ font: [] }],
+      [{ size: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
       [
-        {list:"ordered"},
-        {list:"bullet"},
-        {indent:"-1"},
-        {indent:"+1"},
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
       ],
-      ["link","image","video"],
-      
+      ["link", "image", "video"],
+
     ],
   }
-  
-  const navigate = useNavigate();
+
 
   useEffect(() => {
     if (!localStorage.getItem('authTokens')) {
@@ -183,7 +190,7 @@ const AudioUploader = () => {
   };
 
   const handleDescriptionChange = (value) => {
-    setDescription(value); 
+    setDescription(value);
   };
 
   const handleAttendees = (event) => {
@@ -193,7 +200,7 @@ const AudioUploader = () => {
   const handleTitle = (event) => {
     setTitle(event.target.value);
   };
-  
+
 
   const uploadAudio = async () => {
     if (!filename) {
@@ -204,16 +211,16 @@ const AudioUploader = () => {
     setUploading(true);
 
     const formData = new FormData();
-    
+
     formData.append('filename', filename);
     formData.append('description', description); // Append description to form data
-    formData.append('count_of_attendees',attendees)
+    formData.append('count_of_attendees', attendees)
     formData.append('title', title)
     // formData.append('upload_date', date)
 
     console.log(formData)
 
-  
+
     // console.log(data)
     try {
       const tokens = localStorage.getItem("access_token");
@@ -242,58 +249,58 @@ const AudioUploader = () => {
   };
 
   return (
-        <div>
-          {/* <input type="file" onChange={handleFileChange} accept="audio/wav" />
+    <div>
+      {/* <input type="file" onChange={handleFileChange} accept="audio/wav" />
           <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description" /> */}
-        <div className='file-card'>
-          
+      <div className='file-card'>
+
         <div className='mb-3 row  '>
           <div className='col'>
-            <input type="text" value={title} onChange={handleTitle} placeholder="Title"  class="form-control form-control-lg" />
-            </div>
-            {/* </div>
+            <input type="text" value={title} onChange={handleTitle} placeholder="Title" class="form-control form-control-lg" />
+          </div>
+          {/* </div>
             <div className='mb-3 row'> */}
-            <div className='col'>
-            <input type="text" value={attendees} onChange={handleAttendees} placeholder="No.of attendees"  class="form-control form-control-lg" />
-            </div>
-            </div>
+          <div className='col'>
+            <input type="text" value={attendees} onChange={handleAttendees} placeholder="No.of attendees" class="form-control form-control-lg" />
+          </div>
+        </div>
 
-            <div className='mb-3 row' style={{ textAlign: 'right' }}>
+        <div className='mb-3 row' style={{ textAlign: 'right' }}>
           <input type="file" onChange={handleFileChange} accept="audio/*" style={{ marginLeft: '50px' }} />
-          </div> 
-          
-          {/* <div className='mb-3 row'>
+        </div>
+
+        {/* <div className='mb-3 row'>
             <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description"  class="form-control form-control-lg" />
             </div> */}
-            <div className='mb-3 row'>
+        <div className='mb-3 row'>
           <div className='col'>
-          <h2 className='small-heading'>Description</h2>
-          <div className="editor-container" style={{ maxHeight: '200px' }}>
-            <ReactQuill 
-              // ref={editorRef}
-              // value={description} 
-              // onChange={handleDescriptionChange} 
-              // placeholder="Description" 
-              // className="quill-editor"
-              style={{ minHeight: '200px', overflowY: 'hidden',maxWidth:'500px' }}
-              theme='snow'
-              value={description}
-              onChange={handleDescriptionChange}
-              modules={modules}
-            />
-          </div>
+            <h2 className='small-heading'>Description</h2>
+            <div className="editor-container" style={{ maxHeight: '200px' }}>
+              <ReactQuill
+                // ref={editorRef}
+                // value={description} 
+                // onChange={handleDescriptionChange} 
+                // placeholder="Description" 
+                // className="quill-editor"
+                style={{ minHeight: '200px', overflowY: 'hidden', maxWidth: '500px' }}
+                theme='snow'
+                value={description}
+                onChange={handleDescriptionChange}
+                modules={modules}
+              />
+            </div>
           </div>
         </div>
-          
-       
-        
-          {uploading && <p>Uploading...</p>}
-          {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
-          <button onClick={uploadAudio} className='upload-button'>Upload Audio</button>
-        </div>
-      </div>
 
-      );
-    }
-    
-    export default AudioUploader;
+
+
+        {uploading && <p>Uploading...</p>}
+        {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
+        <button onClick={uploadAudio} className='upload-button'>Upload Audio</button>
+      </div>
+    </div>
+
+  );
+}
+
+export default AudioUploader;

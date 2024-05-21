@@ -122,7 +122,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
-import { AuthProvider , AuthContext} from "./context/AuthContext";
+import { AuthProvider, AuthContext } from "./context/AuthContext";
 import Homepage from "./pages/homepage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
@@ -131,7 +131,7 @@ import Uploadpage from "./pages/Uploadpage";
 import MeetingCard from "./pages/MeetingCard";
 import Footer from "./components/Footer"
 import Header from "./components/Header";
-import {Navbar} from "./components/Navbar";
+import { Navbar } from "./components/Navbar";
 import Transcriptpage from "./pages/Transcriptpage";
 import Summarypage from "./pages/Summarypage";
 import Mompage from "./pages/Mompage"
@@ -146,9 +146,9 @@ function App() {
     <div className="page-container">
       <div className="content-wrap">
         <Router>
-        <Header/>
+          <Header />
           <AuthProvider>
-          <AuthContext.Consumer>
+            <AuthContext.Consumer>
               {({ user }) => (
                 user && <Navbar />
               )}
@@ -161,7 +161,7 @@ function App() {
               <Route
                 path="/login"
                 element={<LoginPage />}
-                
+
               />
               <Route
                 path="/uploadpage"
@@ -197,7 +197,12 @@ function App() {
                 element={<AboutPage />}
               />
 
-              
+              <Route
+                path="/transcriptpage"
+                element={<Transcriptpage />}
+              />
+
+
               {/* <Route
               path="/uploadaudio"
               element={<PrivateRoute 
@@ -211,11 +216,11 @@ function App() {
             </Routes>
           </AuthProvider>
         </Router>
-        </div>
-        <Footer />
       </div>
-      );
+      <Footer />
+    </div>
+  );
 }
 
-      export default App;
+export default App;
 
