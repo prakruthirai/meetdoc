@@ -118,28 +118,76 @@ const Homepage = () => {
       </div>
       {user && role === "Admin" && (
         <div className="admin-section">
-          <h2>Admin Data</h2>
-          <div className="card">
+          <h2>Admin Data :</h2>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div className="card "style={{ maxWidth: '300px', width: '100%' }} >
             <h3>Total Users</h3>
-            <p>{adminData.user_count}</p>
+            <p >{adminData.user_count}</p>
           </div>
-          <div className="card">
+          </div>
+          
+          {/* <div className="card ">
             <h3>User Audio Counts</h3>
             <ul>
               {Object.entries(adminData.audio_counts).map(([username, count]) => (
                 <li key={username}>{username}: {count}</li>
               ))}
             </ul>
-          </div>
+          </div> */}
+          <div className="card-container">
           <div className="card">
+  <h3>User Audio Counts</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      {Object.entries(adminData.audio_counts).map(([username, count]) => (
+        <tr key={username}>
+          <td>{username}</td>
+          <td>{count}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+          {/* <div className="card">
             <h3>Recent Users</h3>
             <ul>
               {userList.map(user => (
                 <li key={user.id}>{user.username}{user.email} {user.first_name} </li>
               ))}
             </ul>
-          </div>
+          </div> */}
+          <div className="card">
+  <h3>Recent Users</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>First Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {userList.map(user => (
+        <tr key={user.id}>
+          <td>{user.username}</td>
+          <td>{user.email}</td>
+          <td>{user.first_name}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+</div>
+
         </div>
+        
       )}
     </div>
   );

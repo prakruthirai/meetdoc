@@ -1,5 +1,7 @@
 .dashboard {
     padding: 20px;
+    background-color:#9ab6d4;
+    
   }
   
   h1 {
@@ -27,6 +29,12 @@
   }
   .card-container {
     display: flex;
-    gap: 20px; /* Adjust the gap between the cards as needed */
+    gap: 20px; 
   }
-  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+
