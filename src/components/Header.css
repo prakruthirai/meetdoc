@@ -1,7 +1,7 @@
 .header {
   background-color: #0b4888; /* Set background color for the header */
   padding: 10px; /* Add padding for better appearance */
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for separation */
+  box-shadow: 0px 2px 5px rgba(233, 226, 226, 0.1); /* Add a subtle shadow for separation */
   height: 90px; 
   display: flex; /* Use flexbox to center the header */
   justify-content: center; /* Center the header horizontally */
@@ -11,8 +11,8 @@
 
 .logo-container {
   display: flex; 
-  align-items: center; 
-  justify-content: center; 
+  /* align-items: center; 
+  justify-content: center;  */
   padding: 1px;
 }
 
@@ -26,6 +26,7 @@
   height: auto; /* Ensure the image maintains its aspect ratio */
   align-items: center;
   padding: 5%;
+  
 }
 
 .app-name {
@@ -34,4 +35,15 @@
   margin-right:60px;
   position:absolute;
   right: 0;
+}
+
+
+.header-content {
+  display: flex;
+  align-items: center;
+}
+
+
+.open {
+  display: flex;
 }

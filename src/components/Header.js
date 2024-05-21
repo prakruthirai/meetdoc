@@ -62,13 +62,15 @@ const Header = () => {
   return (
     <header className="header">
       <div className="container-fluid">
+      <div className="header-content">
         <div className="logo-container">
           <div className="col-md-3 d-block m-0.5 p-0.5 applogo">
           <Link to="/">
               <Applogo />
             </Link>
           </div>
-          <nav>
+          </div>
+          {/* <nav> */}
             {user ? (
               <>
                 <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
@@ -76,6 +78,7 @@ const Header = () => {
                   <span></span>
                   <span></span>
                 </div>
+                
                 <ul className={menuOpen ? "open" : ""}>
                   {isAdmin && (
                     <li>
@@ -92,7 +95,7 @@ const Header = () => {
                     <FontAwesomeIcon
                       icon={faUser}
                       onClick={() => setShowProfile(true)}
-                      style={{ cursor: "pointer" }}
+                      style={{ cursor: "pointer",color: 'white' }}
                     />
                   </li>
                   <li>
@@ -115,12 +118,12 @@ const Header = () => {
               </>
             ) : (
               <ul>
-                <li>
+                {/* <li>
                   <Link to="/login">Login</Link>
-                </li>
+                </li> */}
               </ul>
             )}
-          </nav>
+          {/* </nav> */}
         </div>
       </div>
     </header>
