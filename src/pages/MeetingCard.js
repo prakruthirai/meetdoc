@@ -522,8 +522,14 @@ const MeetingCard = ({
             <div className=" col-12 col-md-4 mt-2">
               <p style={{ fontSize: '1rem' }}>Date: {audioDate}</p>
             </div>
-            <div className="col-12 col-md-4  mt-2" style={{ width: "350px" }}>
-              <Accordion defaultActiveKey="">
+            <div className="col-12 col-md-4 mt-2" style={{ width: "350px" }}>
+        <p className="mb-2 me-4" style={{ fontSize: '1rem', marginLeft: '-140px' }}>No. of speakers: {audioAttendees}</p>
+      </div>
+      </div>
+  </div>
+  <div className="col-md-8 d-flex justify-content-start align-items-center flex-wrap">
+    <div className="w-100 d-flex flex-wrap align-items-center">
+              <Accordion defaultActiveKey="" className="description-accordion">
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>Description</Accordion.Header>
                   <Accordion.Body>
@@ -531,25 +537,20 @@ const MeetingCard = ({
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
-            </div>
-          </div>
-        </div>
+           
 
-
-        {/* <div className="me-4"></div> */}
-        <div className=" col-md-8 d-flex justify-content-start align-items-center flex-wrap">
-          <p className="mb-2 me-4 " style={{ fontSize: '1rem', marginLeft: '-10px' }}>No.of speakers:{audioAttendees}</p>
-          {/* <div className="me-4"></div> */}
+       
           <span>
-            <audio controls className="mb-2 me-4">
+            <audio controls className="mb-2 me-4" style={{ marginLeft: '200px' }}>
               <source src={baseURL + audioName} />
             </audio>
           </span>
+          
 
 
           {/* <div className="me-4"></div> */}
           {/* <div className="d-flex flex-wrap align-items-center mb-2"> */}
-          <div className=" w-100 d-flex flex-wrap align-items-center">
+          <div className=" w-100 d-flex flex-wrap align-items-center" style={{ marginTop: '20px' }}>
             <button
               className={`btn 
                 ${transcriptColor === "red" ? "btn-danger" : "btn-success"
@@ -616,7 +617,7 @@ const MeetingCard = ({
         </div>
       </div>
     </div>
-
+    </div>
   );
 };
 

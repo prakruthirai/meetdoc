@@ -27,5 +27,9 @@
     max-height: 100px; 
     overflow-y: auto;
   }
+
+  .description-accordion {
+    width: 350px; /* Adjust the width as needed */
+  }
   
  
