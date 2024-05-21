@@ -63,13 +63,13 @@ const SignupPage = () => {
 
     return (
         <div className='row'>
-            <div className="offset-lg-3 col-lg-6" style={{ marginTop: '0px' }}>
+            <div className="offset-lg-3 col-lg-6" style={{ marginTop: '-30px' }}>
                 <form onSubmit={handleSubmit} className="container">
-                    <div className="card" style={{ width: '500px', height: '300px' }}>
+                    <div className="card" style={{ width: '500px', height: '200px' }}>
                         <div className="card-header">
-                            <h2 style={{ fontFamily: 'Roboto', fontSize: '30px' }}>Create User</h2>
+                            <h2 style={{ fontFamily: 'Roboto', fontSize: '25px' }}>Create User</h2>
                         </div>
-                        <div className="card-body"  style={{ height: '200px' }}>
+                        <div className="card-body"  style={{ height: '150px' }}>
                          <div className='row'>
                             <div className='col'>
                             <div className="form-group">
