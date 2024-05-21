@@ -527,7 +527,7 @@ const MeetingCard = ({
             <p className="title-text" style={{ fontSize: '1rem' }}>Date: {audioDate}</p>
           </div>
           <div className="col-12 col-md-4  mt-2" style={{ width: "350px" }}>
-          <p className="mb-2 me-4 " style={{ fontSize: '1rem', marginLeft: '-150px' }}>No.of speakers:{audioAttendees}</p>
+          <p className="mb-2 me-4 " style={{ fontSize: '1rem', marginLeft: '-120px' }}>No.of speakers:{audioAttendees}</p>
             {/* <Accordion defaultActiveKey="">
               <Accordion.Item eventKey="0">
                 <Accordion.Header>Description</Accordion.Header>

@@ -165,6 +165,7 @@ const Homepage = () => {
           </div> */}
           <div className="card">
   <h3>Recent Users</h3>
+  <div className="table-container">
   <table>
     <thead>
       <tr>
@@ -183,6 +184,7 @@ const Homepage = () => {
       ))}
     </tbody>
   </table>
+  </div>
 </div>
 </div>
 
