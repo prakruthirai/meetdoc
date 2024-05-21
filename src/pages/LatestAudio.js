@@ -62,6 +62,7 @@ import baseURL from '../Api/Config';
 import MeetingCard from './MeetingCard';
 
 import { useNavigate } from 'react-router-dom';
+import "./latestaudio.css"
 
 const AudioList = () => {
   const [audioList, setAudioList] = useState([]);
@@ -158,7 +159,7 @@ const AudioList = () => {
                 onDelete={handleDelete} />
             ))
           )}
-          <div>
+          <div className='pagination'>
             <button onClick={handlePrevPage} disabled={!prevPageUrl}>Previous</button>
             <button onClick={handleNextPage} disabled={!nextPageUrl}>Next</button>
           </div>
