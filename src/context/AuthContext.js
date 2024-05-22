@@ -243,6 +243,9 @@ const AuthProvider = ({ children }) => {
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
         localStorage.removeItem('role');
+        localStorage.removeItem('user');
+        localStorage.removeItem('first_name');
+        localStorage.removeItem('email');
         navigate('/login');
       } else {
         console.error('Unexpected response while logging out:', response);
