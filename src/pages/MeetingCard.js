@@ -466,23 +466,21 @@ const MeetingCard = ({
     <div className="row  align-items-center">
       <div className="col-md-4 mb-2">
         <div className="row m-0 align-items-center">
-          <div className="col-12 col-md-4  mt-2">
+          <div className="col-12 col-md-4  mt-2 text-start">
             <p className="title-text" style={{ fontSize: '1rem'}}>Title: {audioTitle}</p>
           </div>
           <div className=" col-12 col-md-4 mt-2">
             <p className="title-text" style={{ fontSize: '1rem' }}>Date: {audioDate}</p>
           </div>
-          <div className="col-12 col-md-4  mt-2" style={{ width: "350px" }}>
-          <p className="mb-2 me-4 " style={{ fontSize: '1rem', marginLeft: '-120px' }}>No.of speakers:{audioAttendees}</p>
+          <div className="col-12 col-md-4  mt-2 text-start " style={{ width: "350px" }}>
+          <p className="mb-2 me-4 " style={{ fontSize: '1rem' }}>No.of speakers:{audioAttendees}</p>
           </div>
         </div>
       </div>
   
   
-      {/* <div className="me-4"></div> */}
-      <div className=" col-md-8 d-flex justify-content-start align-items-center flex-wrap">
-        {/* <p className="mb-2 me-4 " style={{ fontSize: '1rem', marginLeft: '-10px' }}>No.of speakers:{audioAttendees}</p> */}
-        {/* <div className="me-4"></div> */}
+      
+        <div className="col-md-4 mb-2">
         <div className="mb-2 me-4 " style={{ width: "350px" }}>
         <Accordion defaultActiveKey="" >
               <Accordion.Item eventKey="0">
@@ -493,6 +491,8 @@ const MeetingCard = ({
               </Accordion.Item>
             </Accordion>
             </div>
+            </div>
+            <div className=" col d-flex justify-content-start align-items-center flex-wrap">
         <span>
           <audio controls className="mb-2 me-4">
             <source src={baseURL + audioName} />
@@ -510,7 +510,7 @@ const MeetingCard = ({
             onClick={() => handleTranscriptGeneration(audioId)}
             style={{ cursor: "pointer" }}
           >
-            <FontAwesomeIcon icon={faPersonRunning} /> Generate
+            <FontAwesomeIcon icon={faPersonRunning} /> 
             Transcript
           </button>
           {transcriptGenerated && (
@@ -531,7 +531,7 @@ const MeetingCard = ({
             style={{ cursor: "pointer" }}
             disabled={!transcriptGenerated}
           >
-            <FontAwesomeIcon icon={faPersonRunning} /> Generate Summary
+            <FontAwesomeIcon icon={faPersonRunning} />  Summary
           </button>
           {summaryGenerated && (
             <span
@@ -551,7 +551,7 @@ const MeetingCard = ({
             style={{ cursor: "pointer" }}
             disabled={!summaryGenerated}
           >
-            <FontAwesomeIcon icon={faPersonRunning} /> Generate MoM
+            <FontAwesomeIcon icon={faPersonRunning} />  MoM
           </button>
           {momFetched ? (
             <span
@@ -562,7 +562,7 @@ const MeetingCard = ({
               <FontAwesomeIcon icon={faEye} />
             </span>
           ) : null}
-          <button className="delete-button" onClick={handleDelete}>
+          <button className="btn mr-2 mb-2 btn-danger" onClick={handleDelete}>
             <FontAwesomeIcon icon={faTrash} />
           </button>
         </div>
