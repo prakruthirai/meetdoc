@@ -55,7 +55,7 @@
         
     }
     .card{
-        width: 500px;
+        width: 300px;
     }
     
     .card-header{
@@ -96,4 +96,4 @@
     .custom-font {
         font-family: Roboto;
     }
-    
+  
