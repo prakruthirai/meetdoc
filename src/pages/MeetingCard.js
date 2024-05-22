@@ -223,16 +223,13 @@
 
 // export default MeetingCard;
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPersonRunning } from "@fortawesome/free-solid-svg-icons";
+import { faPersonRunning, faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import baseURL from "../Api/Config";
 import Accordion from "react-bootstrap/Accordion";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-
+import baseURL from "../Api/Config";
 import "./meetingcard.css";
 
 const MeetingCard = ({
@@ -252,10 +249,13 @@ const MeetingCard = ({
   const [transcriptFetched, setTranscriptFetched] = useState(false);
   const [summaryFetched, setSummaryFetched] = useState(false);
   const [momFetched, setMomFetched] = useState(false);
-
+  const [transcriptTaskId, setTranscriptTaskId] = useState(null);
+  const [summaryTaskId, setSummaryTaskId] = useState(null);
+  const [transcriptTaskCompleted, setTranscriptTaskCompleted] = useState(false);
+  const [summaryTaskCompleted, setSummaryTaskCompleted] = useState(false);
   const navigate = useNavigate();
-
   const tokens = localStorage.getItem("access_token");
+
 
   const handleTranscriptGeneration = async (id) => {
     try {
@@ -269,14 +269,48 @@ const MeetingCard = ({
         }
       );
       if (response.status === 200) {
-        console.log("transcript generated")
-        setTranscriptColor("green");
-        setTranscriptGenerated(true);
+        setTranscriptTaskId(response.data.task_id);
+        setTranscriptTaskCompleted(false);
+        console.log("Transcript generation task queued");
       }
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
+  useEffect(() => {
+    if (transcriptTaskId && !transcriptTaskCompleted) {
+      const fetchTaskStatus = async () => {
+        try {
+          const response = await axios.get(
+            `${baseURL}/api/meetdoc/task-status/${transcriptTaskId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${tokens}`,
+              },
+            }
+          );
+          if (response.status === 200) {
+            const { status } = response.data;
+            if (status === "COMPLETED") {
+              setTranscriptColor("green");
+              setTranscriptGenerated(true);
+              setTranscriptTaskCompleted(true);
+            } else if (status === "FAILED") {
+              setTranscriptTaskCompleted(true);
+            } else {
+              // Handle pending task
+            }
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      };
+
+      const interval = setInterval(fetchTaskStatus, 5000); 
+      return () => clearInterval(interval);
+    }
+  }, [transcriptTaskId, transcriptTaskCompleted, tokens]);
 
   const handleSummaryGeneration = async (id) => {
     if (!transcriptGenerated) {
@@ -284,7 +318,7 @@ const MeetingCard = ({
       return;
     }
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         `${baseURL}/api/meetdoc/audio-summary-gen/${id}`,
         null,
         {
@@ -294,13 +328,48 @@ const MeetingCard = ({
         }
       );
       if (response.status === 200) {
-        setSummaryColor("green");
-        setSummaryGenerated(true);
+        setSummaryTaskId(response.data.task_id);
+        setSummaryTaskCompleted(false);
+        console.log("Summary generation task queued");
       }
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
+  useEffect(() => {
+    if (summaryTaskId && !summaryTaskCompleted) {
+      const fetchTaskStatusSummary = async () => {
+        try {
+          const response = await axios.get(
+            `${baseURL}/api/meetdoc/task-status-summary/${summaryTaskId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${tokens}`,
+              },
+            }
+          );
+          if (response.status === 200) {
+            const { status } = response.data;
+            if (status === "COMPLETED") {
+              setSummaryColor("green");
+              setSummaryGenerated(true);
+              setSummaryTaskCompleted(true);
+            } else if (status === "FAILED") {
+              setSummaryTaskCompleted(true);
+            } else {
+              // Handle pending task
+            }
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      };
+
+      const interval = setInterval(fetchTaskStatusSummary, 5000); // Fetch task status every 5 seconds
+      return () => clearInterval(interval); // Clean up interval on component unmount
+    }
+  }, [summaryTaskId, summaryTaskCompleted, tokens]);
 
   const handleMomGeneration = async (id) => {
     if (!summaryGenerated) {
@@ -319,6 +388,7 @@ const MeetingCard = ({
       );
       if (response.status === 200) {
         setMomColor("green");
+        setMomFetched(true);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -349,7 +419,6 @@ const MeetingCard = ({
     try {
       const response = await axios.get(
         `${baseURL}/api/meetdoc/audio-summary-fetch/${id}`,
-        null,
         {
           headers: {
             Authorization: `Bearer ${tokens}`,
@@ -369,7 +438,6 @@ const MeetingCard = ({
     try {
       const response = await axios.get(
         `${baseURL}/api/meetdoc/audio-mom-fetch/${id}`,
-        null,
         {
           headers: {
             Authorization: `Bearer ${tokens}`,
@@ -377,6 +445,7 @@ const MeetingCard = ({
         }
       );
       if (response.status === 200) {
+        const momContent = response.data.mom;
         setMomFetched(true);
         navigate("/mompage");
       }
@@ -385,134 +454,11 @@ const MeetingCard = ({
     }
   };
 
-  // const handleDelete = async (id) => {
-  //   try {
-  //     await axios.delete(`${baseURL}/api/meetdoc/remove-audio/${id}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-  //       },
-  //     });
-  //     // Call onDelete to update the parent component state
-  //     if (onDelete) onDelete(id);
-  //     console.log(`Audio with ID ${id} deleted successfully`);
-  //   } catch (error) {
-  //     console.error('Error deleting audio:', error);
-  //   }
-  // };
   const handleDelete = () => {
     if (onDelete) {
       onDelete(audioId);
     }
   };
-
-  // return (
-
-  //   <div className="card mt-5 mx-auto w-100 mb-3">
-  //     <div className="border p-3 d-flex flex-column flex-md-row justify-content-between align-items-center">
-  //       <div className="col-12 mt-2 position-relative d-flex flex-wrap">
-  //         {/* <div className="d-flex flex-wrap"> */}
-  //           {/* Other content here */}
-  //         {/* </div> */}
-  //         <div className="d-flex align-items-center">
-  //         <div className=" title-container me-4  mb-0">
-  //      <p className="title-text">
-  //          {audioTitle}
-  //        </p>
-  //        </div>
-  //        <div className=" description-container me-4 mb-0"  >
-  //        <p className="description-text">
-  //          {audioDescription}
-  //        </p>
-  //        </div>
-  //        <div className="  date-container me-4 mb-0">
-  //       <p className="date-text">
-  //          {audioDate}
-  //        </p>
-  //        </div>
-  //        <div className="me-4 mb-0">
-  //        <p>
-  //          {audioAttendees}
-  //        </p>
-  //        </div>
-  //        <div className="me-4 mb-0">
-  //        <span>
-  //       <audio controls>
-  //          <source
-  //           src={baseURL+audioName}
-  //         />
-  //       </audio>
-  //       </span>
-  //       </div>
-  //       <div className="d-flex align-items-center mt-3">
-  //           <button
-  //             className={`btn ${
-  //               transcriptColor === "red" ? "btn-danger" : "btn-success"
-  //             } me-2`}
-  //             onClick={() => handleTranscriptGeneration(audioId)}
-  //             style={{ cursor: "pointer" }}
-  //           >
-  //             <FontAwesomeIcon icon={faPersonRunning} /> Generate Transcript
-  //           </button>
-  //           <button
-  //             className={`btn ${
-  //               summaryColor === "red" ? "btn-danger" : "btn-success"
-  //             } me-2`}
-  //             onClick={() => handleSummaryGeneration(audioId)}
-  //             style={{ cursor: "pointer" }}
-  //             disabled={!transcriptGenerated}
-  //           >
-  //             <FontAwesomeIcon icon={faPersonRunning} /> Generate Summary
-  //           </button>
-  //           <button
-  //             className={`btn ${
-  //               momColor === "red" ? "btn-danger" : "btn-success"
-  //             } me-2`}
-  //             onClick={() => handleMomGeneration(audioId)}
-  //             style={{ cursor: "pointer" }}
-  //             disabled={!summaryGenerated}
-  //           >
-  //             <FontAwesomeIcon icon={faPersonRunning} /> Generate MoM
-  //           </button>
-  //           <button
-  //             className={`btn ${
-  //               transcriptFetched ? "btn-success" : "btn-danger"
-  //             } me-2`}
-  //             onClick={() => fetchTranscript(audioId)}
-  //             style={{ cursor: "pointer" }}
-  //             disabled={!transcriptGenerated}
-  //           >
-  //             Fetch Transcript
-  //           </button>
-  //           <button
-  //             className={`btn ${
-  //               summaryFetched ? "btn-success" : "btn-danger"
-  //             } me-2`}
-  //             onClick={() => fetchSummary(audioId)}
-  //             style={{ cursor: "pointer" }}
-  //             disabled={!summaryGenerated}
-  //           >
-  //             Fetch Summary
-  //           </button>
-  //           <button
-  //             className={`btn ${
-  //               momFetched ? "btn-success" : "btn-danger"
-  //             } me-2`}
-  //             onClick={() => fetchMom(audioId)}
-  //             style={{ cursor: "pointer" }}
-  //             disabled={!momFetched}
-  //           >
-  //             Fetch MoM
-  //           </button>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-
-  // );
- 
-
-
 
   return(
     <div className="card mt-5 mx-auto w-100 mb-3">
@@ -528,14 +474,6 @@ const MeetingCard = ({
           </div>
           <div className="col-12 col-md-4  mt-2" style={{ width: "350px" }}>
           <p className="mb-2 me-4 " style={{ fontSize: '1rem', marginLeft: '-120px' }}>No.of speakers:{audioAttendees}</p>
-            {/* <Accordion defaultActiveKey="">
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>Description</Accordion.Header>
-                <Accordion.Body>
-                  <p className="description-text" style={{ fontSize: '1rem' }}>{audioDescription}</p>
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion> */}
           </div>
         </div>
       </div>

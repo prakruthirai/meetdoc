@@ -5,7 +5,9 @@ import { AuthContext } from '../context/AuthContext';
 const UserDetails = () => {
   const { user } = useContext(AuthContext);
   const first_name = localStorage.getItem('first_name');
-//   const role = localStorage.getItem('role');
+  const email = localStorage.getItem('email');
+
+
 
   const styles = {
     container: {
@@ -34,7 +36,7 @@ const UserDetails = () => {
     <div style={styles.container}>
       <h2 style={styles.header}>User Profile</h2>
       <p style={styles.text}><strong>Name:</strong> {first_name}</p>
-      <p style={styles.text}><strong>Email:</strong> {user.email}</p>
+      <p style={styles.text}><strong>Email:</strong> {email}</p>
       {/* <p style={styles.text}><strong>Role:</strong> {role}</p> */}
     </div>
   );
