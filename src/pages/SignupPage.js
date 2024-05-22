@@ -67,16 +67,17 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="row d-flex justify-content-center m-0">
-      <div className="col-12" >
-        <form onSubmit={handleSubmit} className="container">
-          <div className="" style={{ width: "", height: "200px" }}>
+    <div className="row d-flex justify-content-center m-0 mt-5">
+      <div className="col-12 d-flex justify-content-center m-0" >
+    
+        <form onSubmit={handleSubmit} className="">
+          <div className="card p-3 w-100">
             <div className="card-header">
               <h2 style={{ fontFamily: "Roboto", fontSize: "25px" }}>
                 Create User
               </h2>
             </div>
-            <div className="mt-5" style={{ height: "150px" }}>
+            <div className=" card-body mt-5" style={{ height: "150px" }}>
               <div className="row">
                 <div className="col">
                   <div className="form-group">
