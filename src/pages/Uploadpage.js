@@ -28,7 +28,7 @@ const AudioUploader = () => {
   const [attendees, setAttendees] = useState('');
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
-  const [dateOfMeeting, setDateOfMeeting] = useState(null);
+  const [dateOfMeeting, setDateOfMeeting] = useState(new Date());
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
 
@@ -160,13 +160,14 @@ const AudioUploader = () => {
       />
     </div>
 
-    <div className="mb-3">
+    <div className="mb-3 ">
             <DatePicker
               selected={dateOfMeeting}
               onChange={handleMeetingDateChange}
               // placeholder="Date"
               dateFormat="yyyy-MM-dd"
               customInput={<CustomInput />}
+              
             />
           </div>
 
