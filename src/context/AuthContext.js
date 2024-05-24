@@ -123,6 +123,7 @@ const AuthProvider = ({ children }) => {
   // LOGOUT
 
   const logoutUser = async () => {
+    console.log("trying to log out");
     if (!authTokens) {
       console.warn('User is not logged in, cannot logout.');
       return;

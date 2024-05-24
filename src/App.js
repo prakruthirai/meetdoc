@@ -196,8 +196,9 @@ function App() {
               />
               <Route
                 path="/aboutpage"
-                element={<PrivateRoute element={<AboutPage />} />}
+                element={<AboutPage />} 
               />
+            
               <Route path="/profile" element={<PrivateRoute element={<UserDetails />} />} />
             </Routes>
           </AuthProvider>
