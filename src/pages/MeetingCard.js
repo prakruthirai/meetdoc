@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPersonRunning, faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPersonRunning, faEye, faTrash, faDownload } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { Modal, Accordion } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
@@ -36,7 +36,7 @@ const MeetingCard = ({
   const [summaryTaskId, setSummaryTaskId] = useState(null);
   const [transcriptTaskCompleted, setTranscriptTaskCompleted] = useState(false);
   const [summaryTaskCompleted, setSummaryTaskCompleted] = useState(false);
-  const [showTranscriptPopup, setShowTranscriptPopup] = useState(false);
+  // const [showTranscriptPopup, setShowTranscriptPopup] = useState(false);
   const [transcriptContent, setTranscriptContent] = useState("");
   const [summaryContent, setSummaryContent] = useState("");
   const [momContent, setMomContent] = useState("");
@@ -267,6 +267,28 @@ const MeetingCard = ({
     }
   };
 
+  const handleDownloadTranscript = async (id) => {
+    try {
+      const response = await axios.get(`${baseURL}/download-transcript/${id}`, {
+        responseType: 'blob',
+        headers: {
+          Authorization: `Bearer ${tokens}`,
+        },
+      });
+      console.log("downloaded")
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `audio_${id}_transcript.txt`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.error("Error downloading transcript:", error);
+    }
+  };
+
   return(
     <div className="card mt-5 mx-auto w-100 mb-3">
     {/* <div className=" border p-1"> */}
@@ -388,6 +410,13 @@ const MeetingCard = ({
         </Modal.Body>
         <Transcriptpage transcriptContent={transcriptContent} />
         <Modal.Footer>
+        <button
+            className="btn btn-primary me-2 mb-2"
+            onClick={() => handleDownloadTranscript(audioId)}
+            style={{ cursor: "pointer" }}
+          >
+            <FontAwesomeIcon icon={faDownload} /> Download Transcript
+          </button>
           <button className="btn btn-secondary" onClick={handleCloseTranscriptModal}>
             Close
           </button>
@@ -411,7 +440,7 @@ const MeetingCard = ({
 
       <Modal show={showMomModal} onHide={handleCloseMomModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Summary</Modal.Title>
+          <Modal.Title>MoM</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {/* Render the transcript content here */}

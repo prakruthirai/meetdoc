@@ -54,7 +54,7 @@ const Transcriptpage = () => {
     <div className="container">
       <div className="row mt-10">
         <div>
-          <a className="text-decoration-none" href="meetingcard">
+          <a className="text-decoration-none" href="/meetingcard">
             <FontAwesomeIcon icon={faBackward} />
             Back
           </a>
