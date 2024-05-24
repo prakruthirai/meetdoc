@@ -138,13 +138,13 @@ const AudioUploader = () => {
     <input type="text" value={description} onChange={handleDescriptionChange} placeholder="Description" /> */}
 <div className="row">
   <div className="col-lg-6  ">
-    <div className="mb-3">
+    <div className="mb-3 ">
       <input
         type="text"
         value={title}
         onChange={handleTitle}
         placeholder="Title"
-        class="form-control form-control-lg"
+        class="form-control form-control-lg custom-input"
       />
     </div>
 
@@ -156,19 +156,25 @@ const AudioUploader = () => {
         value={attendees}
         onChange={handleAttendees}
         placeholder="No.of attendees"
-        class="form-control form-control-lg"
+        class="form-control form-control-lg custom-input"
       />
     </div>
 
     <div className="mb-3 ">
-            <DatePicker
+    
+            <DatePicker 
+             
               selected={dateOfMeeting}
               onChange={handleMeetingDateChange}
+              
               // placeholder="Date"
               dateFormat="yyyy-MM-dd"
+              
               customInput={<CustomInput />}
+              wrapperClassName="w-100"
               
             />
+            
           </div>
 
     <div className="mb-3 ">
@@ -190,6 +196,7 @@ const AudioUploader = () => {
   <div className="col-lg-6">
     <div className="mb-3">
       <h2 className="small-heading">Description</h2>
+     
       <div className="editor-container" style={{ maxHeight: "200px"}}>
         <ReactQuill
           // ref={editorRef}
@@ -207,6 +214,7 @@ const AudioUploader = () => {
           value={description}
           onChange={handleDescriptionChange}
           modules={modules}
+          
         />
       </div>
     </div>

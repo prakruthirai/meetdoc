@@ -103,3 +103,9 @@ justify-content: center;
     height: auto; /* Allow height to adjust based on content */
   }
 }
+
+
+/* styles.css */
+.custom-input::placeholder {
+  font-size: 20px; /* Adjust the font size as needed */
+}
