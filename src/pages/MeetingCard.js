@@ -370,7 +370,7 @@ const MeetingCard = ({
         <Modal.Header closeButton>
           <Modal.Title>Transcript</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ maxHeight: '400px', overflowY: 'auto' }}>
           <p>{transcriptContent}</p>
         </Modal.Body>
         {/* <Transcriptpage transcriptContent={transcriptContent} /> */}
@@ -438,7 +438,7 @@ const MeetingCard = ({
         <Modal.Header closeButton>
           <Modal.Title>Summary</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ maxHeight: '400px', overflowY: 'auto' }}>
           <p>{summaryContent}</p>
         </Modal.Body>
         <Modal.Footer>
@@ -459,7 +459,7 @@ const MeetingCard = ({
         <Modal.Header closeButton>
           <Modal.Title>MoM</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ maxHeight: '400px', overflowY: 'auto' }}>
           <p>{momContent}</p>
         </Modal.Body>
         <Modal.Footer>
