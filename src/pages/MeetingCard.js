@@ -7,11 +7,6 @@ import { Modal, Accordion } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import baseURL from "../Api/Config";
 import "./meetingcard.css";
-import Transcriptpage from "./Transcriptpage";
-import Summarypage from "./Summarypage";
-import Mompage from "./Mompage";
-
-
 
 
 const MeetingCard = ({
@@ -19,7 +14,7 @@ const MeetingCard = ({
   audioName,
   audioTitle,
   audioDescription,
-  audioDate,
+  // audioDate,
   meetingDate,
   audioAttendees,
   onDelete,
@@ -47,6 +42,11 @@ const MeetingCard = ({
   const navigate = useNavigate();
   const tokens = localStorage.getItem("access_token");
 
+  useEffect(() => {
+    if (!localStorage.getItem('authTokens')) {
+      navigate('/login')
+    }
+  }, [navigate])
 
   const handleTranscriptGeneration = async (id) => {
     try {
@@ -199,7 +199,10 @@ const MeetingCard = ({
         }
       );
       if (response.status === 200) {
-        const transcriptContent = response.data.transcript;
+        console.log("transcript fetched")
+        const transcriptContent = response.data['data'][0]['transcript'];
+        // console.log(response.data['data'][0]['transcript']);
+        // console.log(transcriptContent);
         setTranscriptContent(transcriptContent);
         setShowTranscriptModal(true);
       }
@@ -224,7 +227,7 @@ const MeetingCard = ({
         }
       );
       if (response.status === 200) {
-        const summaryContent = response.data.summary;
+        const summaryContent = response.data['data'][0]['summary'];
         setSummaryContent(summaryContent);
         setShowSummaryModal(true);
         // navigate("/summarypage");
@@ -248,7 +251,7 @@ const MeetingCard = ({
         }
       );
       if (response.status === 200) {
-        const momContent = response.data.mom;
+        const momContent = response.data['data'][0]['mom'];;
         setMomContent(momContent);
         setShowMomModal(true);
       }
@@ -267,27 +270,36 @@ const MeetingCard = ({
     }
   };
 
-  const handleDownloadTranscript = async (id) => {
-    try {
-      const response = await axios.get(`${baseURL}/download-transcript/${id}`, {
-        responseType: 'blob',
-        headers: {
-          Authorization: `Bearer ${tokens}`,
-        },
-      });
-      console.log("downloaded")
-
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', `audio_${id}_transcript.txt`);
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    } catch (error) {
-      console.error("Error downloading transcript:", error);
-    }
+  const handleDownloadTranscript = () => {
+    const blob = new Blob([transcriptContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'transcript.txt';
+    a.click();
+    URL.revokeObjectURL(url);
   };
+
+  const handleDownloadSummary = () => {
+    const blob = new Blob([summaryContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'summary.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleDownloadMom = () => {
+    const blob = new Blob([momContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mom.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
 
   return(
     <div className="card mt-5 mx-auto w-100 mb-3">
@@ -298,9 +310,9 @@ const MeetingCard = ({
           <div className="col-12 col-md-4  mt-2 text-start">
             <p className="title-text" style={{ fontSize: '1rem'}}>Title: {audioTitle}</p>
           </div>
-          <div className=" col-12 col-md-4 mt-2">
+          {/* <div className=" col-12 col-md-4 mt-2">
             <p className="title-text" style={{ fontSize: '1rem' }}>Uploaded Date: {audioDate}</p>
-          </div>
+          </div> */}
           <div className=" col-12 col-md-4 mt-2">
             <p className="title-text" style={{ fontSize: '1rem' }}>Meeting Date: {meetingDate}</p>
           </div>
@@ -354,6 +366,27 @@ const MeetingCard = ({
               <FontAwesomeIcon icon={faEye} />
             </span>
           )}
+          <Modal show={showTranscriptModal} onHide={handleCloseTranscriptModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Transcript</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>{transcriptContent}</p>
+        </Modal.Body>
+        {/* <Transcriptpage transcriptContent={transcriptContent} /> */}
+        <Modal.Footer>
+        <button
+            className="btn btn-primary me-2 mb-2"
+            onClick={handleDownloadTranscript}
+            style={{ cursor: "pointer" }}
+          >
+            <FontAwesomeIcon icon={faDownload} /> Download Transcript
+          </button>
+          <button className="btn btn-secondary" onClick={handleCloseTranscriptModal}>
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal>
           {/* <div className="me-4"></div> */}
   
           <button
@@ -400,38 +433,22 @@ const MeetingCard = ({
         </div>
       </div>
     </div>
-    <Modal show={showTranscriptModal} onHide={handleCloseTranscriptModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Transcript</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {/* Render the transcript content here */}
-          <Transcriptpage />
-        </Modal.Body>
-        <Transcriptpage transcriptContent={transcriptContent} />
-        <Modal.Footer>
-        <button
-            className="btn btn-primary me-2 mb-2"
-            onClick={() => handleDownloadTranscript(audioId)}
-            style={{ cursor: "pointer" }}
-          >
-            <FontAwesomeIcon icon={faDownload} /> Download Transcript
-          </button>
-          <button className="btn btn-secondary" onClick={handleCloseTranscriptModal}>
-            Close
-          </button>
-        </Modal.Footer>
-
-      </Modal>
+    
       <Modal show={showSummaryModal} onHide={handleCloseSummaryModal}>
         <Modal.Header closeButton>
           <Modal.Title>Summary</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* Render the transcript content here */}
-          <Summarypage />
+          <p>{summaryContent}</p>
         </Modal.Body>
         <Modal.Footer>
+        <button
+            className="btn btn-primary me-2 mb-2"
+            onClick={handleDownloadSummary}
+            style={{ cursor: "pointer" }}
+          >
+            <FontAwesomeIcon icon={faDownload} /> Download Summary
+          </button>
           <button className="btn btn-secondary" onClick={handleCloseSummaryModal}>
             Close
           </button>
@@ -443,10 +460,16 @@ const MeetingCard = ({
           <Modal.Title>MoM</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* Render the transcript content here */}
-          <Mompage />
+          <p>{momContent}</p>
         </Modal.Body>
         <Modal.Footer>
+        <button
+            className="btn btn-primary me-2 mb-2"
+            onClick={handleDownloadMom}
+            style={{ cursor: "pointer" }}
+          >
+            <FontAwesomeIcon icon={faDownload} /> Download MoM
+          </button>
           <button className="btn btn-secondary" onClick={handleCloseMomModal}>
             Close
           </button>

@@ -17,7 +17,8 @@ const AuthProvider = ({ children }) => {
       setAuthTokens(data);
       setUser(jwtDecode(data["data"]["access_token"]));
     }
-  }, [authTokens]);
+    
+  }, []);
   // useEffect(() => {
   //   const data = JSON.parse(localStorage.getItem('authTokens'));
   //   if (data && data.access_token) {
@@ -152,6 +153,7 @@ const AuthProvider = ({ children }) => {
         navigate('/login');
       } else {
         console.error('Unexpected response while logging out:', response);
+
       }
     } catch (error) {
       console.error('Error occurred during logout:', error);
@@ -166,6 +168,8 @@ const AuthProvider = ({ children }) => {
   //     localStorage.removeItem('refreshToken')
   //     navigate('/login')
   // }
+
+
 
   return (
     <AuthContext.Provider value={{ authTokens, user, loginUser, logoutUser, refreshTokens }}>

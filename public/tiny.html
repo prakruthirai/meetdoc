@@ -37,7 +37,7 @@
 
     <script>
         tinymce.init({
-            selector: 'div#basic-example',
+            selector: '#basic-example',
             height: 800,
             
             plugins: [
@@ -49,8 +49,12 @@
                 'bold italic backcolor | alignleft aligncenter ' +
                 'alignright alignjustify | bullist numlist outdent indent | ' +
                 'removeformat | help',
-            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
+            setup: function (editor) {
+                window.tinyMCEEditor = editor;
+            }
         });
+        
        
 
     </script>
