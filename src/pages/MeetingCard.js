@@ -38,6 +38,9 @@ const MeetingCard = ({
   const [showTranscriptModal, setShowTranscriptModal] = useState(false);
   const [showSummaryModal, setShowSummaryModal] = useState(false);
   const [showMomModal, setShowMomModal] = useState(false);
+  const [processingTranscriptMessage, setProcessingTranscriptMessage] = useState("");
+  const [processingSummaryMessage, setProcessingSummaryMessage] = useState("");
+
   // const [transcriptContent, setTranscriptContent] = useState("");
   const navigate = useNavigate();
   const tokens = localStorage.getItem("access_token");
@@ -47,6 +50,30 @@ const MeetingCard = ({
       navigate('/login')
     }
   }, [navigate])
+
+  useEffect(() => {
+    const transcriptGeneratedKey = `transcriptGenerated_${audioId}`;
+    const isTranscriptGenerated = localStorage.getItem(transcriptGeneratedKey);
+    if (isTranscriptGenerated === "true") {
+      setTranscriptGenerated(true);
+    }
+  }, [audioId]);
+
+  useEffect(() => {
+    const summaryGeneratedKey = `summaryGenerated_${audioId}`;
+    const isSummaryGenerated = localStorage.getItem(summaryGeneratedKey);
+    if (isSummaryGenerated === "true") {
+      setSummaryGenerated(true);
+    }
+  }, [audioId]);
+
+  useEffect(() => {
+    const momGeneratedKey = `momGenerated_${audioId}`;
+    const isMomGenerated = localStorage.getItem(momGeneratedKey);
+    if (isMomGenerated === "true") {
+      setMomFetched(true);
+    }
+  }, [audioId]);
 
   const handleTranscriptGeneration = async (id) => {
     try {
@@ -62,7 +89,10 @@ const MeetingCard = ({
       if (response.status === 200) {
         setTranscriptTaskId(response.data.task_id);
         setTranscriptTaskCompleted(false);
+        setProcessingTranscriptMessage("Processing your Transcript");
         console.log("Transcript generation task queued");
+        const transcriptGeneratedKey = `transcriptGenerated_${id}`;
+        localStorage.setItem(transcriptGeneratedKey, "true");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -86,10 +116,12 @@ const MeetingCard = ({
             if (status === "COMPLETED") {
               setTranscriptColor("green");
               setTranscriptGenerated(true);
+              setProcessingTranscriptMessage("");
               // localStorage.setItem(`transcriptGenerated_${audioId}`, "true");
               setTranscriptTaskCompleted(true);
             } else if (status === "FAILED") {
               setTranscriptTaskCompleted(true);
+              setProcessingTranscriptMessage("Failed to process your Transcript");
             } else {
               // Handle pending task
             }
@@ -122,7 +154,10 @@ const MeetingCard = ({
       if (response.status === 200) {
         setSummaryTaskId(response.data.task_id);
         setSummaryTaskCompleted(false);
+        setProcessingSummaryMessage("Processing your Summary");
         console.log("Summary generation task queued");
+        const summaryGeneratedKey = `summaryGenerated_${id}`;
+        localStorage.setItem(summaryGeneratedKey, "true");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -148,8 +183,10 @@ const MeetingCard = ({
               setSummaryGenerated(true);
               // localStorage.setItem(`summaryGenerated_${audioId}`, "true");
               setSummaryTaskCompleted(true);
+              setProcessingSummaryMessage("");
             } else if (status === "FAILED") {
               setSummaryTaskCompleted(true);
+              setProcessingSummaryMessage("Failed to process your Summary");
             } else {
               // Handle pending task
             }
@@ -182,11 +219,16 @@ const MeetingCard = ({
       if (response.status === 200) {
         setMomColor("green");
         setMomFetched(true);
+        setSummaryGenerated(true)
+        const momGeneratedKey = `momGenerated_${id}`;
+        localStorage.setItem(momGeneratedKey, "true");
       }
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
+
 
   const fetchTranscript = async (id) => {
     try {
@@ -205,6 +247,7 @@ const MeetingCard = ({
         // console.log(transcriptContent);
         setTranscriptContent(transcriptContent);
         setShowTranscriptModal(true);
+        
       }
     } catch (error) {
       console.error("Error:", error);
@@ -354,8 +397,7 @@ const MeetingCard = ({
             onClick={() => handleTranscriptGeneration(audioId)}
             style={{ cursor: "pointer" }}
           >
-            <FontAwesomeIcon icon={faPersonRunning} /> 
-            Transcript
+             {processingTranscriptMessage ? "Processing..." : <><FontAwesomeIcon icon={faPersonRunning} className="me-2" />Transcript</>}
           </button>
           {transcriptGenerated && (
             <span
@@ -396,7 +438,7 @@ const MeetingCard = ({
             style={{ cursor: "pointer" }}
             disabled={!transcriptGenerated}
           >
-            <FontAwesomeIcon icon={faPersonRunning} />  Summary
+            {processingSummaryMessage ? "Processing..." : <><FontAwesomeIcon icon={faPersonRunning} className="me-2" />Summary</>}
           </button>
           {summaryGenerated && (
             <span
