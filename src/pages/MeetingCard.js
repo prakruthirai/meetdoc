@@ -20,6 +20,7 @@ const MeetingCard = ({
   audioTitle,
   audioDescription,
   audioDate,
+  meetingDate,
   audioAttendees,
   onDelete,
 }) => {
@@ -276,7 +277,10 @@ const MeetingCard = ({
             <p className="title-text" style={{ fontSize: '1rem'}}>Title: {audioTitle}</p>
           </div>
           <div className=" col-12 col-md-4 mt-2">
-            <p className="title-text" style={{ fontSize: '1rem' }}>Date: {audioDate}</p>
+            <p className="title-text" style={{ fontSize: '1rem' }}>Uploaded Date: {audioDate}</p>
+          </div>
+          <div className=" col-12 col-md-4 mt-2">
+            <p className="title-text" style={{ fontSize: '1rem' }}>Meeting Date: {meetingDate}</p>
           </div>
           <div className="col-12 col-md-4  mt-2 text-start " style={{ width: "350px" }}>
           <p className="mb-2 me-4 " style={{ fontSize: '1rem' }}>No.of speakers:{audioAttendees}</p>
@@ -382,6 +386,7 @@ const MeetingCard = ({
           {/* Render the transcript content here */}
           <Transcriptpage />
         </Modal.Body>
+        <Transcriptpage transcriptContent={transcriptContent} />
         <Modal.Footer>
           <button className="btn btn-secondary" onClick={handleCloseTranscriptModal}>
             Close

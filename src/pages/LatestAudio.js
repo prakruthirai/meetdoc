@@ -154,6 +154,7 @@ const AudioList = () => {
                 audioName={audio.filename}
                 audioTitle={audio.title}
                 audioDate={audio.upload_date}
+                meetingDate={audio.date_of_meeting}
                 audioDescription={audio.description}
                 audioAttendees={audio.count_of_attendees}
                 onDelete={handleDelete} />

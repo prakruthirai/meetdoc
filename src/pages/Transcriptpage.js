@@ -76,7 +76,7 @@ const Transcriptpage = () => {
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      <iframe 
+      <iframe
         id="tinyMCEIframe"
         title="TinyMCE Editor"
         src="/tiny.html"
